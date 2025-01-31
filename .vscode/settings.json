@@ -1,0 +1,34 @@
+{
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "cSpell.words": [
+    "baseservice",
+    "Bitrise",
+    "daigirin",
+    "docomo",
+    "foodpanda",
+    "hogehoge",
+    "Jetpack",
+    "kantoku",
+    "Keishin",
+    "nodenv",
+    "taichi",
+    "Qiita",
+    "STARPAY",
+    "SUNMI",
+    "Surile",
+    "techbook",
+    "techbooster",
+    "textlint",
+    "textlintignore",
+    "vivliostyle",
+    "WWDC",
+    "xcodebuild",
+    "xcresult",
+    "Xiaomi",
+    "Yokomaku",
+    "yumemi"
+  ]
+}

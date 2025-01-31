@@ -1,0 +1,56 @@
+# Rules for iOS
+meta:
+  reviewer:
+    - yumemi
+  related: https://developer.apple.com/jp/develop/
+  rules: https://github.com/prh/rules
+
+version: 1
+rules:
+  - expected: iOS
+    patterns:
+      - /ios/i
+      - /iphoneos/i
+    options:
+      wordBoundary: true
+    specs:
+      - from: ioS simulator
+        to: iOS simulator
+      - from: BIOS
+        to: BIOS
+      - from: 今度のiPhoneOSでは
+        to: 今度のiOSでは
+      - from: Vivliostyle
+        to: Vivliostyle
+      - from: 今度のiosでは
+        to: 今度のiOSでは
+
+  - expected: iPhone
+    pattern: /iphone/i
+    options:
+      wordBoundary: true
+
+  - expected: iPad
+    pattern: /ipad/i
+    options:
+      wordBoundary: true
+
+  - expected: Swift
+    pattern: /swift/i
+    options:
+      wordBoundary: true
+
+  - expected: Xcode
+    pattern: /xcode/i
+    options:
+      wordBoundary: true
+    prh: 正式名称は Xcode です
+    specs:
+      - from: Xcode
+        to: Xcode
+      - from: XCode
+        to: Xcode
+      - from: xcode
+        to: Xcode
+      - from: XCODE
+        to: Xcode
