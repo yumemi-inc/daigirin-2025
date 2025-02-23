@@ -63,7 +63,7 @@ $$
 
 ### Swift による計測
 
-Swift でコマンドラインの引数を取得するには、次のようにします。なお、iOS ではなく、macOS が対象です。
+Swift で計測ツールを作成します。紙面とコード量の関係で、分割して説明します。実際のコードは付録のサンプルを参考してください。まず、コマンドラインの引数を取得します。なお、対象は iOS ではなく、macOS です。
 
 ```swift
 import Foundation
@@ -92,7 +92,7 @@ while let arg = args.first {
 }
 ```
 
-計測対象の実行ファイルを実行する。
+計測対象の実行ファイルは、次のように実行します。
 
 ```swift
 let process = Process()
@@ -106,199 +106,185 @@ do {
 }
 ```
 
-実行時間
+実行時間は、実行前後の時間を取得して、その差分とします。
 
 ```swift
 // 試行開始時刻
 let startTime = Date()
 
-// 実行ファイルを実行する
+// 実行ファイルを実行する（略）
 
 // 実行時間（秒）
 let execTime = Date().timeIntervalSince(startTime)
-
 print("実行時間: \(String(format: "%.3f", execTime)) 秒")
 ```
 
-Swift で CPU 使用率とメモリ使用量を取得するのは困難だったので、プロセスの情報を表示する ps コマンドを
-
+Swift で CPU 使用率とメモリ使用量を取得したかったのですが、困難でした。そこで、プロセスの情報を表示する ps コマンドを Swift から利用します。
 
 ```swift
-// MARK: - プロセスの状態を取得する関数
-/// 指定した PID のプロセスについて、ps コマンドで %CPU と RSS を取得する。
-/// - Parameter pid: 監視対象のプロセスID
-/// - Returns: (cpu: CPU使用率[%], rss: Resident Set Size[KB]) のタプル。取得できなければ nil を返す。
 func getProcessStats(pid: pid_t) -> (cpu: Double, rss: Double)? {
-let psPath = "/bin/ps"
-    let psProcess = Process()
-    psProcess.executableURL = URL(fileURLWithPath: psPath)
-    // ps コマンドで %CPU と RSS（常駐セットサイズ）を取得
-    psProcess.arguments = ["-p", "\(pid)", "-o", "%cpu=,rss="]
+  let process = Process()
+  process.executableURL = URL(fileURLWithPath: "/bin/ps")
+  process.arguments = ["-p", "\(pid)", "-o", "%cpu=,rss="]
 
-    let pipe = Pipe()
-    psProcess.standardOutput = pipe
+  let pipe = Pipe()
+  process.standardOutput = pipe
 
-    do {
-        try psProcess.run()
-        psProcess.waitUntilExit()
-    } catch {
-        return nil
-    }
-
-    let data = pipe.fileHandleForReading.readDataToEndOfFile()
-    guard let output = String(data: data, encoding: .utf8) else {
-        return nil
-    }
-    // 出力例: " 0.0  1234"
-    let components = output.trimmingCharacters(in: .whitespacesAndNewlines)
-        .split(separator: " ", omittingEmptySubsequences: true)
-    if components.count >= 2,
-        let cpu = Double(components[0]),
-        let rss = Double(components[1])
-    {
-        return (cpu, rss)
-    }
+  do {
+    try process.run()
+    process.waitUntilExit()
+  } catch {
     return nil
+  }
+
+  let data = pipe.fileHandleForReading.readDataToEndOfFile()
+  guard let output = String(data: data, encoding: .utf8) else {
+    return nil
+  }
+  let values = output.trimmingCharacters(in: .whitespacesAndNewlines)
+      .split(separator: " ", omittingEmptySubsequences: true)
+  guard let values.count >= 2 else { 
+    return nil
+  }
+  if let cpu = Double(values[0]), let rss = Double(values[1]){
+    return (cpu, rss)
+  }
+  return nil
 }
 ```
+
+この getProcessStats(pid:) を利用して、計測対象の CPU 使用率とメモリ使用量を取得します。計測対象のプロセス ID を取得して、計測します。
 
 ```swift
-    let process = Process()
-    process.executableURL = URL(fileURLWithPath: execPath)
+let process = Process()
+process.executableURL = URL(fileURLWithPath: execPath)
 
-    do {
-        try process.run()
-    } catch {
-        print("プロセスの起動に失敗しました: \(error)")
-        exit(1)
-    }
-
-    // プロセスIDを取得
-    let pid = process.processIdentifier
-
-    // 試行中の最大値を記録する変数
-    var maxCpuObserved = 0.0
-    var maxMemoryObserved = 0.0
-
-    // プロセスが終了するまで、0.1秒間隔で ps コマンドにより CPU とメモリを監視
-    while process.isRunning {
-        if let stats = getProcessStats(pid: pid) {
-            if stats.cpu > maxCpuObserved { maxCpuObserved = stats.cpu }
-            if stats.rss > maxMemoryObserved { maxMemoryObserved = stats.rss }
-        }
-        usleep(100_000)  // 100ミリ秒待機
-    }
-    
-    // プロセスの終了を待機（念のため）
-    process.waitUntilExit()
-    
-    print("\n--- 平均結果 (\(results.count) 試行) ---")
-print("最大 CPU 使用率: \(String(format: "%.2f", maxCpuObserved))%")
-print("最大メモリ使用量: \(String(format: "%.2f", maxMemoryObserved / 1_000.0)) MB")
+do {
+  try process.run()
+} catch {
+  print("プロセスの起動に失敗しました: \(error)")
+  exit(1)
 }
 
+// ps で計測するため、計測対象のプロセス ID を取得する
+let pid = process.processIdentifier
+
+// 試行中の最大値を記録する変数
+var cpuRate = 0.0
+var memoryValue = 0.0
+
+// プロセスが終了するまで、0.1秒間隔で ps コマンドにより CPU とメモリを監視
+while process.isRunning {
+  if let stats = getProcessStats(pid: pid) {
+    cpuRate = stats.cpu > cpuRate ? stats.cpu : cpuRate
+    memoryValue = stats.rss > memoryValue ? stats.rss : memoryValue
+  }
+  usleep(100_000)  // 100ミリ秒待機
+}
+    
+// プロセスの終了を待機（念のため）
+process.waitUntilExit()
+    
+print("CPU 使用率: \(String(format: "%.2f", cpuRate))%")
+print("メモリ使用量: \(String(format: "%.2f", memoryValue / 1_000.0)) MB")
 ```
 
-なお、iOS アプリが対象なら、Xcode のデバッガーや Instruments を利用しましょう。
-
+改めて、今回の対象は iOS ではなく、macOS です。iOS アプリが対象なら、Xcode のデバッガーや Instruments を利用しましょう。
 
 ### Python による計測
 
-Python でも計測プログラムを作りました。実装は Swift とほぼ同等です。Python でも計測のため psutil を利用して
+Python でも計測プログラムを作りました。実装は Swift とほぼ同等です。Python でも計測のため ps を利用しました。まず pip を利用して psutil をインストールします。
 
 ```shell
 pip install psutil
 ```
 
-計測関数
+計測関数は次のとおりです。
 
-```
+```python
 import psutil
 import subprocess
 import time
-import argparse
 
 def monitor_process(executable_path):
-    # 測定対象のプログラムを開始
-    process = subprocess.Popen([executable_path], stdout=subprocess.PIPE)
+  # 測定対象のプログラムを開始
+  process = subprocess.Popen([executable_path], stdout=subprocess.PIPE)
 
-    # 初期値を取得
-    initial_cpu = psutil.cpu_percent(interval=0.1)  # 実行前のCPU使用率
-    initial_memory = psutil.virtual_memory().used  # 実行前のメモリ使用量 (バイト)
+  # 初期値を取得
+  initial_cpu = psutil.cpu_percent(interval=0.1)
+  initial_memory = psutil.virtual_memory().used
 
-    # 最大値を記録するための変数
-    max_cpu_usage = 0
-    max_memory_usage = 0
+  # 最大値を記録するための変数
+  max_cpu_usage = 0
+  max_memory_usage = 0
 
-    # 試行開始時刻
-    start_time = time.time()
+  # 試行開始時刻
+  start_time = time.time()
 
-    # プロセスが終了するまでモニタリング
-    while process.poll() is None:
-        # 現在のCPUとメモリの使用量を取得
-        cpu_usage = psutil.cpu_percent(interval=0.1)
-        memory_info = psutil.virtual_memory().used
+  # プロセスが終了するまでモニタリング
+  while process.poll() is None:
+    # 現在のCPUとメモリの使用量を取得
+    cpu_usage = psutil.cpu_percent(interval=0.1)
+    memory_info = psutil.virtual_memory().used
 
-        # 最大値を更新
-        max_cpu_usage = max(max_cpu_usage, cpu_usage)
-        max_memory_usage = max(max_memory_usage, memory_info)
+    # 最大値を更新
+    max_cpu_usage = max(max_cpu_usage, cpu_usage)
+    max_memory_usage = max(max_memory_usage, memory_info)
 
-    end_time = time.time()
+  end_time = time.time()
 
-    # 実行時間を計算
-    execution_time = end_time - start_time
+  # 実行時間を計算
+  execution_time = end_time - start_time
 
-    # 結果を表示
-    print("\n--- Monitoring Results ---")
-    print(f"実行時間: {execution_time:.2f} seconds")
-    print(f"最大 CPU 使用率: {max_cpu_usage:.2f}%")
-    print(f"最大メモリ使用量: {(max_memory_usage - initial_memory) / (1024 ** 2):.2f} MB")
+  # メモリをMB単位にする
+  mb_memory = (max_memory_usage - initial_memory) / (1024 ** 2)
+
+  # 結果を表示
+  print(f"実行時間: {execution_time:.2f} seconds")
+  print(f"最大 CPU 使用率: {max_cpu_usage:.2f}%")
+  print(f"最大メモリ使用量: {mb_memory:.2f} MB")
 ```
 
-```
+作成した monitor_process() を使って、計測対象を計測します。
+
+```python
 import argparse
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Monitor CPU and memory usage of an executable.")
+  parser = argparse.ArgumentParser(description="measure exe file")
     
-    # `-e` or `--exe` のオプション (実行ファイルのパス)
-    parser.add_argument("-e", "--exe", required=True, help="Path to the executable file")
+  # `-e` or `--exe` のオプション (実行ファイルのパス)
+  parser.add_argument("-e", "--exe", required=True, help="file path")
     
-    # `-c` or `--count` のオプション (数値)
-    parser.add_argument("-c", "--count", type=int, required=False, help="Number of iterations")
+  # 引数をパース
+  args = parser.parse_args()
 
-    # 引数をパース
-    args = parser.parse_args()
-
-    # 受け取った値の表示
-    print(f"Executable Path: {args.exe}")
-    print(f"Count: {args.count}")
-
-    monitor_process(args.exe)
-```    
-
-
+  # 計測する
+  monitor_process(args.exe)
+```
 
 ### GNU time を使用した計測
 
+前節まで Swift や Python を使って計測ツールを作りました。しかしながら、内部で ps コマンドを利用しました。他の専用計測コマンドを利用するのがよいのではと、考えました。
 
-macOS には計測コマンド time があります。ただし、このメモリ使用量がしゅとくできません。そこで、GNU time を利用します。Homebrew でインストールできます。
+macOS には計測コマンド time があります。ただし、このコマンドは時間計測できまずが、メモリ使用量が取得できません。そこで、メモリ使用量も計測できる GNU time を利用します。これは Homebrew でインストールできます。
 
-```
+```shell
 brew install gnu-time
 ```
 
+GNU time コマンドを使用すると、スクリプト全体の実行時間やメモリ使用量を簡単に測定できます。
 
-GNU `time` コマンドを使用すると、スクリプト全体の実行時間やメモリ使用量を簡単に測定できます。
-
-```sh
-gtime -f "%e %P %M" ls
-# 実行時間、CPU利用率、メモリ利用量、
+```shell
+% gtime node -v
+v22.11.0
+0.03user 0.01system 0:00.12elapsed 40%CPU (0avgtext+0avgdata 19360maxresident)k
+0inputs+0outputs (12major+2646minor)pagefaults 0swaps
 ```
 
-シェルスクリプトを
+ただし、上記の実行結果を見てもらって分かるように、二次利用も見据えると結果表示が不安です。gtime には出力フォーマットのオプションがあるので、それを設定します。また、計測対象の指定など、簡単なシェルスクリプトを準備します。
 
-```sh
+```shell
 # デフォルト値
 EXECUTABLE=""
 
@@ -316,10 +302,11 @@ CPU_USAGE_RAW=$(echo "$OUTPUT" | awk '{print $2}')
 MEMORY_RAW=$(echo "$OUTPUT" | awk '{print $3}')
 
 echo "経過時間 (REAL_TIME): $REAL_TIME 秒"
-echo "CPU利用率 (CPU_USAGE): $CPU_USAGE_RAW %"
+echo "CPU利用率 (CPU_USAGE): $CPU_USAGE_RAW"
 echo "メモリ使用量 (MEMORY): $MEMORY_RAW MB"
 ```
 
+３種類の計測ツールを紹介しました。紹介してなんですが、やはり専用の time を利用するのが、間違いないでしょう。たとえば、Swift のコードを Swift プロジェクト内で計測したい場合は Swift 一択ですが、そうでない場合は time を使うのがお勧めです。
 
 ## 実装差によるパフォーマンスの違い
 
