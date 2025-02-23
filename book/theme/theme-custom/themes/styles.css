@@ -15,3 +15,7 @@
     word-wrap: break-word;
     white-space: nowrap;
 }
+
+.math.display {
+    font-family: inherit, 'Noto Sans Mono', 'Noto Sans JP', monospace;
+}
