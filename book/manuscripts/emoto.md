@@ -569,7 +569,8 @@ https://github.com/mitsuharu/MeasureScripts
 本記事は Qiita でも読むことができます。後述の URL または QR コードからアクセスしてください。加筆や修正などがある場合は Qiita 記事で対応しますのでご確認ください。また、ご質問等があれば、お気軽にコメントしてください。
 
 ```url
-https://qiita.com/mitsuharu_e/items/xxxx
+https://qiita.com/mitsuharu_e/items/eb0ae78342280eb3463e
 ```
+<!-- https://qiita.com/mitsuharu_e/private/eb0ae78342280eb3463e -->
 
-![記事のQRコード](./images_emoto/qr-code.jpg "記事のQRコード")
+![記事のQRコード](./images_emoto/qr-code.png "記事のQRコード")
