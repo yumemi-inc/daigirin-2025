@@ -21,21 +21,6 @@ jobs:
       PDF_PATH: ./book/output/ebook.pdf
 
     steps:
-      # フォントをキャッシュ&リストアする
-      - name: Restore or Save Cache Font Noto
-        id: cache-font-noto
-        uses: actions/cache@v4
-        with:
-          path: /usr/share/fonts/opentype/noto
-          key: font-noto-cache-key
-
-      # 日本語をインストールする
-      - name: Install Japanese fonts
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y fonts-noto-cjk fonts-noto-cjk-extra
-        if: ${{ steps.cache-font-noto.outputs.cache-hit != 'true' }}
-
       # リポジトリをチェックアウト
       - name: Checkout repository
         uses: actions/checkout@v4
