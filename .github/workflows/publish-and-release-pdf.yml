@@ -31,6 +31,7 @@ jobs:
       COVER_PSD_PATH: ./book/cover/*.psd
     
     steps:
+
       # リポジトリをチェックアウト
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -46,8 +47,7 @@ jobs:
         run: |
           corepack enable
           yarn install --frozen-lockfile
-          
-          make pdf
+          yarn build
           if [ ! -f "${EBOOK_PDF_PATH}" ]; then
             echo "エラー: 電子版 PDF の生成に失敗しました。"
             exit 1
