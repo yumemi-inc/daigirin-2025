@@ -35,9 +35,9 @@ class: content
 
 CPU 使用率（CPU usage）は、プログラムがどの程度の CPU 時間を使用しているかを示す指標です。利用する計測ツールでは取得できない場合もありますが、計算時間から計算できます。
 
-$$
+<!-- $$
 {\rm CPU usage} = \frac{{\rm User CPU time} + {\rm User System time}}{{\rm Total time}}
-$$
+$$ -->
 
 | 指標 | 説明 |
 | :-- | :-- |
