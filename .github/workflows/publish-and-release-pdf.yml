@@ -47,7 +47,7 @@ jobs:
           corepack enable
           yarn install --immutable
           
-          make pdf
+          yarn build
           if [ ! -f "${EBOOK_PDF_PATH}" ]; then
             echo "エラー: 電子版 PDF の生成に失敗しました。"
             exit 1
