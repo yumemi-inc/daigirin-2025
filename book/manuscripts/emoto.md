@@ -364,7 +364,7 @@ def quick_sort(arr):
     return quick_sort(left) + middle + quick_sort(right)
 ```
 
-バブルソートは ${\rm O}(n^2)$ の時間計算量をもつため、大きなデータセットでは極めて遅くなります。一方、クイックソートは ${\rm O}(n \log n)$ で動作するので、大幅に高速化されます。
+<!-- バブルソートは ${\rm O}(n^2)$ の時間計算量をもつため、大きなデータセットでは極めて遅くなります。一方、クイックソートは ${\rm O}(n \log n)$ で動作するので、大幅に高速化されます。 -->
 
 ```python
 arr = [random.randint(0, 100000) for _ in range(10000)]
