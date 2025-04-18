@@ -10,7 +10,13 @@ class: exclude-hashira
 
 ## ゆめみ大技林 25
 
-<!--2023年5月15日--> 初版
+<!-- textlint-disable ja-technical-writing/ja-no-mixed-period -->
+<!-- textlint-disable ja-spacing/ja-no-space-between-full-width -->
+<!-- textlint-disable ja-spacing/ja-space-between-half-and-full-width -->
+2025年5月31日 初版
+<!-- textlint-enable ja-technical-writing/ja-no-mixed-period -->
+<!-- textlint-enable ja-spacing/ja-no-space-between-full-width -->
+<!-- textlint-enable ja-spacing/ja-space-between-half-and-full-width -->
 
 ---
 
