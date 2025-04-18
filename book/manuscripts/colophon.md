@@ -27,7 +27,7 @@ class: exclude-hashira
   </div>
   <div class="colophon-row">
     <div class="colophon-label">表紙</div>
-    <div class="colophon-value"><!-- 吉森由之助 --></div>
+    <div class="colophon-value">渡辺安梨沙</div>
   </div>
   <div class="colophon-row">
     <div class="colophon-label">印刷</div>
