@@ -2,7 +2,7 @@
 class: exclude-hashira
 ---
 
-# ゆめみ大技林 <!--'23-->
+# ゆめみ大技林 25
 
 <nav id="toc" role="doc-toc">
 

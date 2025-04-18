@@ -8,7 +8,7 @@ class: exclude-hashira
 
 <section class="colophon">
 
-## ゆめみ大技林 <!--'23-->
+## ゆめみ大技林 25
 
 <!--2023年5月15日--> 初版
 
@@ -37,7 +37,7 @@ class: exclude-hashira
 
 <!-- textlint-disable ja-technical-writing/ja-no-mixed-period -->
 
-© <!--2023--> ゆめみ大技林製作委員会
+© 2025 ゆめみ大技林製作委員会
 
 <!-- textlint-enable: ja-technical-writing/ja-no-mixed-period -->
 
