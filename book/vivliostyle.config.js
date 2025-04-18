@@ -1,5 +1,5 @@
 module.exports = {
-  title: 'ゆめみ大技林 25',
+  title: "ゆめみ大技林 '25",
   author: 'ゆめみ大技林製作委員会',
   language: 'ja',
   size: 'A5',
