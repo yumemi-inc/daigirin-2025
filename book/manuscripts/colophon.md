@@ -8,7 +8,7 @@ class: exclude-hashira
 
 <section class="colophon">
 
-## ゆめみ大技林 25
+## ゆめみ大技林 '25
 
 <!-- textlint-disable ja-technical-writing/ja-no-mixed-period -->
 <!-- textlint-disable ja-spacing/ja-no-space-between-full-width -->
