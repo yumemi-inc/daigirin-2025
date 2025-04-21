@@ -40,6 +40,8 @@ class: exclude-hashira
 https://github.com/yumemi-inc/daigirin-template
 ```
 
+![執筆テンプレートの GitHub URL](./preface/qr-code-daigirin-template-url.png)
+
 このテンプレートは、Markdown ファイルで執筆して、電子書籍および印刷所の入稿用 PDF を製作します。本の製作において、印刷所に入稿する前までの工程をサポートします。
 
 CSS 組版に対応したオープンソースソフトウェア Vivliostyle [^vivliostyle] を採用しています。Web の標準技術を利用しているので、Web 関連の開発経験があれば、簡単に扱えます。環境構築に不安がある場合は、macOS 限定になりますが、仮想環境を用意しているので、ターミナルからいくつかのコマンドを実行するだけで始められます。
@@ -48,8 +50,8 @@ CSS 組版に対応したオープンソースソフトウェア Vivliostyle [^v
 
 最後に「ゆめみ大技林」は社外からも執筆参加ができます。「どう始めたらいいか分からない」や「発表の場がない」という方、ぜひ一緒に書きましょう。また、いずれはご自身で本を出したい場合は、原稿作成や印刷所の入稿などの本の製作手順もサポートします。
 
-[^yb-connpass]: YUMEMI.grow 技術同人誌を支える技術, https://yumemi.connpass.com/event/291439/ 。アーカイブは https://www.youtube.com/live/SvmX8J56W-s で公開しています。
-[^vivliostyle]: Vivliostyle https://vivliostyle.org/ja/
+[^yb-connpass]: YUMEMI.grow 技術同人誌を支える技術, https://yumemi.connpass.com/event/291439/ , アーカイブは https://www.youtube.com/live/SvmX8J56W-s で公開しています。
+[^vivliostyle]: Vivliostyle, https://vivliostyle.org/ja/
 
 ## 免責事項
 
