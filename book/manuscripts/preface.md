@@ -57,6 +57,7 @@ https://github.com/yumemi-inc/daigirin-template
 
 最後に「ゆめみ大技林」は社外からの執筆参加を歓迎しています。「どう始めたらいいか分からない」や「発表の場がない」などを考えているあなた、ぜひ一緒に書きましょう。将来的にご自身で本を出したい場合でも、原稿作成や印刷所の入稿などの本製作の手順をサポートします。
 
+<!-- 奇数ページの調整 -->
 <hr class="page-break" />
 
 ## 免責事項
@@ -66,9 +67,3 @@ https://github.com/yumemi-inc/daigirin-template
 ## 商標・登録商標について
 
 本書に登場するシステムや製品などの名称は、一般に各社の商標または登録商標です。本書では©︎や®︎、™️の表記を省略している場合があります。
-
-<!-- 奇数ページの調整 -->
-<!-- markdownlint-disable MD041 MD009 -->
-<!-- <hr class="page-break" />
-　 -->
-<!-- markdownlint-enable MD041 MD009 -->
