@@ -8,9 +8,15 @@ class: exclude-hashira
 
 <section class="colophon">
 
-## ゆめみ大技林 <!--'23-->
+## ゆめみ大技林 '25
 
-<!--2023年5月15日--> 初版
+<!-- textlint-disable ja-technical-writing/ja-no-mixed-period -->
+<!-- textlint-disable ja-spacing/ja-no-space-between-full-width -->
+<!-- textlint-disable ja-spacing/ja-space-between-half-and-full-width -->
+2025年5月31日 初版
+<!-- textlint-enable ja-technical-writing/ja-no-mixed-period -->
+<!-- textlint-enable ja-spacing/ja-no-space-between-full-width -->
+<!-- textlint-enable ja-spacing/ja-space-between-half-and-full-width -->
 
 ---
 
@@ -21,7 +27,7 @@ class: exclude-hashira
   </div>
   <div class="colophon-row">
     <div class="colophon-label">表紙</div>
-    <div class="colophon-value"><!-- 吉森由之助 --></div>
+    <div class="colophon-value">渡辺安梨沙</div>
   </div>
   <div class="colophon-row">
     <div class="colophon-label">印刷</div>
@@ -37,7 +43,7 @@ class: exclude-hashira
 
 <!-- textlint-disable ja-technical-writing/ja-no-mixed-period -->
 
-© <!--2023--> ゆめみ大技林製作委員会
+© 2025 ゆめみ大技林製作委員会
 
 <!-- textlint-enable: ja-technical-writing/ja-no-mixed-period -->
 
