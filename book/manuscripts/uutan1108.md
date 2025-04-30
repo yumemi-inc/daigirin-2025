@@ -88,6 +88,88 @@ MDN Web Docs のローカル環境では、パッケージマネージャーと�
    yarn --version
    ```
 
+## 翻訳作業できる環境を作る
+
+### MDN Web Docsの翻訳環境を構築する
+
+MDN Web Docs の翻訳作業を行うために、次の手順でローカル環境を構築します。
+
+#### 1. 作業用ディレクトリの作成
+
+まず、翻訳作業用のディレクトリを作成します。好きな場所に「mdn-translation」ディレクトリを作成しましょう。
+
+```sh
+mkdir mdn-translation
+cd mdn-translation
+```
+
+#### 2. 英語記事リポジトリのクローン
+
+MDN Web Docs の英語記事が管理されているリポジトリをクローンします。
+
+1. ブラウザで次のリポジトリにアクセスします：
+   https://github.com/mdn/content
+
+2. 「Code」ボタンをクリックし、HTTPS の URL をコピーする。
+
+![クローンするための URL をコピーする](./images_uutan1108/mdn-content.png)
+
+3. ターミナルで次のコマンドを実行する：
+   ```sh
+   git clone https://github.com/mdn/content
+   ```
+
+#### 3. 翻訳用リポジトリのクローン
+
+先ほど fork した翻訳用リポジトリをクローンします。
+
+```sh
+git clone https://github.com/あなたのGitHubアカウントID/translated-content
+```
+
+#### 4. 必要なパッケージのインストール
+
+この後、手元の PC で MDN Web Docs を立ち上げる際に必要なパッケージをインストールします。
+
+1. content ディレクトリでパッケージをインストール：
+
+   ```sh
+   cd content
+   yarn install
+   ```
+
+これで、MDN Web Docs の翻訳作業に必要なローカル環境の構築が完了しました。
+
+#### 5. 設定を追加する
+
+`mdn-translation/content`ディレクトリで次のコマンドを実行してください。
+
+```sh
+echo 'CONTENT_TRANSLATED_ROOT=../translated-content/files' > .env
+```
+
+「英語記事リポジトリ(`content`)」と「翻訳用リポジトリ(`translated-content`)」を関連づけるために必要です。
+
+#### 6. 手元の PC で MDN Web Docs を立ち上げる
+
+`mdn-translation/content`ディレクトリで次のコマンドを実行してください。
+
+1. 開発サーバーを起動する：
+
+   ```sh
+   yarn start
+   ```
+
+2. ブラウザで http://localhost:5042/ja/docs/Web/HTML にアクセスする
+
+http://localhost:5042/en-US/docs/Web/HTML にアクセスすると翻訳前のドキュメントを開くことができます。
+
+これで、ローカル環境で MDN Web Docs の英語版と日本語版の両方を確認できるようになりました。翻訳作業を行う際は、英語版の内容を参考にしながら、日本語版の翻訳を進めることができます。
+
+次のように英語版と日本語版を開くことで効率的に翻訳作業を進められます。
+
+![英語版と日本語版のドキュメントを開いている様子](./images_uutan1108/ja-en-docs.png)
+
 ## 翻訳できそうな　MDN Web Docs　のページを探す
 
 MDN Web Docs の翻訳できそうなページを探すには、MDN 翻訳ステータス一覧表を活用します。特に用語の解説ページ（Glossary）は文章が短いため、翻訳の初心者にはお勧めです。
@@ -100,16 +182,10 @@ https://mdn.lavoscore.org/?regex_b=glossary&sort=size-asc&filter=not-ja
 
 https://mdn.lavoscore.org/?filter=not-ja
 
-## 翻訳作業できる環境を作る
-
-### リポジトリを fork する
-
-### リポジトリを　clone　する
-
-### 手元の PC で MDN Web Docs を立ち上げる
+## 翻訳する準備をする
 
 ## 参考
 
 本記事では、MDN Web Docs のローカル環境構築について詳しく解説しましたが、私自身も次のサイトを参考にしながら翻訳に挑戦しました。慣れている方はこちらも参考にしてみてください。
 
-[MDN 月例ミートアップ - 翻訳ガイド · HonKit](https://mozilla-japan.github.io/mdn-translation-guide/)
+MDN 月例ミートアップ - 翻訳ガイド · HonKit https://mozilla-japan.github.io/mdn-translation-guide/
