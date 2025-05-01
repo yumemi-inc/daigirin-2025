@@ -256,7 +256,63 @@ abstraction % git log -n 1 --pretty=format:%H -- index.md
 
 これにより、翻訳したドキュメントが英語版のどのバージョンを元にしているかを追跡できます。
 
-## 最後に　MDN Web Docs にあなたが翻訳したドキュメントを提案する
+## MDN Web Docs にあなたが翻訳したドキュメントを提案する
+
+翻訳が完了したら、GitHub でプルリクエスト（PR）を作成して、翻訳内容を提案します。次の手順で行います。
+
+### 1. 変更をコミットする
+
+まず、翻訳した内容を Git にコミットします。
+
+1. 変更したファイルをステージングエリアに追加する。
+
+   ```sh
+   abstraction % git add index.md
+   ```
+
+2. 変更をコミットする。
+
+`"翻訳: Abstraction の用語解説を翻訳"`の文章は何を翻訳したかを書きましょう。
+
+```sh
+git commit -m "翻訳: Abstraction の用語解説を翻訳"
+```
+
+### 2. 変更をプッシュする
+
+リモートリポジトリがあなたのリポジトリになっていることを確認します。
+
+```sh
+% git config --get remote.origin.url
+git@github.com:あなたのGitHubアカウントID/translated-content.git
+```
+
+コミットした変更を GitHub にプッシュします。
+
+```sh
+git push origin main
+```
+
+### 3. プルリクエストを作成する
+
+1. https://github.com/あなたのGitHubアカウントID/translated-content にアクセスする
+2. 画像で示したポップアップの中のミドルのボタンを押す。
+   ![PRを出すためのボタン](./images_uutan1108/pr.png)
+3. プルリクエストのタイトルと説明を入力する。
+   ![プルリクエストの説明を書く](./images_uutan1108/pr-description.png)
+   画像の例ではタイトルは「[ja]: translate SDK documentation」
+   説明は、
+   ```
+   SDK の英語ドキュメントを日本語に翻訳しました。
+   https://developer.mozilla.org/en-US/docs/Glossary/SDK
+   ```
+   と日本語の説明と翻訳前のドキュメントの URL を書いている。
+   タイトルや説明は好みですが、あなたの翻訳が問題ないか確認してくださる方（メンテナー）は日本人で日本語話者なので日本語でも問題ありません。
+4. 緑の「Create pull request」ボタンをクリックする
+
+これで、翻訳した内容が MDN Web Docs のメンテナーにレビューされます。レビュー後に問題がなければ、翻訳内容が MDN Web Docs に反映されます。
+
+問題があった場合は、日本語で指摘があるので、修正して「MDN Web Docs にあなたが翻訳したドキュメントを提案する」の章の 1, 2 を再度行いましょう。
 
 ## 参考
 
