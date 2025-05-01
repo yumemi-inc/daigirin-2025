@@ -103,9 +103,9 @@ mkdir mdn-translation
 cd mdn-translation
 ```
 
-#### 2. 英語記事リポジトリのクローン
+#### 2. 英語ドキュメントリポジトリのクローン
 
-MDN Web Docs の英語記事が管理されているリポジトリをクローンします。
+MDN Web Docs の英語のドキュメントが管理されているリポジトリをクローンします。
 
 1. ブラウザで次のリポジトリにアクセスします：
    https://github.com/mdn/content
@@ -148,7 +148,7 @@ git clone https://github.com/あなたのGitHubアカウントID/translated-cont
 echo 'CONTENT_TRANSLATED_ROOT=../translated-content/files' > .env
 ```
 
-「英語記事リポジトリ(`content`)」と「翻訳用リポジトリ(`translated-content`)」を関連づけるために必要です。
+「英語のドキュメントリポジトリ(`content`)」と「翻訳用リポジトリ(`translated-content`)」を関連づけるために必要です。
 
 #### 6. 手元の PC で MDN Web Docs を立ち上げる
 
@@ -174,7 +174,7 @@ http://localhost:5042/en-US/docs/Web/HTML にアクセスすると翻訳前の�
 
 MDN Web Docs の翻訳できそうなページを探すには、MDN 翻訳ステータス一覧表を活用します。特に用語の解説ページ（Glossary）は文章が短いため、翻訳の初心者にはお勧めです。
 
-次のページから、日本語に翻訳されていないページを探すことができます。
+次のページから、日本語に翻訳されていない用語の解説のページを探すことができます。
 
 https://mdn.lavoscore.org/?regex_b=glossary&sort=size-asc&filter=not-ja
 
@@ -182,7 +182,81 @@ https://mdn.lavoscore.org/?regex_b=glossary&sort=size-asc&filter=not-ja
 
 https://mdn.lavoscore.org/?filter=not-ja
 
+表示されている URL をクリックして、次のような画面が表示された場合は翻訳前です。
+
+![翻訳されたドキュメントが存在しない場合](./images_uutan1108/not-docs.png)
+
 ## 翻訳する準備をする
+
+翻訳したいドキュメントをみつけたら、次の手順で翻訳作業を始めます。
+
+### 1. 翻訳対象のファイルを確認する
+
+まず、翻訳したいドキュメントのファイルを確認します。たとえば、https://developer.mozilla.org/en-US/docs/Glossary/Abstraction の用語解説ページを翻訳する場合。
+
+次のように英語のドキュメントリポジトリ(`content`)に対象のファイルがあります。
+
+![翻訳前の英語ドキュメント](./images_uutan1108/content-abstraction.png)
+
+ファイルの中を確認し、対象のドキュメントか確認します。
+
+### 2. 翻訳用リポジトリにファイルをコピーする
+
+翻訳対象のファイルを翻訳用リポジトリ（`translated-content`）にコピーします。
+
+次の画像の場所に`abstraction`ディレクトリを作成し、その中に`index.md`を作成します。翻訳対象の英語ドキュメントのファイルをコピー&ペーストします。
+
+![翻訳前の英語ドキュメントをコピーして、翻訳用レポジトリーにコピーする](./images_uutan1108/translated-content-abstraction.png)
+
+次の URL にアクセスして、翻訳前のドキュメントが表示されたら成功です。
+
+http://localhost:5042/ja/docs/Glossary/Abstraction
+
+## 翻訳する
+
+`translated-content`ディレクトリ内にコピーしたファイルを英語から日本語に翻訳します。
+
+翻訳する際には次の点に注意しながら行います。
+
+- 表記ガイドライン https://github.com/mozilla-japan/translation/wiki/Editorial-Guideline
+- L10N ガイドライン https://github.com/mozilla-japan/translation/wiki/L10N-Guideline
+- Mozilla 用語集 https://github.com/mozilla-japan/translation/wiki/Mozilla-L10N-Glossary
+- 日本語の文体 https://docs.google.com/spreadsheets/d/1y-hC-xMXawCgcYZwJDnvuSlAOTgMRLLyqXurpYkJbYE/edit#gid=0
+
+`translated-content`ディレクトリ内にコピーしたファイルの先頭に、次のように書かれています。
+
+```md
+---
+title: Abstraction
+slug: Glossary/Abstraction
+page-type: glossary-definition
+---
+```
+
+この内容を次のように書き換えます。
+
+```
+---
+title: Abstraction
+slug: Glossary/Abstraction
+l10n:
+  sourceCommit: 7a551aaa034fbada3eb99e6fc924a0313b78307f
+---
+```
+
+`sourceCommit`には翻訳するドキュメントの英語版ドキュメントのファイルの最新コミットのハッシュ値を書きます。次のように、対象のファイルの場所に移動して、コマンドでハッシュ値を取得できます。
+
+```sh
+mdn-translation % cd content/files/en-us/glossary/abstraction/
+abstraction % ls
+index.md
+abstraction % git log -n 1 --pretty=format:%H -- index.md
+7a551aaa034fbada3eb99e6fc924a0313b78307f
+```
+
+これにより、翻訳したドキュメントが英語版のどのバージョンを元にしているかを追跡できます。
+
+## 最後に　MDN Web Docs にあなたが翻訳したドキュメントを提案する
 
 ## 参考
 
