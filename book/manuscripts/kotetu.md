@@ -3,16 +3,18 @@ class: content
 ---
 
 <div class="doc-header">
-  <h1>ExecuTorch の Llama サンプルコードを動かしてみた</h1>
+  <h1>ExecuTorch を使って iOS 上で Llama モデルを動かしてみた</h1>
   <div class="doc-author">栗山徹</div>
 </div>
 
-ExecuTorch の Llama サンプルコードを動かしてみた
+ExecuTorch を使って iOS 上で Llama モデルを動かしてみた
 ==
 
 ## はじめに
 
-なお、本章の記事は 2025 年 4 月時点の情報を元に執筆しました。
+本章では、 "ExecuTorch" という、エッジ AI を実現するためのライブラリを題材に、エッジ AI や ExecuTorch の紹介、さらには ExecuTorch 付属のサンプルコードうち、 "Llama" という Meta が開発している LLM のモデルを iOS アプリで動かすサンプルを実行する方法について解説します。
+
+なお、本章の記事は 2025 年 5 月 5 日時点の情報を元に執筆しました。
 
 ## エッジ AI について
 
