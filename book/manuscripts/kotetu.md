@@ -51,7 +51,30 @@ Apple Intelligence は、iPhone / iPad / macOS 上で生成 AI を活用した�
 [^3]: https://www.apple.com/jp/apple-intelligence/
 
 [^4]: https://buildersbox.corp-sansan.com/entry/2022/11/01/110000
-## ExecuTorch について
+
+## PyTorch と ExecuTorch
+
+エッジ AI の実現手法はいくつかありますが、本稿では ExecuTorch というライブラリに着目しました。ここでは、 ExecuTorch や元となったライブラリである PyTorch について紹介します。
+
+### PyTorch について
+
+**PyTorch** [^5] はオープンソースの機械学習ライブラリです。 PyTorch は TensorFlow [^6]と並んで機械学習機能の実装によく使われるライブラリのひとつです。名前のとおり Python 向けのライブラリですが、パフォーマンス向上を目的に C++ で実装されている箇所が多数あります。GPU を利用した処理の高速化や機械学習に便利な機能セットにより、多くの研究者や開発者に使用されています。
+
+[^5]: https://pytorch.org/
+
+[^6]: https://www.tensorflow.org/
+
+### ExecuTorch について
+
+**ExecuTorch** [^7] はエッジデバイス上での推論処理を実現するために開発されたライブラリです。 ExecuTorch を利用することで、既存の PyTorch モデルをエッジデバイスに効率的に導入することが可能です。
+
+ExecuTorch の特徴のひとつとして、エッジデバイスのハードウェア機能を活用したパフォーマンス向上が挙げられます。 ExecuTorch では推論を行う際に使用するバックエンドを選択することができ、iOS では Metal Performance Shader (MPS) および CoreML を選択でき、 Android では Vulkan を選択できます。モバイル端末に搭載されている GPU や Neural Engine を活用できることは、推論処理を行う上で大きなメリットといえるのではないでしょうか。
+
+[^7]: https://pytorch.org/executorch-overview
+
+#### ExecuTorch の仕組み
+
+
 
 ## Llama について
 
