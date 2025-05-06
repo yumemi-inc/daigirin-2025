@@ -52,40 +52,42 @@ MDN Web Docs のローカル環境を構築するために、Node.js をイン�
 4. インストーラーの指示にしたがって進める
 5. インストールが完了したら、コマンドプロンプトを開いて次のコマンドを実行し、インストールを確認する：
    ```shell
-   node --version
+   $ node --version
    ```
 
 ### macOS の場合
 
-macOS では Homebrew を使ってインストールします。
+macOS では Homebrew[^4] を使ってインストールします。
 
-1. まず Homebrew をインストールする（すでにインストール済みの場合はスキップ）：
+1. まず Homebrew をインストールする。
    ```shell
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    ```
-2. Node.js をインストールする：
+2. Node.js をインストールする。
    ```shell
-   brew install node
+   $ brew install node
    ```
-3. インストールを確認する：
+3. インストールされていることを確認する。
    ```shell
-   node --version
+   $ node --version
    ```
 
 [^3]: Node.js 公式サイト https://nodejs.org/
+
+[^4]: Homebrew とは、macOS 用のパッケージマネージャーです。ソフトウェアのインストールや管理を簡単に行うことができます。https://brew.sh
 
 ## Yarn をインストールする
 
 MDN Web Docs のローカル環境では、パッケージマネージャーとして Yarn を使用します。Yarn は Node.js のパッケージを効率的に管理するためのツールです。
 
-1. ターミナル（macOS）またはコマンドプロンプト（Windows）を開く
-2. 次のコマンドを実行してインストールする：
+1. ターミナル（macOS）またはコマンドプロンプト（Windows）を開く。
+2. 次のコマンドを実行してインストールする。
    ```shell
-   npm install -g yarn
+   $ npm install -g yarn
    ```
 3. インストールを確認する：
    ```shell
-   yarn --version
+   $ yarn --version
    ```
 
 ## 翻訳作業できる環境を作る
@@ -96,7 +98,7 @@ MDN Web Docs の翻訳作業を行うために、次の手順でローカル環�
 
 #### 1. 作業用ディレクトリの作成
 
-まず、翻訳作業用のディレクトリを作成します。好きな場所に「mdn-translation」ディレクトリを作成しましょう。
+まず、翻訳作業用のディレクトリを作成します。好きな場所に`mdn-translation`ディレクトリを作成しましょう。
 
 ```sh
 $ mkdir mdn-translation
@@ -107,7 +109,7 @@ $ cd mdn-translation
 
 MDN Web Docs の英語のドキュメントが管理されているリポジトリをクローンします。
 
-1. ブラウザで次のリポジトリにアクセスします：
+1. ブラウザで次のリポジトリにアクセスする。
    https://github.com/mdn/content
 
 2. 「Code」ボタンをクリックし、HTTPS の URL をコピーする。
@@ -120,17 +122,27 @@ MDN Web Docs の英語のドキュメントが管理されているリポジト�
    mdn-translation $ git clone https://github.com/mdn/content
    ```
 
-   [^4]: `コマンドを実行するディレクトリ $ 実行するコマンド`
+   [^4]: 本記事においては、`コマンドを実行するディレクトリ $ 実行するコマンド`でコマンドを表現する。
 
-#### 3. 翻訳用リポジトリのクローン
+#### 3. 翻訳用リポジトリをフォーク
 
-先ほど fork した翻訳用リポジトリをクローンする。
+翻訳されたドキュメントを管理するためのリポジトリをフォークする。
+
+フォークとは、GitHub 上で他のユーザーのリポジトリを自分のアカウントにコピーすることです。これにより、元のリポジトリに影響を与えることなく、自由に変更を加えることができます。
+
+これから、このフォークしたリポジトリに翻訳したドキュメントを追加していきます。
+
+![GitHub のフォークボタン](./images_uutan1108/mdn_translated-content-fork.png)
+
+#### 4. 翻訳用リポジトリのクローン
+
+先ほどフォークした翻訳用リポジトリをクローンする。
 
 ```sh
 mdn-translation $ git clone https://github.com/あなたのGitHubアカウントID/translated-content
 ```
 
-#### 4. 必要なパッケージのインストール
+#### 5. 必要なパッケージのインストール
 
 この後、手元の PC で MDN Web Docs を立ち上げる際に必要なパッケージをインストールします。
 
@@ -143,9 +155,9 @@ mdn-translation $ git clone https://github.com/あなたのGitHubアカウント
 
 これで、MDN Web Docs の翻訳作業に必要なローカル環境の構築が完了しました。
 
-#### 5. 設定を追加する
+#### 6. 設定を追加する
 
-`mdn-translation/content`ディレクトリで次のコマンドを実行してください。
+`content`ディレクトリで次のコマンドを実行してください。
 
 ```sh
 content $ echo 'CONTENT_TRANSLATED_ROOT=../translated-content/files' > .env
@@ -153,9 +165,9 @@ content $ echo 'CONTENT_TRANSLATED_ROOT=../translated-content/files' > .env
 
 「英語のドキュメントリポジトリ(`content`)」と「翻訳用リポジトリ(`translated-content`)」を関連づけるために必要です。
 
-#### 6. 手元の PC で MDN Web Docs を立ち上げる
+#### 7. 手元の PC で MDN Web Docs を立ち上げる
 
-`mdn-translation/content`ディレクトリで次のコマンドを実行してください。
+`content`ディレクトリで次のコマンドを実行してください。
 
 1. 開発サーバーを起動する：
 
@@ -197,7 +209,7 @@ https://mdn.lavoscore.org/?filter=not-ja
 
 まず、翻訳したいドキュメントのファイルを確認します。たとえば、https://developer.mozilla.org/en-US/docs/Glossary/Abstraction の用語解説ページを翻訳する場合。
 
-次のように英語のドキュメントリポジトリ(`content`)に対象のファイルがあります。
+次の画像のように英語のドキュメントリポジトリ(`content`)に対象のファイルがあります。
 
 ![翻訳前の英語ドキュメント](./images_uutan1108/content-abstraction.png)
 
@@ -261,7 +273,7 @@ abstraction $ git log -n 1 --pretty=format:%H -- index.md
 
 ## MDN Web Docs にあなたが翻訳したドキュメントを提案する
 
-翻訳が完了したら、GitHub でプルリクエスト（PR）を作成して、翻訳内容を提案します。次の手順で行います。
+翻訳が完了したら、GitHub でプルリクエストを作成して、翻訳内容を提案します。次の手順で行います。
 
 ### 1. 変更をコミットする
 
