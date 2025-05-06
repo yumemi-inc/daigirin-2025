@@ -78,17 +78,29 @@ macOS では Homebrew[^4] を使ってインストールします。
 
 ## Yarn をインストールする
 
-MDN Web Docs のローカル環境では、パッケージマネージャーとして Yarn を使用します。Yarn は Node.js のパッケージを効率的に管理するためのツールです。
+MDN Web Docs のローカル環境では、パッケージマネージャーとして Yarn を採用しています。Yarn は Node.js のパッケージを効率的に管理するためのツールです。
+
+### Yarn v4 のインストール
+
+Yarn v4 は、Node.js に付属の Corepack を使用してインストールすることを推奨[^5]しています。
 
 1. ターミナル（macOS）またはコマンドプロンプト（Windows）を開く。
-2. 次のコマンドを実行してインストールする。
+2. Corepack を有効にする：
    ```shell
-   $ npm install -g yarn
+   $ corepack enable
    ```
-3. インストールを確認する：
+3. Yarn をインストールする：
+   ```shell
+   $ corepack prepare yarn --activate
+   ```
+4. インストールを確認する：
    ```shell
    $ yarn --version
    ```
+
+[^5]:
+    Corepack は Node.js の将来のバージョンで標準機能から外れる予定ですが、現時点では推奨されるインストール方法となっています。
+    https://github.com/nodejs/package-maintenance/blob/main/docs/version-management/proposal-next-steps.md
 
 ## 翻訳作業できる環境を作る
 
