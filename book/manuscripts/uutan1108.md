@@ -26,7 +26,7 @@ MDN Web Docs への翻訳コントリビュートには、GitHub アカウント
 3. 次の情報を入力する：
    - メールアドレス
    - パスワード
-   - ユーザー名（一意である必要がある）
+   - ユーザー ID（他のユーザーと同じ ID は利用できない）
 4. 「Create account」をクリックする
 5. メールアドレス確認のメールが届くので、記載されているリンクをクリックして認証を完了させる
 
@@ -99,8 +99,8 @@ MDN Web Docs の翻訳作業を行うために、次の手順でローカル環�
 まず、翻訳作業用のディレクトリを作成します。好きな場所に「mdn-translation」ディレクトリを作成しましょう。
 
 ```sh
-mkdir mdn-translation
-cd mdn-translation
+$ mkdir mdn-translation
+$ cd mdn-translation
 ```
 
 #### 2. 英語ドキュメントリポジトリのクローン
@@ -114,17 +114,20 @@ MDN Web Docs の英語のドキュメントが管理されているリポジト�
 
 ![クローンするための URL をコピーする](./images_uutan1108/mdn-content.png)
 
-3. ターミナルで次のコマンドを実行する：
+3. ターミナルで次のコマンドを実行する。[^4]
+
    ```sh
-   git clone https://github.com/mdn/content
+   mdn-translation $ git clone https://github.com/mdn/content
    ```
+
+   [^4]: `コマンドを実行するディレクトリ $ 実行するコマンド`
 
 #### 3. 翻訳用リポジトリのクローン
 
-先ほど fork した翻訳用リポジトリをクローンします。
+先ほど fork した翻訳用リポジトリをクローンする。
 
 ```sh
-git clone https://github.com/あなたのGitHubアカウントID/translated-content
+mdn-translation $ git clone https://github.com/あなたのGitHubアカウントID/translated-content
 ```
 
 #### 4. 必要なパッケージのインストール
@@ -134,8 +137,8 @@ git clone https://github.com/あなたのGitHubアカウントID/translated-cont
 1. content ディレクトリでパッケージをインストール：
 
    ```sh
-   cd content
-   yarn install
+   mdn-translation $ cd content
+   content $ yarn install
    ```
 
 これで、MDN Web Docs の翻訳作業に必要なローカル環境の構築が完了しました。
@@ -145,7 +148,7 @@ git clone https://github.com/あなたのGitHubアカウントID/translated-cont
 `mdn-translation/content`ディレクトリで次のコマンドを実行してください。
 
 ```sh
-echo 'CONTENT_TRANSLATED_ROOT=../translated-content/files' > .env
+content $ echo 'CONTENT_TRANSLATED_ROOT=../translated-content/files' > .env
 ```
 
 「英語のドキュメントリポジトリ(`content`)」と「翻訳用リポジトリ(`translated-content`)」を関連づけるために必要です。
@@ -157,7 +160,7 @@ echo 'CONTENT_TRANSLATED_ROOT=../translated-content/files' > .env
 1. 開発サーバーを起動する：
 
    ```sh
-   yarn start
+   content $ yarn start
    ```
 
 2. ブラウザで http://localhost:5042/ja/docs/Web/HTML にアクセスする
@@ -247,10 +250,10 @@ l10n:
 `sourceCommit`には翻訳するドキュメントの英語版ドキュメントのファイルの最新コミットのハッシュ値を書きます。次のように、対象のファイルの場所に移動して、コマンドでハッシュ値を取得できます。
 
 ```sh
-mdn-translation % cd content/files/en-us/glossary/abstraction/
-abstraction % ls
+mdn-translation $ cd content/files/en-us/glossary/abstraction/
+abstraction $ ls
 index.md
-abstraction % git log -n 1 --pretty=format:%H -- index.md
+abstraction $ git log -n 1 --pretty=format:%H -- index.md
 7a551aaa034fbada3eb99e6fc924a0313b78307f
 ```
 
@@ -267,7 +270,7 @@ abstraction % git log -n 1 --pretty=format:%H -- index.md
 1. 変更したファイルをステージングエリアに追加する。
 
    ```sh
-   abstraction % git add index.md
+   abstraction $ git add index.md
    ```
 
 2. 変更をコミットする。
@@ -275,7 +278,7 @@ abstraction % git log -n 1 --pretty=format:%H -- index.md
 `"翻訳: Abstraction の用語解説を翻訳"`の文章は何を翻訳したかを書きましょう。
 
 ```sh
-git commit -m "翻訳: Abstraction の用語解説を翻訳"
+abstraction $ git commit -m "翻訳: Abstraction の用語解説を翻訳"
 ```
 
 ### 2. 変更をプッシュする
@@ -283,14 +286,14 @@ git commit -m "翻訳: Abstraction の用語解説を翻訳"
 リモートリポジトリがあなたのリポジトリになっていることを確認します。
 
 ```sh
-% git config --get remote.origin.url
+abstraction $ git config --get remote.origin.url
 git@github.com:あなたのGitHubアカウントID/translated-content.git
 ```
 
 コミットした変更を GitHub にプッシュします。
 
 ```sh
-git push origin main
+abstraction $ git push origin main
 ```
 
 ### 3. プルリクエストを作成する
