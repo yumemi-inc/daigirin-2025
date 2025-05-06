@@ -25,7 +25,7 @@ MDN Web Docs への翻訳コントリビュートには、GitHub アカウント
 
 1. GitHub のトップページ[^2]にアクセスする
 2. 「Sign up」ボタンをクリックする
-3. 次の情報を入力する：
+3. 次の情報を入力する
    - メールアドレス
    - パスワード
    - ユーザー ID（他のユーザーと同じ ID は利用できない）
@@ -52,7 +52,7 @@ MDN Web Docs のローカル環境を構築するために、Node.js をイン�
 2. 「LTS」と書かれたバージョンの「Windows Installer」をダウンロードする
 3. ダウンロードしたインストーラーを実行する
 4. インストーラーの指示にしたがって進める
-5. インストールが完了したら、コマンドプロンプトを開いて次のコマンドを実行し、インストールを確認する：
+5. インストールが完了したら、コマンドプロンプトを開いて次のコマンドを実行し、インストールを確認する
    ```shell
    $ node --version
    ```
@@ -61,15 +61,15 @@ MDN Web Docs のローカル環境を構築するために、Node.js をイン�
 
 macOS では Homebrew[^4] を使ってインストールします。
 
-1. まず Homebrew をインストールする。
+1. まず Homebrew をインストールする
    ```shell
    $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    ```
-2. Node.js をインストールする。
+2. Node.js をインストールする
    ```shell
    $ brew install node
    ```
-3. インストールされていることを確認する。
+3. インストールされていることを確認する
    ```shell
    $ node --version
    ```
@@ -86,16 +86,16 @@ MDN Web Docs のローカル環境では、パッケージマネージャーと�
 
 Yarn v4 は、Node.js に付属の Corepack を使用してインストールすることを推奨[^5]しています。
 
-1. ターミナル（macOS）またはコマンドプロンプト（Windows）を開く。
-2. Corepack を有効にする：
+1. ターミナル（macOS）またはコマンドプロンプト（Windows）を開く
+2. Corepack を有効にする
    ```shell
    $ corepack enable
    ```
-3. Yarn をインストールする：
+3. Yarn をインストールする
    ```shell
    $ corepack prepare yarn --activate
    ```
-4. インストールを確認する：
+4. インストールを確認する
    ```shell
    $ yarn --version
    ```
@@ -114,7 +114,7 @@ MDN Web Docs の翻訳作業を行うために、次の手順でローカル環�
 
 まず、翻訳作業用のディレクトリを作成します。好きな場所に`mdn-translation`ディレクトリを作成しましょう。
 
-```sh
+```shell
 $ mkdir mdn-translation
 $ cd mdn-translation
 ```
@@ -132,7 +132,7 @@ MDN Web Docs の英語のドキュメントが管理されているリポジト�
 
 3. ターミナルで次のコマンドを実行する。[^4]
 
-   ```sh
+   ```shell
    mdn-translation $ git clone https://github.com/mdn/content
    ```
 
@@ -152,7 +152,7 @@ MDN Web Docs の英語のドキュメントが管理されているリポジト�
 
 先ほどフォークした翻訳用リポジトリをクローンする。
 
-```sh
+```shell
 mdn-translation $ git clone https://github.com/あなたのGitHubアカウントID/translated-content
 ```
 
@@ -160,7 +160,7 @@ mdn-translation $ git clone https://github.com/あなたのGitHubアカウント
 
 この後、手元の PC で MDN Web Docs を立ち上げる際に必要なパッケージをインストールします。
 
-1. content ディレクトリでパッケージをインストール：
+1. content ディレクトリでパッケージをインストールする
 
    ```sh
    mdn-translation $ cd content
@@ -173,7 +173,7 @@ mdn-translation $ git clone https://github.com/あなたのGitHubアカウント
 
 `content`ディレクトリで次のコマンドを実行してください。
 
-```sh
+```shell
 content $ echo 'CONTENT_TRANSLATED_ROOT=../translated-content/files' > .env
 ```
 
@@ -183,9 +183,9 @@ content $ echo 'CONTENT_TRANSLATED_ROOT=../translated-content/files' > .env
 
 `content`ディレクトリで次のコマンドを実行してください。
 
-1. 開発サーバーを起動する：
+1. 開発サーバーを起動する
 
-   ```sh
+   ```shell
    content $ yarn start
    ```
 
@@ -275,7 +275,7 @@ l10n:
 
 `sourceCommit`には翻訳するドキュメントの英語版ドキュメントのファイルの最新コミットのハッシュ値を書きます。次のように、対象のファイルの場所に移動して、コマンドでハッシュ値を取得できます。
 
-```sh
+```shell
 mdn-translation $ cd content/files/en-us/glossary/abstraction/
 abstraction $ ls
 index.md
@@ -293,13 +293,15 @@ abstraction $ git log -n 1 --pretty=format:%H -- index.md
 
 まず、翻訳した内容を Git にコミットします。
 
-1. 変更したファイルをステージングエリアに追加する。
+コミットとは、変更した内容を記録することです。Git では、変更を記録する前に、変更したファイルをステージングエリアに追加する必要があります。
+
+1. 変更したファイルをステージングエリアに追加する
 
    ```sh
    abstraction $ git add index.md
    ```
 
-2. 変更をコミットする。
+2. 変更をコミットする
 
 `"翻訳: Abstraction の用語解説を翻訳"`の文章は何を翻訳したかを書きましょう。
 
@@ -324,10 +326,12 @@ abstraction $ git push origin main
 
 ### 3. プルリクエストを作成する
 
+プルリクエストとは、あなたの変更を本番環境に反映するための提案です。メンテナーが内容を確認し、問題がなければ本番環境に反映されます。
+
 1. https://github.com/あなたのGitHubアカウントID/translated-content にアクセスする
-2. 画像で示したポップアップの中のミドルのボタンを押す。
+2. 画像で示したポップアップの中のミドルのボタンを押す
    ![PRを出すためのボタン](./images_uutan1108/pr.png)
-3. プルリクエストのタイトルと説明を入力する。
+3. プルリクエストのタイトルと説明を入力する
    ![プルリクエストの説明を書く](./images_uutan1108/pr-description.png)
    画像の例ではタイトルは「[ja]: translate SDK documentation」
    説明は、
@@ -339,9 +343,24 @@ abstraction $ git push origin main
    タイトルや説明は好みですが、あなたの翻訳が問題ないか確認してくださる方（メンテナー）は日本人で日本語話者なので日本語でも問題ありません。
 4. 緑の「Create pull request」ボタンをクリックする
 
-これで、翻訳した内容が MDN Web Docs のメンテナーにレビューされます。レビュー後に問題がなければ、翻訳内容が MDN Web Docs に反映されます。
+これで、翻訳した内容が MDN Web Docs のメンテナーにレビューされます。レビューでは、翻訳の正確性や表記の統一性などが確認されます。レビュー後に問題がなければ、翻訳内容が MDN Web Docs に反映されます。
 
 問題があった場合は、日本語で指摘があるので、修正して「MDN Web Docs にあなたが翻訳したドキュメントを提案する」の章の 1, 2 を再度行いましょう。
+
+## まとめ
+
+この記事では、MDN Web Docs の日本語翻訳に参加する方法を解説しました。主な手順は次のとおりです。
+
+1. GitHub アカウントを作成する
+2. Node.js と Yarn をインストールする
+3. 翻訳作業用の環境を構築する
+4. 翻訳したいページを探す
+5. 翻訳作業を行う
+6. プルリクエストを作成する
+
+翻訳作業は、プログラミングのスキルがなくても参加できます。また、短い文章から始めることができるので、初心者の方でも気軽に挑戦できます。メンテナーも日本語話者なので、コミュニケーションも取りやすく、参加しやすい環境が整っています。あなたの翻訳が、多くの日本語話者の開発者の助けになることでしょう。
+
+是非、MDN Web Docs の日本語翻訳プロジェクトに参加してみてください。
 
 ## 参考
 
