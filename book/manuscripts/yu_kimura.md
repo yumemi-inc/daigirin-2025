@@ -251,7 +251,7 @@ YOLO の環境構築時、Raspberry Pi OS が 64 bit でないと推論できな
 KatLab が書いた要求モデルを、図 8 に示します。
 KatLab は、**開発目標**と目標得点を決め、開発目標の達成のための**ユースケース**を定義し、それをもとに導出した**要求**と**要素技術**を要求図に起こしました。
 
-![KatLab の要求モデル](./images_yu_kimura/model/1_requirements_2.png 'KatLab の要求モデル')
+![KatLab の要求モデル](./images_yu_kimura/model/1_requirements.png 'KatLab の要求モデル')
 
 ミニフィグ撮影を例に挙げます。
 目標とするポイントから逆算して、ミニフィグ撮影では、ミニフィグを正面から撮影した画像を提出することを目標としました。
