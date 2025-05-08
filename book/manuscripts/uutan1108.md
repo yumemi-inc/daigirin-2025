@@ -199,7 +199,7 @@ http://localhost:5042/en-US/docs/Web/HTML にアクセスすると翻訳前の�
 
 ![英語版と日本語版のドキュメントを開いている様子](./images_uutan1108/ja-en-docs.png)
 
-## 翻訳できそうな　MDN Web Docs　のページを探す
+## 翻訳できそうな MDN Web Docs のページを探す
 
 MDN Web Docs の翻訳できそうなページを探すには、MDN 翻訳ステータス一覧表を活用します。特に用語の解説ページ（Glossary）は文章が短いため、翻訳の初心者にはお勧めです。
 
