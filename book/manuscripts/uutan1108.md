@@ -42,6 +42,56 @@ MDN Web Docs への翻訳コントリビュートには、GitHub アカウント
 
 [^2]: GitHub https://github.com/
 
+## Git をインストールする
+
+Git は、ソフトウェアの開発や文書の変更履歴を管理するためのツールです。MDN Web Docs の翻訳コントリビュートでは、GitHub で文書を共有するために必要です。
+
+### Windows の場合
+
+1. Git for Windows[^git]の公式サイトにアクセスする
+2. 「Click here to download」をクリックしてインストーラーをダウンロードする
+3. ダウンロードしたインストーラーを実行する
+4. インストーラーの指示にしたがって進める
+5. インストールが完了したら、コマンドプロンプトを開いて次のコマンドを実行し、インストールを確認する
+   ```shell
+   $ git --version
+   ```
+
+### macOS の場合
+
+macOS では、Homebrew[^homebrew] を使ってインストールするのが簡単です。
+
+Homebrew がインストールされていない場合は、先に Homebrew をインストールしましょう。
+
+1. ターミナルを開く
+2. 次のコマンドを実行して Homebrew をインストールする
+   ```shell
+   $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
+3. インストールが完了したら、Git をインストールする
+   ```shell
+   $ brew install git
+   ```
+4. インストールされていることを確認する
+   ```shell
+   $ git --version
+   ```
+
+### インストール後の Git の設定
+
+Git をインストールしたら、最初に次の設定をしましょう。これらは、あなたの変更履歴に名前とメールアドレスを記録するために必要です。メールアドレスは GitHub で登録したメールアドレスを設定しましょう。
+
+```shell
+$ git config --global user.name "あなたの名前"
+$ git config --global user.email "あなたのメールアドレス"
+```
+
+これで、Git のインストールと初期設定は完了です。次のステップに進みましょう。
+
+[^git]: Git for Windows https://gitforwindows.org/
+
+[^homebrew]: Homebrew は、macOS 用のパッケージマネージャーです。ソフトウェアのインストールや管理を簡単に行うことができます。https://brew.sh
+
 ## Node.js をインストールする
 
 MDN Web Docs のローカル環境を構築するために、Node.js をインストールする必要があります。Node.js は JavaScript の実行環境で、多くの開発ツールで利用されています。
@@ -59,12 +109,9 @@ MDN Web Docs のローカル環境を構築するために、Node.js をイン�
 
 ### macOS の場合
 
-macOS では Homebrew[^4] を使ってインストールします。
+macOS では Homebrew を使ってインストールします。
 
-1. まず Homebrew をインストールする
-   ```shell
-   $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-   ```
+1. ターミナルを開く
 2. Node.js をインストールする
    ```shell
    $ brew install node
@@ -75,8 +122,6 @@ macOS では Homebrew[^4] を使ってインストールします。
    ```
 
 [^3]: Node.js 公式サイト https://nodejs.org/
-
-[^4]: Homebrew とは、macOS 用のパッケージマネージャーです。ソフトウェアのインストールや管理を簡単に行うことができます。https://brew.sh
 
 ## Yarn をインストールする
 
@@ -106,7 +151,7 @@ Yarn v4 は、Node.js に付属の Corepack を使用してインストールす
 
 ## 翻訳作業できる環境を作る
 
-### MDN Web Docsの翻訳環境を構築する
+### MDN Web Docs の翻訳環境を構築する
 
 MDN Web Docs の翻訳作業を行うために、次の手順でローカル環境を構築します。
 
@@ -123,18 +168,20 @@ $ cd mdn-translation
 
 MDN Web Docs の英語のドキュメントが管理されているリポジトリをクローンします。
 
-1. ブラウザで次のリポジトリにアクセスする。
+1. ブラウザで次のリポジトリにアクセスする
    https://github.com/mdn/content
 
-2. 「Code」ボタンをクリックし、HTTPS の URL をコピーする。
+2. 「Code」ボタンをクリックし、HTTPS の URL をコピーする
 
 ![クローンするための URL をコピーする](./images_uutan1108/mdn-content.png)
 
-3. ターミナルで次のコマンドを実行する。[^4]
+3. ターミナルで次のコマンドを実行する[^4]
 
    ```shell
-   mdn-translation $ git clone https://github.com/mdn/content
+   mdn-translation $ git clone コピーしたURL
    ```
+
+   つまり、`git clone https://github.com/mdn/content.git`を実行する。
 
    [^4]: 本記事においては、`コマンドを実行するディレクトリ $ 実行するコマンド`でコマンドを表現する。
 
@@ -146,14 +193,16 @@ MDN Web Docs の英語のドキュメントが管理されているリポジト�
 
 これから、このフォークしたリポジトリに翻訳したドキュメントを追加していきます。
 
+次の画像の四角で囲まれた「Fork」のボタンを押してフォークします。
+
 ![GitHub のフォークボタン](./images_uutan1108/mdn_translated-content-fork.png)
 
 #### 4. 翻訳用リポジトリのクローン
 
-先ほどフォークした翻訳用リポジトリをクローンする。
+先ほどフォークした翻訳用リポジトリをクローンする。「3. 翻訳用リポジトリをフォーク」の手順のように、フォークしたリポジトリの URL をコピーしてフォークします。
 
 ```shell
-mdn-translation $ git clone https://github.com/あなたのGitHubアカウントID/translated-content
+mdn-translation $ git clone https://github.com/あなたのGitHubアカウントID/translated-content.git
 ```
 
 #### 5. 必要なパッケージのインストール
@@ -171,7 +220,7 @@ mdn-translation $ git clone https://github.com/あなたのGitHubアカウント
 
 #### 6. 設定の追加
 
-`content`ディレクトリで次のコマンドを実行してください。
+`content`ディレクトリで次のコマンドを実行してください。`.env`ファイルに`CONTENT_TRANSLATED_ROOT=../translated-content/files`という文字列を書き込むコマンドです。
 
 ```shell
 content $ echo 'CONTENT_TRANSLATED_ROOT=../translated-content/files' > .env
@@ -318,7 +367,7 @@ abstraction $ git config --get remote.origin.url
 git@github.com:あなたのGitHubアカウントID/translated-content.git
 ```
 
-コミットした変更を GitHub にプッシュします。
+コミットした変更を GitHub にプッシュします。プッシュとは、ローカルで行った変更を GitHub のリモートリポジトリに反映させる操作です。
 
 ```shell
 abstraction $ git push origin main
@@ -329,12 +378,18 @@ abstraction $ git push origin main
 プルリクエストとは、あなたの変更を本番環境に反映するための提案です。メンテナーが内容を確認し、問題がなければ本番環境に反映されます。
 
 1. https://github.com/あなたのGitHubアカウントID/translated-content にアクセスする
-2. 画像で示したポップアップの中のミドルのボタンを押す
+2. 画像で示したポップアップの中のボタンを押す
    ![PRを出すためのボタン](./images_uutan1108/pr.png)
 3. プルリクエストのタイトルと説明を入力する
    ![プルリクエストの説明を書く](./images_uutan1108/pr-description.png)
-   画像の例ではタイトルは「[ja]: translate SDK documentation」。説明は、「SDK の英語ドキュメントを日本語に翻訳しました。https://developer.mozilla.org/en-US/docs/Glossary/SDK」と日本語の説明と翻訳前のドキュメントの URL を書いている。
+   <!-- textlint-disable ja-spacing/ja-no-space-around-parentheses -->
+
+   画像の例ではタイトルは「[ja]: translate SDK documentation」。説明は、「SDK の英語ドキュメントを日本語に翻訳しました。https://developer.mozilla.org/en-US/docs/Glossary/SDK/ 」と日本語の説明と翻訳前のドキュメントの URL を書いている。
+   <!-- textlint-enable ja-spacing/ja-no-space-around-parentheses -->
+
+   あなたが翻訳したドキュメントについて説明しましょう。
    タイトルや説明は好みですが、あなたの翻訳が問題ないか確認してくださる方（メンテナー）は日本人で日本語話者なので日本語でも問題ありません。
+
 4. 「Create pull request」ボタンをクリックする
 
 これで、翻訳した内容が MDN Web Docs のメンテナーにレビューされます。レビューでは、翻訳の正確性や表記の統一性などが確認されます。レビュー後に問題がなければ、翻訳内容が MDN Web Docs に反映されます。
@@ -346,11 +401,12 @@ abstraction $ git push origin main
 この記事では、MDN Web Docs の日本語翻訳に参加する方法を解説しました。主な手順は次のとおりです。
 
 1. GitHub アカウントを作成する
-2. Node.js と Yarn をインストールする
-3. 翻訳作業用の環境を構築する
-4. 翻訳したいページを探す
-5. 翻訳作業を行う
-6. プルリクエストを作成する
+2. Git をインストールする
+3. Node.js と Yarn をインストールする
+4. 翻訳作業用の環境を構築する
+5. 翻訳したいページを探す
+6. 翻訳作業を行う
+7. プルリクエストを作成する
 
 翻訳作業は、プログラミングのスキルがなくても参加できます。また、短い文章から始めることができるので、初心者の方でも気軽に挑戦できます。メンテナーも日本語話者なので、コミュニケーションも取りやすく、参加しやすい環境が整っています。あなたの翻訳が、多くの日本語話者の開発者の助けになることでしょう。
 

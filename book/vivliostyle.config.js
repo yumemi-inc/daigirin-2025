@@ -16,8 +16,8 @@ module.exports = {
     // はじめに
     'preface.md',
     // 各章の原稿
-    'emoto.md',
-    'usami.md',
+    // 'emoto.md',
+    // 'usami.md',
     'uutan1108.md',
     // 会社紹介（必要なら以下をアンコメントして利用、掲載時は頒布イベントの出展要項に注意）
     // 'yumemi.md',
