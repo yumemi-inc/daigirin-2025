@@ -169,7 +169,7 @@ mdn-translation $ git clone https://github.com/あなたのGitHubアカウント
 
 これで、MDN Web Docs の翻訳作業に必要なローカル環境の構築が完了しました。
 
-#### 6. 設定を追加する
+#### 6. 設定の追加
 
 `content`ディレクトリで次のコマンドを実行してください。
 
