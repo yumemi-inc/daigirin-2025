@@ -235,7 +235,7 @@ https://mdn.lavoscore.org/?filter=not-ja
 
 次の画像の場所に`abstraction`ディレクトリを作成し、その中に`index.md`を作成します。翻訳対象の英語ドキュメントのファイルをコピー&ペーストします。
 
-![翻訳前の英語ドキュメントをコピーして、翻訳用レポジトリーにコピーする](./images_uutan1108/translated-content-abstraction.png)
+![翻訳前の英語ドキュメントをコピーして、翻訳用リポジトリにコピーする](./images_uutan1108/translated-content-abstraction.png)
 
 次の URL にアクセスして、翻訳前のドキュメントが表示されたら成功です。
 
