@@ -162,7 +162,7 @@ mdn-translation $ git clone https://github.com/あなたのGitHubアカウント
 
 1. content ディレクトリでパッケージをインストールする
 
-   ```sh
+   ```shell
    mdn-translation $ cd content
    content $ yarn install
    ```
