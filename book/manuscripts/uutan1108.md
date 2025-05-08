@@ -254,7 +254,7 @@ http://localhost:5042/ja/docs/Glossary/Abstraction
 
 `translated-content`ディレクトリ内にコピーしたファイルの先頭に、次のように書かれています。
 
-```md
+```markdown
 ---
 title: Abstraction
 slug: Glossary/Abstraction
@@ -264,7 +264,7 @@ page-type: glossary-definition
 
 この内容を次のように書き換えます。
 
-```
+```markdown
 ---
 title: Abstraction
 slug: Glossary/Abstraction
@@ -297,30 +297,30 @@ abstraction $ git log -n 1 --pretty=format:%H -- index.md
 
 1. 変更したファイルをステージングエリアに追加する
 
-   ```sh
+   ```shell
    abstraction $ git add index.md
    ```
 
 2. 変更をコミットする
 
-`"翻訳: Abstraction の用語解説を翻訳"`の文章は何を翻訳したかを書きましょう。
+   `"翻訳: Abstraction の用語解説を翻訳"`の文章は何を翻訳したかを書きましょう。
 
-```sh
-abstraction $ git commit -m "翻訳: Abstraction の用語解説を翻訳"
-```
+   ```shell
+   abstraction $ git commit -m "翻訳: Abstraction の用語解説を翻訳"
+   ```
 
 ### 2. 変更をプッシュする
 
 リモートリポジトリがあなたのリポジトリになっていることを確認します。
 
-```sh
+```shell
 abstraction $ git config --get remote.origin.url
 git@github.com:あなたのGitHubアカウントID/translated-content.git
 ```
 
 コミットした変更を GitHub にプッシュします。
 
-```sh
+```shell
 abstraction $ git push origin main
 ```
 
