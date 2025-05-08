@@ -179,7 +179,7 @@ content $ echo 'CONTENT_TRANSLATED_ROOT=../translated-content/files' > .env
 
 「英語のドキュメントリポジトリ(`content`)」と「翻訳用リポジトリ(`translated-content`)」を関連づけるために必要です。
 
-#### 7. 手元の PC で MDN Web Docs を立ち上げる
+#### 7. 手元 PC での MDN Web Docs の立ち上げ
 
 `content`ディレクトリで次のコマンドを実行してください。
 
