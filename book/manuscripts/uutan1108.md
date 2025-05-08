@@ -333,15 +333,9 @@ abstraction $ git push origin main
    ![PRを出すためのボタン](./images_uutan1108/pr.png)
 3. プルリクエストのタイトルと説明を入力する
    ![プルリクエストの説明を書く](./images_uutan1108/pr-description.png)
-   画像の例ではタイトルは「[ja]: translate SDK documentation」
-   説明は、
-   ```
-   SDK の英語ドキュメントを日本語に翻訳しました。
-   https://developer.mozilla.org/en-US/docs/Glossary/SDK
-   ```
-   と日本語の説明と翻訳前のドキュメントの URL を書いている。
+   画像の例ではタイトルは「[ja]: translate SDK documentation」。説明は、「SDK の英語ドキュメントを日本語に翻訳しました。https://developer.mozilla.org/en-US/docs/Glossary/SDK」と日本語の説明と翻訳前のドキュメントの URL を書いている。
    タイトルや説明は好みですが、あなたの翻訳が問題ないか確認してくださる方（メンテナー）は日本人で日本語話者なので日本語でも問題ありません。
-4. 緑の「Create pull request」ボタンをクリックする
+4. 「Create pull request」ボタンをクリックする
 
 これで、翻訳した内容が MDN Web Docs のメンテナーにレビューされます。レビューでは、翻訳の正確性や表記の統一性などが確認されます。レビュー後に問題がなければ、翻訳内容が MDN Web Docs に反映されます。
 
