@@ -221,7 +221,7 @@ https://mdn.lavoscore.org/?filter=not-ja
 
 ### 1. 翻訳対象のファイルを確認する
 
-まず、翻訳したいドキュメントのファイルを確認します。たとえば、https://developer.mozilla.org/en-US/docs/Glossary/Abstraction の用語解説ページを翻訳する場合。
+まず、翻訳したいドキュメントのファイルを確認します。たとえば、https://developer.mozilla.org/en-US/docs/Glossary/Abstraction の用語解説ページを翻訳します。
 
 次の画像のように英語のドキュメントリポジトリ(`content`)に対象のファイルがあります。
 
