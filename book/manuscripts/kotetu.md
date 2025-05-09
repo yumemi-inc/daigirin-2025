@@ -273,7 +273,7 @@ cmake -DPYTHON_EXECUTABLE=python \
 cmake --build cmake-out/examples/models/llama -j16 --config Release
 ```
 
-ビルドが成功したら、早速動作確認を行いましょう。下記コマンドを実行してください。
+ビルドが成功したら、 cmake-out ディレクトリに `llama_main` という実行ファイルが生成されるので、早速動作確認を行いましょう。下記コマンドを実行してください。
 
 ```shell
 cmake-out/examples/models/llama/llama_main \
@@ -282,8 +282,7 @@ cmake-out/examples/models/llama/llama_main \
     --prompt="What is Llama?"
 ```
 
-実行結果の中に、 Llama 側からの応答が含まれていれば成功です。下記に応答部分を抜粋した出力を掲載します。
-
+`--prompt` オプションに試してみたいプロンプトを入力してください。実行結果の中に、 Llama 側からの応答が含まれていれば成功です。下記に応答部分を抜粋した出力結果を掲載します。
 
 >lama is an AI developed by Meta, Peter Thiel, Dustin Moskovitz, and Max Levchin. Llama is a large language model developed for conversational purposes and is designed to be more human-like and contextual. It can answer questions, provide definitions, and even create text. Llama is multi-lingual, meaning it can respond in multiple languages. Currently, Llama can converse in English, Spanish, French, German, Italian, Dutch, Russian, and Hindi. In the future, Llama may be able to support more languages. 
 >
@@ -295,9 +294,37 @@ cmake-out/examples/models/llama/llama_main \
 
 それらしい応答が得られれば動作確認としては OK とします。
 
-#### 5. LLaMA プロジェクトのビルドに必要な修正を行う
+#### 5. LLaMA プロジェクトをビルドする
+
+モデルの準備もできたので、いよいよ iOS アプリのサンプルコードをビルドして動かしてみましょう。サンプルコードは ExecuTorch リポジトリの `examples/demo-apps/apple_ios/LLaMA` にあります。 `LLaMA.xcodeproj` をオープンし、ビルドが成功すればシミュレータまたは実機にインストールして動かしてみましょう。
+
+・・と簡単に書いたものの、筆者はプロジェクトを開いてすぐにビルドできたわけではありませんでした。ここでは筆者が遭遇したトラブルと解決策について紹介します。
+
+##### LLaMaRunner の Build Cmake Dependencies の実行に失敗する
+
+筆者の環境では "Cmake が 見つからない" 旨のエラーが出ていました。環境によってはこのようなエラーが出ることはないかもしれませんが、もし同様のエラーが出るようであれば、 "Build Cmake Dependencies" のスクリプト内で PATH を追加しましょう。 Homebrew で Cmake をインストールした場合は下記 1 行を追加してください。
+
+```shell
+PATH="/opt/homebrew/bin:$PATH"
+```
+
+##### Xcode のプロジェクト内で llama_tiktoken.cpp および llama_tiktoken.h が見つからない
+
+おそらく、当該ファイルを移動させた際に Xcode のプロジェクト側の設定を変更していなかったものと思われます。
+
+当該ファイルは `examples/models/llama/tokenizer` 内にあるので、パスを修正することでビルドが通るようになりました。
+
+##### 実機ビルドに失敗する
+
+"Signing & Capabilities" の Provisioning Profile を変更するだけの話ですが、 1 点だけ気をつけなければならないことがあります。
+
+LLaMA のプロジェクトでは **Increased Memory Limit** Entitlement を利用しています。こちらは iPadOS におけるメモリ使用量上限を引き上げるための Entitlement になります。
+
+App ID を作る際には Increased Memory Limit のチェックを忘れずに行ってください。
 
 ### サンプルコードを動かしてみた
+
+#### Llama からのレスポンスがおかしいと感じた場合の対処方法
 
 ## まとめ
 
