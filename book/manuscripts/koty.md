@@ -47,14 +47,16 @@ https://us-south.assistant.watson.cloud.ibm.com/
 2. 黒色のCreate Skillボタンをクリック
 3. Dialog skill（3つボタンがある真ん中）にチェック
 4. Nextをクリック
+   
 ![図1](images_koty/fig1.png)
+＜図1＞
 
-5. 上記のフォームに以下を入力
+6. 上記のフォームに以下を入力
    - Name: 任意の名前（管理画面および、ダウンロードした際に表示されるSkillの名称となります）
    - Description: （特に記入必須ではありません。何か説明を書きたければどうぞ）
    - Language: Japanese
 ※日本語でチャットボットを設計したい場合、ここでJapaneseを選ばないと（JSON上で書き換える方法はあるのですが）AI認識部分で問題が生じるため、必ずプルダウンからJapaneseをご選択ください。
-6. 青色に活性化されたCreate skillボタンをクリック
+7. 青色に活性化されたCreate skillボタンをクリック
 
 ## 3. 対話の設計
 
@@ -87,7 +89,9 @@ https://us-south.assistant.watson.cloud.ibm.com/
 シンプルなチャットボットを作成する場合、各nodeには大きく以下の4点（3点？）を設定するだけで問題ありません。
 1. **Enter node name（名前）**: 必須ではないが、後で混乱しないように内容に即した名前をつけると多少便利
 2. **If assistant recognizes（一致条件）**: どんな入力があった場合に呼び出すことができるか
+   
 ![図2](images_koty/fig2.png)
+＜図2＞
 
 ※前述のwelcomeとanything_elseの他、反応させたい精度と条件により、上記画像のFilter byを含めた4種類のセット方法があります
 3. **Assistant responds（文章、画像など）**: チャットボットの回答本体
@@ -98,12 +102,14 @@ https://us-south.assistant.watson.cloud.ibm.com/
 ## 4. If assistant recognizesの設定方法
 ### 例① : 完全一致
 `input.text== "こんにちは"`
-単語ベースで捉える仕組みです。特定の単語のみ認識して、完全一致した場合のみ応答します。
+- 単語ベースで捉える仕組みです。特定の単語のみ認識して、完全一致した場合のみ応答します。
+  
 ![図3](images_koty/fig3.png)
+＜図3＞
 
 ### 例② : 部分的一致
  `@`entities
-単語ベースで部分的に捉える仕組みです。特定の単語や語句を認識して、それが入力語句に含まれている場合に応答します。
+- 単語ベースで部分的に捉える仕組みです。特定の単語や語句を認識して、それが入力語句に含まれている場合に応答します。
 
 #### 特徴
 - **メリット**:
@@ -116,11 +122,13 @@ https://us-south.assistant.watson.cloud.ibm.com/
 1. My Entitiesを選択
 2. Create entityをクリック
 3. entityに名前をつける（例: @挨拶）
-4. Create entityをクリック
+4. 再度現れるCreate entityをクリック
 5. Valueと類義語を登録
    - 例: 「こんにちは」の類義語として「コンニチハ」「こんばんは」などを登録
    - 注：Entity nameの部分はタイトルなので、ここに書いた語句は画像下のValuesまたはsynonimsに登録しないと反応しないことに注意（私が初学者の時、よくしたミスです。セットしたのに反応しない！！とパニックになっていました。ここで名前だけを「挨拶」にし、「挨拶」と入力した場合は反応しないので、うっかりを防ぐためには中身に含まれている語句を使う方が危なくないですね……）
+     
 ![図4](images_koty/fig4.png)
+＜図4＞
 
 #### Dialogでの使用
 - 条件に `@entity name` を指定
@@ -128,7 +136,7 @@ https://us-south.assistant.watson.cloud.ibm.com/
 
 ### 例③ : 全体的な意味合いの一致
 `#`intents
-全体を意味で捉える仕組みです。ユーザーの発言の意図を理解して応答します。
+- 全体を意味で捉える仕組みです。ユーザーの発言の意図を理解して応答します。
 
 #### 特徴
 - **メリット**:
@@ -142,10 +150,12 @@ https://us-south.assistant.watson.cloud.ibm.com/
 1. Intentsを選択
 2. Create intentをクリック
 3. intentに名前をつける（例: #挨拶）
-4. Create intentをクリック
+4. 再度現れるCreate intentをクリック
 5. 例文を複数登録（3〜4例が望ましい）
    - 例: 「おはようございます」「こんにちは」「こんばんは」など
+     
 ![図5](images_koty/fig5.png)
+＜図5＞
 
 #### Dialogでの使用
 - 条件に `#intent name` を指定
@@ -156,7 +166,9 @@ https://us-south.assistant.watson.cloud.ibm.com/
 「コンニチハ〜」の中には「コンニチハ」がセットしてあるため、チャットボットがentityをセットしたnodeに反応します。
 `input.text== "こんにちは"`
 とは語句が完全一致しないため（コンニチハでもNG）、そのnodeには引っかかりません。
+
 ![図6](images_koty/fig6.png)
+＜図6＞
 
 なお、ここで図1の説明の際の伏線が回収されます。
 実は、これは「Japanese」を選んでいるので「コンニチハ〜」でも「コンニチハ」が含まれていると分かり、反応しますが、例えば「English」を選ぶと単語の切れ目がどこか分からなくなり、「コンニチハ〜 ≠ コンニチハ」とwatsonx assistantのAIに判定されて、反応しなくなるのです。ですので、チャットボットを組む言語を選択するのは非常に重要です。
@@ -164,17 +176,23 @@ watsonx assistantにもAIはいるのです。
 
 さて、＜図5＞をintentにセットしている状態で「こんちは」とチャットボットに入力します。
 「こんにちは」を登録しており、意味合いとしては近い（文字の並びとして近いという判断もある）のでintentをセットしたnodeが反応します。
+
 ![図7](images_koty/fig7.png)
+＜図7＞
 
 ただし、watsonx assistantのAIも完璧ではないので、「こんにちわ」だと急に分からなかったりします。
 ここでは当てはまらない言葉を拾い上げる目的のanything_alse nodeが反応してしまっています。
+
 ![図8](images_koty/fig8.png)
+＜図8＞
 
 ですので、色々な言い回しをintentsには予め登録しておくことを推奨します。
 
 ## 5. Assistant respondsの種類
 チャットボットの回答本体となり得る部分を少し紹介します。基本的には後述する3点を覚えてもらうと、基本的なチャットボットは一通り構築が可能です。
+
 ![図9](images_koty/fig9.png)
+＜図9＞
 
 ### 文章
 1. Assistant respondsの初期設定プルダウンのまま「Text」
@@ -190,7 +208,9 @@ watsonx assistantにもAIはいるのです。
    - 基本的には、List labelとValueは同じテキストにする方が好ましい（違う文字が選択した選択肢として表示されるとユーザーが混乱するため）
    - 制限文字数は512文字
    - Webページを開く設定にしたい場合はValueに遷移させたいURLを入力する
+     
 ![図10](images_koty/fig10.png)
+＜図10＞
 
 4. 選択肢を作る場合は、必ず子node（選択肢を選んだ場合に反応するnodeのこと）が必要となる
 上記のnodeの追加方法で「Add child node」を選択
@@ -198,7 +218,9 @@ watsonx assistantにもAIはいるのです。
    - 条件: `input.text== "田中"` 
    - 条件: `input.text== "佐藤"` 
    - 条件: `input.text== "高橋"` など
-![図11](images_koty/fig11.png)
+     
+![図11](images_koty/fig11.png)v
+＜図11＞
 
 ### 画像
 1. Assistant respondsの初期設定プルダウンから「Image」を選択
@@ -217,7 +239,9 @@ watsonx assistantにもAIはいるのです。
 
 ### Contextの設定方法
 1. Open context editorを選択
+
 ![図12](images_koty/fig12.png)
+＜図12＞
 
 2. Variable（変数名）とValue（値）を設定
    - 変数名は `$` で始まる（例: `$name`）
@@ -235,25 +259,34 @@ watsonx assistantにもAIはいるのです。
 
 ### 計算式シナリオの構築
 これを上手く使うと、チャットボットに計算をさせることも可能です。
+仮に5点満点で、3点以上合格の問題を設計することにします。
+
+![図13](images_koty/fig13.png)
+＜図13＞
+
+その場合、以下のような設計になります。
 1. 回答に点数を与える
 2. 合計点を計算
 3. 結果に応じて回答を分岐
 
-仮に5点満点で、3点以上合格の問題を設計することにします。
-![図13](images_koty/fig13.png)
-
-その場合、以下のような設計になります。
 #### 全体のツリー図
+
 ![図14](images_koty/fig14.png)
+＜図14＞
 
 #### 1問目子node
+
 ![図15](images_koty/fig15.png)
+＜図15＞
 
 #### 最後の計算
+
 ![図16](images_koty/fig16.png)
+＜図16＞
 
 #### 分岐例
 ![図17](images_koty/fig17.png)
+＜図17＞
 
 ### 非エンジニアへのTips
 - `==` : 一致する
