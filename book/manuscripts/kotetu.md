@@ -191,11 +191,113 @@ install_requirements.sh が正常終了したらインストールは完了で�
 
 #### 3. Llama　3.2 1B モデルを取得する
 
+次に、サンプルアプリで使用する Llama　3.2 1B モデルを取得します。 Llama のサイト (https://www.llama.com/) へアクセスし、右上にある "Download models" からダウンロードできます。氏名やメールアドレスなどの必要事項を入力を上、ダウンロードしたいモデルを選択します。今回は "Llama 3 models" の "Llama 3.2: 1B & 3B" という名前のモデルを使用するので、チェックを入れて画面下の "Next" ボタンを押してください。規約に同意すると、 CLI を使用したモデルのダウンロード手順が表示されるので、指示に従ってダウンロードします。
+
+まずはダウンロードに使用する llama コマンドを pip コマンドを使ってインストールします。
+
+```shell
+pip install llama-stack
+```
+
+インストールできたら、モデルをダウンロードします。モデルのダウンロードにあたって、必要な情報が 2 つあります。
+
+- MODEL_ID
+- custom URL
+
+MODEL_ID について、今回は `Llama3.2-1B-Instruct` というモデル ID のモデルを使用します[^15]。 custom URL については、ダウンロード手順の中の "Specify custom URL" の中に発行から 48 時間有効な URL が記載されているので、こちらを使用します。
+
+2 つの情報が取得できたら、以下のコマンドを実行してダウンロードします。
+
+```shell
+llama model download --source meta --model-id  Llama3.2-1B-Instruct
+```
+
+実行途中で URL の入力を求められるので、先ほどの custom URL を入力しましょう。 `~/.llama/checkpoints/Llama3.2-1B-Instruct/` ディレクトリにサンプルコードで使用する "consolidated.00.pth" と "tokenizer.model" "params.json" という 3 種類のファイルが存在していれば、ダウンロード成功です。
+
+[^15]: Instruct モデルはベースとなるモデルを Instruction Tuning (指示プロンプトへ適切に応答できるようチューニング) したモデルです。
+
 #### 4. Llama モデルを ExecuTorch 用のモデルへ変換してみる
+
+モデルのダウンロードが完了したら、ダウンロードしたモデルを ExecuTorch 用のモデルへ変換しましょう。下記コマンドを実行してください。
+
+```shell
+python -m examples.models.llama.export_llama \
+  --model "llama3_2" \
+  --checkpoint "path/to/consolidated.00.pth" \
+  --params "path/to/params.json" \
+  -kv \
+  --use_sdpa_with_kv_cache \
+  -d bf16 \
+  --metadata '{"get_bos_id":128000, "get_eos_ids":[128009, 128001]}' \
+  --output_name="Llama-3.2-1B-Instruct.pte"
+```
+
+コマンド実行ディレクトリに `Llama-3.2-1B-Instruct.pte` という 2.5 GB 弱のファイルが出力されていたら、変換成功です。
+
+##### 変換したモデルの動作確認を行う
+
+アプリに組み込んで動作確認を行う前に、 Validation Tool を利用してモデルの動作確認を行いましょう。
+
+まずは Validation Tool のビルドに必要なライブラリのビルドを行います。 ExecuTorch リポジトリの root ディレクトリで下記コマンドを実行してください。
+
+```shell
+cmake -DPYTHON_EXECUTABLE=python \
+    -DCMAKE_INSTALL_PREFIX=cmake-out \
+    -DEXECUTORCH_ENABLE_LOGGING=1 \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DEXECUTORCH_BUILD_EXTENSION_DATA_LOADER=ON \
+    -DEXECUTORCH_BUILD_EXTENSION_MODULE=ON \
+    -DEXECUTORCH_BUILD_EXTENSION_TENSOR=ON \
+    -DEXECUTORCH_BUILD_XNNPACK=ON \
+    -DEXECUTORCH_BUILD_KERNELS_QUANTIZED=ON \
+    -DEXECUTORCH_BUILD_KERNELS_OPTIMIZED=ON \
+    -DEXECUTORCH_BUILD_KERNELS_CUSTOM=ON \
+    -Bcmake-out .
+
+cmake --build cmake-out -j16 --target install --config Release
+```
+
+成功したら、今度は Validation Tool のビルドを行います。下記コマンドを実行してください。
+
+```shell
+cmake -DPYTHON_EXECUTABLE=python \
+    -DCMAKE_INSTALL_PREFIX=cmake-out \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DEXECUTORCH_BUILD_KERNELS_CUSTOM=ON \
+    -DEXECUTORCH_BUILD_KERNELS_OPTIMIZED=ON \
+    -DEXECUTORCH_BUILD_XNNPACK=ON \
+    -DEXECUTORCH_BUILD_KERNELS_QUANTIZED=ON \
+    -Bcmake-out/examples/models/llama \
+    examples/models/llama
+
+cmake --build cmake-out/examples/models/llama -j16 --config Release
+```
+
+ビルドが成功したら、早速動作確認を行いましょう。下記コマンドを実行してください。
+
+```shell
+cmake-out/examples/models/llama/llama_main \
+    --model_path=path/to/Llama-3.2-1B-Instruct.pte" \
+    --tokenizer_path=path/to/tokenizer.model  \
+    --prompt="What is Llama?"
+```
+
+実行結果の中に、 Llama 側からの応答が含まれていれば成功です。下記に応答部分を抜粋した出力を掲載します。
+
+
+>lama is an AI developed by Meta, Peter Thiel, Dustin Moskovitz, and Max Levchin. Llama is a large language model developed for conversational purposes and is designed to be more human-like and contextual. It can answer questions, provide definitions, and even create text. Llama is multi-lingual, meaning it can respond in multiple languages. Currently, Llama can converse in English, Spanish, French, German, Italian, Dutch, Russian, and Hindi. In the future, Llama may be able to support more languages. 
+>
+>Llama is pre-trained on a massive corpus
+
+なお、 LLM の応答にはランダム性があるため、同じ質問をした場合に同じような返答にならない場合があることに注意してください。同じ内容で再度コマンドを実行したところ、今度は下記のような出力を得ました。
+
+>lama is an artificial intelligence that can help with a variety of tasks. It can answer questions, provide information, and even generate text. It's always happy to chat with you. Is there anything I can help you with?<|eot_id|>
+
+それらしい応答が得られれば動作確認としては OK とします。
 
 #### 5. LLaMA プロジェクトのビルドに必要な修正を行う
 
-### サンプルコードを動かしてみた 〜 サンプルコードの修正
+### サンプルコードを動かしてみた
 
 ## まとめ
 
