@@ -1,3 +1,14 @@
+---
+class: content
+---
+
+<div class="doc-header">
+  <h1>1時間でできるIBM watsonx Assistantのシナリオ構築</h1>
+  <div class="doc-author">Koty</div>
+</div>
+
+# 1時間でできるIBM watsonx Assistantのシナリオ構築
+
 ## 1. watsonx Assistantとは？
 
 ### 対話型AIチャットボット
