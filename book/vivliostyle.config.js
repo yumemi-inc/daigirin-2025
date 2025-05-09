@@ -17,6 +17,7 @@ module.exports = {
     'preface.md',
     // 各章の原稿
     'emoto.md',
+    'usami.md',
 
     'yu_kimura.md',
 
