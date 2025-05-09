@@ -167,7 +167,7 @@ cd executorch
 ./install_executorch.sh --pybind xnnpack mps coreml
 ```
 
-`--pybind` オプションですが、 ExecuTorch 実行時に選択可能なバックエンドの設定となります。本稿では xnnpack [^13]のみ使用しますが、今後 mps (Metal Performance Shaders) や coreml (coreML) を利用する可能性があるので、全て指定してビルドを行いましょう。
+`--pybind` オプションですが、 ExecuTorch 実行時に選択可能なバックエンドの設定となります。本稿では xnnpack [^13]のみ使用しますが、今後 mps (Metal Performance Shaders) や coreml (coreML) を利用する可能性があるので、全て指定してビルドを行います。
 
 install_executorch.sh が正常終了したら、ビルドとインストールは成功です。
 
@@ -212,7 +212,7 @@ MODEL_ID について、今回は `Llama3.2-1B-Instruct` というモデル ID �
 llama model download --source meta --model-id  Llama3.2-1B-Instruct
 ```
 
-実行途中で URL の入力を求められるので、先ほどの custom URL を入力しましょう。 `~/.llama/checkpoints/Llama3.2-1B-Instruct/` ディレクトリにサンプルコードで使用する "consolidated.00.pth" と "tokenizer.model" "params.json" という 3 種類のファイルが存在していれば、ダウンロード成功です。
+実行途中で URL の入力を求められるので、先ほどの custom URL を入力します。 `~/.llama/checkpoints/Llama3.2-1B-Instruct/` ディレクトリにサンプルコードで使用する "consolidated.00.pth" と "tokenizer.model" "params.json" という 3 種類のファイルが存在していれば、ダウンロード成功です。
 
 [^15]: Instruct モデルはベースとなるモデルを Instruction Tuning (指示プロンプトへ適切に応答できるようチューニング) したモデルです。
 
@@ -273,7 +273,7 @@ cmake -DPYTHON_EXECUTABLE=python \
 cmake --build cmake-out/examples/models/llama -j16 --config Release
 ```
 
-ビルドが成功したら、 cmake-out ディレクトリに `llama_main` という実行ファイルが生成されるので、早速動作確認を行いましょう。下記コマンドを実行してください。
+ビルドが成功したら、 cmake-out ディレクトリに `llama_main` という実行ファイルが生成されるので、早速動作確認を行います。下記コマンドを実行してください。
 
 ```shell
 cmake-out/examples/models/llama/llama_main \
@@ -296,9 +296,9 @@ cmake-out/examples/models/llama/llama_main \
 
 #### 5. LLaMA プロジェクトをビルドする
 
-モデルの準備もできたので、いよいよ iOS アプリのサンプルコードをビルドして動かしてみましょう。サンプルコードは ExecuTorch リポジトリの `examples/demo-apps/apple_ios/LLaMA` にあります。 `LLaMA.xcodeproj` をオープンし、ビルドが成功すればシミュレータまたは実機にインストールして動かしてみましょう。
+モデルの準備もできたので、いよいよ iOS アプリのサンプルコードをビルドして動かしてみましょう。サンプルコードは ExecuTorch リポジトリの `examples/demo-apps/apple_ios/LLaMA` にあります。 `LLaMA.xcodeproj` をオープンし、ビルドが成功すればシミュレータまたは実機にインストールされ、アプリが起動するはずです。
 
-・・と簡単に書いたものの、筆者はプロジェクトを開いてすぐにビルドできたわけではありませんでした。ここでは筆者が遭遇したトラブルと解決策について紹介します。
+・・・と簡単に書いたものの、筆者はプロジェクトを開いてすぐにビルドできたわけではありませんでした。ここでは筆者が遭遇したトラブルと解決策について紹介します。
 
 ##### LLaMaRunner の Build Cmake Dependencies の実行に失敗する
 
@@ -324,9 +324,9 @@ App ID を作る際には Increased Memory Limit のチェックを忘れずに�
 
 ### サンプルコードを動かしてみた
 
-それでは、サンプルコードを実行してみましょう。アプリを起動すると、チャット画面風の UI が表示されます。ただ、このままだとプロンプトの入力ができません。 Llama からの応答を得るためには、 Validation Tool 実行時に指定したモデル (.pte) と Tokenizer ファイル (.model) が必要になります。シミュレータまたは実機のローカルフォルダ内にこれら 2 ファイルをコピーしましょう。
+それでは、サンプルコードを実行してみましょう。アプリを起動すると、チャット画面風の UI が表示されます。ただ、このままだとプロンプトの入力ができません。 Llama からの応答を得るためには、 Validation Tool 実行時に指定したモデル (.pte) と Tokenizer ファイル (.model) が必要になります。シミュレータまたは実機のローカルフォルダ内にこれら 2 ファイルをコピーします。
 
-コピーしたら、画面左上のフォルダアイコンをタップしましょう。 "Select Model..." と "Select Tokenizer..." という 2 つのボタンがあるので、それぞれ .pte ファイルと .model ファイルを指定しましょう。
+コピーしたら、画面左上のフォルダアイコンをタップします。 "Select Model..." と "Select Tokenizer..." という 2 つのボタンがあるので、それぞれ .pte ファイルと .model ファイルを指定します。
 
 ここまで完了したら、先ほどの Validation Tool 実行時と同じプロンプト ("What is Llama?") を入力してみたところ、 **図2** のような出力となりました。
 
@@ -340,7 +340,7 @@ App ID を作る際には Increased Memory Limit のチェックを忘れずに�
 
 本稿では、ExecuTorch というエッジ AI を実現するためのライブラリを題材に、エッジ AI と ExecuTorch の紹介や、実際に ExecuTorch リポジトリ内の iOS サンプルアプリをビルドする手順について紹介しました。
 
-メモリ使用量やモデルファイルのサイズなど、実用的なオンデバイス LLM のためにはまだまだ課題が多いことがわかりました。一方で、エッジデバイスでも LLM をスタンドアローン実行でき、かつある程度の精度は出せることもわかりました。エッジデバイス、および ExecuTorch と LLM モデルの性能向上は今後も期待できることから、性能が向上するにつれて、より活用の幅は広がっていくことが予想されます。
+メモリ使用量やモデルファイルのサイズなど、実用的なオンデバイス LLM のためにはまだまだ課題が多いことがわかりました。一方で、エッジデバイスでも LLM をスタンドアローン実行でき、かつある程度の精度は出せることもわかりました。エッジデバイス、および ExecuTorch と LLM モデルの性能向上は今後も期待できることから、性能が向上するにつれて、実用的な利活用の可能性が広がっていくことが予想されます。
 
 一方、活用事例でも紹介したように、 LLM 以外のエッジ AI については既に実用化もある程度進んでいる状態です。 ExecuTorch は PyTorch との親和性が高く、かつ iPhone や Android 端末の GPU を利用して高速に推論処理を行う仕組みもあることから、 ExecuTorch は今後導入事例が増えていくのではないでしょうか。
 
