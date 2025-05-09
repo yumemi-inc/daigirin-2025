@@ -142,85 +142,122 @@ PyTorch のサイト内にある ExecuTorch のドキュメントの中に "Gett
 
 [^4]: https://pytorch.org/executorch/0.6/getting-started.html
 
-### 環境構築手順
+#### ExecuTorch のインストール
 
-では、 GitHub ソースコードを Clone してビルドしましょう[^2]。以下のコマンドを実行してください。 "Setting Up ExecuTorch" では `release/0.5` ブランチを使用していましたが、 4/20 現在、 `release/0.6` が release candidate 状態になっていたので、本章ではこちらを利用します。
+ExecuTorch は下記 pip コマンドを用いて簡単にインストールできます。
 
 ```shell
-git clone --branch release/0.6 https://github.com/pytorch/executorch.git
+pip install executorch
+```
+
+なお、ソースコードからインストールすることも可能です。その場合は "Building from Source" [^4] というドキュメントを参考にインストールしてください。
+
+[^4]: https://pytorch.org/executorch/0.6/using-executorch-building-from-source.html
+
+#### PyTorch モデルを ExecuTorch 用のモデルへ変換してみる
+
+後の手順で Llama のモデル (PyTorch 用のモデル) を ExecuTorch 用のモデルへ変換する必要があることから、ここでモデル変換処理が正常に動作することを確認しておきましょう。
+
+ドキュメントでは "MobileNet V2" というモデルの変換を行なっています。 MobileNet は計算機リソースが限られたデバイス上で利用することを想定して開発されたニューラルネットワークモデルです [^5]。
+
+エクスポートは Python を使って行います。変換するためのコードは以下のとおりです[^6]。
+
+```python
+import torch
+import torchvision.models as models
+from torchvision.models.mobilenetv2 import MobileNet_V2_Weights
+from executorch.backends.xnnpack.partition.xnnpack_partitioner import XnnpackPartitioner
+from executorch.exir import to_edge_transform_and_lower
+
+## PyTorchのモデル(.pthファイル)をローカルへダウンロードする
+model = models.mobilenetv2.mobilenet_v2(weights=MobileNet_V2_Weights.DEFAULT).eval()
+
+## エクスポート時に使用する乱数を生成する
+sample_inputs = (torch.randn(1, 3, 224, 224), )
+
+## モデルのエクスポートを行う
+exported_program = torch.export.export(model, sample_inputs)
+
+## ExecuTorch用のモデルへ変換する
+et_program = to_edge_transform_and_lower(
+    torch.export.export(model, sample_inputs),
+    partitioner=[XnnpackPartitioner()]
+).to_executorch()
+
+## ExecuTorch用のモデルを保存する(拡張子は.pte)
+with open("model.pte", "wb") as f:
+    f.write(et_program.buffer)
+```
+
+ExecuTorch 用のモデルの拡張子は `.pte` です。上記コードを実行すると、 `model.pte` というファイルが生成されていれば変換成功です。
+
+[^5]: https://dx-consultant-fast-evolving.com/mobilenet/
+[^6]: 元のソースコードから筆者の方で処理の分割やコメントを追加しています。
+
+#### 変換したモデルをテストする
+
+次に、変換した model.pte をテストします。テストに使用する Python コードは以下のとおりです。
+
+```python
+import torch
+from executorch.runtime import Runtime
+from typing import List
+
+runtime = Runtime.get()
+
+## テストに使用する入力値を生成する
+input_tensor: torch.Tensor = torch.randn(1, 3, 224, 224)
+
+## ExecuTorch を使って出力を得る
+program = runtime.load_program("model.pte")
+method = program.load_method("forward")
+output: List[torch.Tensor] = method.execute([input_tensor])
+print("Run succesfully via executorch")
+
+## PyTorch を使って出力を得る
+from torchvision.models.mobilenetv2 import MobileNet_V2_Weights
+import torchvision.models as models
+
+eager_reference_model = models.mobilenetv2.mobilenet_v2(weights=MobileNet_V2_Weights.DEFAULT).eval()
+eager_reference_output = eager_reference_model(input_tensor)
+
+## ExecuTorch と PyTorch の出力結果を比較する
+## (True が print されれば出力結果が一致したことになる)
+print("Comparing against original PyTorch module")
+print(torch.allclose(output[0], eager_reference_output, rtol=1e-3, atol=1e-5))
+```
+
+変換前の PyTorch モデルと 変換後の ExecuTorch のモデルを使用して同一の入力を与えた際に出力が一致することを確認しています。 `True` が出れば成功です。
+
+#### ExecuTorch を ソースコードからインストールする
+
+Llama　のモデルを変換するためには ExecuTorch をソースコードからインストールする必要があります。 "Building from Source"[^7] のドキュメントを見ながらインストールを進めていきます。
+
+```shell
+git clone -b release/0.6 https://github.com/pytorch/executorch.git
 cd executorch
 ```
 
-次に、リポジトリ内で利用しているサブモジュール関連の設定を行います。
-
-```shell
-git submodule sync
-git submodule update --init
-```
-
-それでは、インストールスクリプトを実行しましょう。以下のコマンドを実行してください。
+インストールには "install_executorch.sh" を使用します。以下のコマンドを実行してください。`--pybind` オプションですが、 ExecuTorch 実行時のバックエンドの設定となります。本稿では xnnpack のみ使用しますが、今後 mps (Metal Performance Shaders) や coreml (coreML) を利用する可能性があるので、いずれのオプションもつけてビルドを行いましょう。
 
 ```shell
 ./install_executorch.sh --pybind xnnpack mps coreml
 ```
 
-コマンドが正常終了すればインストール成功です。
+install_executorch.sh が正常終了したら、ビルドとインストールは成功です。
 
-なお、 `--pybind` オプションですが、 ExecuTorch 実行時のバックエンドの設定となります。
+[^7]: https://pytorch.org/executorch/0.6/using-executorch-building-from-source.html
 
-[^1]: https://pytorch.org/executorch/stable/getting-started-setup.html
+#### Llama モデルの変換に使用するツールをインストールする
 
-[^2]: pip コマンドを用いてインストール ( `pip install executorch` ) することも可能ですが、 Llama のモデル変換を行う必要があることから、今回はソースコードからビルドしてインストールすることにしました。
+Llama のモデルは PyTorch モデルとして配布されており、 ExecuTorch で使用するためには ExecuTorch モデルへの変換が必要です。変換に必要なツール一式をインストールしましょう。
 
-### サンプルコードを実行する
-
-では、動作確認を兼ねてサンプルコードを実行しましょう。
-
-```shell
-mkdir -p ../example_files
-cd ../example_files
-touch export_add.py
-```
-
-```python
-import torch
-from torch.export import export
-from executorch.exir import to_edge
-
-# Start with a PyTorch model that adds two input tensors (matrices)
-class Add(torch.nn.Module):
-  def __init__(self):
-    super(Add, self).__init__()
-
-  def forward(self, x: torch.Tensor, y: torch.Tensor):
-      return x + y
-
-# 1. torch.export: Defines the program with the ATen operator set.
-aten_dialect = export(Add(), (torch.ones(1), torch.ones(1)))
-
-# 2. to_edge: Make optimizations for Edge devices
-edge_program = to_edge(aten_dialect)
-
-# 3. to_executorch: Convert the graph to an ExecuTorch program
-executorch_program = edge_program.to_executorch()
-
-# 4. Save the compiled .pte program
-with open("add.pte", "wb") as file:
-    file.write(executorch_program.buffer)
-```
-
-```shell
-python3 export_add.py
-```
-
-```shell
-
-```
+ExecuTorch の GitHub リポジトリに Llama 関連のツールが格納されたディレクトリ (`examples/models/llama/`) があります[^8]。ディレクトリ内に `install_requirements.sh` というスクリプトがあるので、こちらのスクリプトを実行するとインストールが開始されます。
 
 
-## Llama のモデルを ExecuTorch 用のモデルへ変換する
+[^8]: https://github.com/pytorch/executorch/blob/v0.6.0/examples/models/llama
 
-## サンプルアプリを実行してみる
+### 使用する Llama　のモデルを ExecuTorch 用のモデルへ変換する
 
 ## まとめ
 
