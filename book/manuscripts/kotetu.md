@@ -16,7 +16,7 @@ ExecuTorch を使って iOS 上で Llama モデルを動かしてみた
 
 筆者自身、iOS アプリにおける機械学習機能の組み込みには以前から興味はありましたが、実業務ではそこまで縁がありませんでした。したがって、本稿は iOS アプリ開発者、かつ機械学習初心者が iOS アプリに AI 機能を組み込む観点で執筆した記事となります。
 
-なお、本稿は 2025 年 4 月 30 日時点の情報を元に執筆しました。
+なお、本稿は 2025 年 4 月 末時点の情報を元に執筆しました。
 
 ## エッジ AI について
 
@@ -42,11 +42,11 @@ ExecuTorch を使って iOS 上で Llama モデルを動かしてみた
 
 エッジ AI をスマホアプリに導入することで、ユニークなユーザー体験を実現することができます。ここでは、スマホアプリにおけるエッジ AI の活用実例として、 Apple Intelligence [^3]や Sansan のリアルタイム名刺認識技術[^4]について紹介します。
 
-Apple Intelligence は、iPhone / iPad / macOS 上で生成 AI を活用した文章作成や画像生成を可能にする技術です。 エッジ AI のデメリットであるエッジデバイスの性能限界を Apple の AI サーバーや ChatGPT へシームレスに接続することで補っており、エッジ AI をスマホアプリに組み込む上で参考になる点が多々あるのではないでしょうか。
+Apple Intelligence は、iPhone / iPad / macOS 上で生成 AI を活用した文章作成や画像生成を可能にする技術です (**図1**)。 エッジ AI のデメリットであるエッジデバイスの性能限界を Apple の AI サーバーや ChatGPT へシームレスに接続することで補っており、エッジ AI をスマホアプリに組み込む上で参考になる点が多々ありそうです。
 
-![Image Playground (画像生成 AI)](./images_kotetu/figure-image-playground.png "Image Playground (画像生成 AI)")
+一方、 Sansan のリアルタイム名刺認識技術は、エッジ AI がスマホアプリのユーザー体験向上に寄与する事例の一つといえます。 Sansan アプリや Eight アプリでは、名刺撮影時にカメラ映像内の名刺をリアルタイムに認識し、名刺が画面内にあることをユーザーに見せたり、撮影時に認識結果を元に写真から自動で名刺を切り出す機能があります。名刺画像を精度高く OCR するためには名刺画像の切り出しが必要で、リアルタイム名刺認識が実現したことでこれまで以上に OCR 結果を迅速に受け取ることができるようになり、ユーザー体験は劇的に向上しました。リアルタイム名刺認識を実現するため、 Sansan では Core ML を利用して画像認識を行っています。
 
-一方、 Sansan のリアルタイム名刺認識技術は、エッジ AI がスマホアプリのユーザー体験向上に寄与する事例の一つといえるのではないでしょうか。 Sansan アプリや Eight アプリで名刺撮影をする際、机の上に置いた複数枚の名刺をリアルタイムで認識し、撮影時に認識結果を元に写真から名刺を切り出す機能です。リアルタイムでの名刺領域抽出処理を実現するため、 Sansan では Core ML を利用して画像認識を行っています。
+![Image Playground (画像生成 AI)](./images_kotetu/figure-image-playground.png "Image Playground (画像生成 AI)"){width=350}
 
 [^3]: https://www.apple.com/jp/apple-intelligence/
 
@@ -68,7 +68,7 @@ Apple Intelligence は、iPhone / iPad / macOS 上で生成 AI を活用した�
 
 **ExecuTorch** [^7]はエッジデバイス上での推論処理を実現するために開発されたライブラリです。 ExecuTorch を利用することで、既存の PyTorch モデルをエッジデバイス向け最適化された形で導入することが可能です。
 
-ExecuTorch の特徴のひとつとして、エッジデバイスのハードウェア機能を活用したパフォーマンス向上が挙げられます。 ExecuTorch では推論を行う際に使用するバックエンドを選択することができ、iOS では Metal Performance Shader (MPS) および CoreML を選択でき、 Android では Vulkan を選択できます。スマートフォンに搭載されている GPU や Neural Engine を活用できることは、推論処理を行う上で大きなメリットといえるのではないでしょうか。
+ExecuTorch の特徴のひとつとして、エッジデバイスのハードウェア機能を活用したパフォーマンス向上が挙げられます。 ExecuTorch では推論を行う際に使用するバックエンドを選択することができ、iOS では Metal Performance Shader (MPS) および CoreML を選択でき、 Android では Vulkan を選択できます。スマートフォンに搭載されている GPU や Neural Engine を活用できることは、推論処理を行う上で大きなメリットといえます。
 
 [^7]: https://pytorch.org/executorch-overview
 
@@ -318,14 +318,30 @@ PATH="/opt/homebrew/bin:$PATH"
 
 "Signing & Capabilities" の Provisioning Profile を変更するだけの話ですが、 1 点だけ気をつけなければならないことがあります。
 
-LLaMA のプロジェクトでは **Increased Memory Limit** Entitlement を利用しています。こちらは iPadOS におけるメモリ使用量上限を引き上げるための Entitlement になります。
+LLaMA のプロジェクトでは "Increased Memory Limit" Entitlement を利用しています。これは iPadOS におけるメモリ使用量上限を引き上げるための Entitlement になります。
 
 App ID を作る際には Increased Memory Limit のチェックを忘れずに行ってください。
 
 ### サンプルコードを動かしてみた
 
-#### Llama からのレスポンスがおかしいと感じた場合の対処方法
+それでは、サンプルコードを実行してみましょう。アプリを起動すると、チャット画面風の UI が表示されます。ただ、このままだとプロンプトの入力ができません。 Llama からの応答を得るためには、 Validation Tool 実行時に指定したモデル (.pte) と Tokenizer ファイル (.model) が必要になります。シミュレータまたは実機のローカルフォルダ内にこれら 2 ファイルをコピーしましょう。
+
+コピーしたら、画面左上のフォルダアイコンをタップしましょう。 "Select Model..." と "Select Tokenizer..." という 2 つのボタンがあるので、それぞれ .pte ファイルと .model ファイルを指定しましょう。
+
+ここまで完了したら、先ほどの Validation Tool 実行時と同じプロンプト ("What is Llama?") を入力してみたところ、 **図2** のような出力となりました。
+
+![Llama からの主力](./images_kotetu/figure-app-screenshot.png "Llama からの主力"){width=400}
+
+概ねそれらしい出力になることが確認できました。
+
+なお、右上に "2,423MB" という記載がありますが、これは現在 LLaMA アプリが使用しているメモリサイズになります。 LLM を実行するためには大量のメモリが必要となることがお分かりいただけると思います。
 
 ## まとめ
+
+本稿では、ExecuTorch というエッジ AI を実現するためのライブラリを題材に、エッジ AI と ExecuTorch の紹介や、実際に ExecuTorch リポジトリ内の iOS サンプルアプリをビルドする手順について紹介しました。
+
+メモリ使用量やモデルファイルのサイズなど、実用的なオンデバイス LLM のためにはまだまだ課題が多いことがわかりました。一方で、エッジデバイスでも LLM をスタンドアローン実行でき、かつある程度の精度は出せることもわかりました。エッジデバイス、および ExecuTorch と LLM モデルの性能向上は今後も期待できることから、性能が向上するにつれて、より活用の幅は広がっていくことが予想されます。
+
+一方、活用事例でも紹介したように、 LLM 以外のエッジ AI については既に実用化もある程度進んでいる状態です。 ExecuTorch は PyTorch との親和性が高く、かつ iPhone や Android 端末の GPU を利用して高速に推論処理を行う仕組みもあることから、 ExecuTorch は今後導入事例が増えていくのではないでしょうか。
 
 <hr class="page-break" />
