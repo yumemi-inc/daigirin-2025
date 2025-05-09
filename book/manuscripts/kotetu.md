@@ -100,6 +100,12 @@ ExecuTorch はエッジデバイス用に最適化されているため、PyTorc
 
 [^10]: https://api-docs.deepseek.com/news/news1226
 
+## サンプルコードを動かしてみる
+
+それでは、 ExecuTorch リポジトリ内にある、 Llama 3.2 のモデルを使ったチャットボットのサンプルコードを iOS 端末上で動かしてみましょう。サンプルコードは ExecuTorch のリポジトリにある "ExecuTorch Llama iOS Demo App" [^11]を使用します。なお、 ExecuTorch のバージョンは `0.6` を使用します。
+
+[^11]: https://github.com/pytorch/executorch/tree/main/examples/demo-apps/apple_ios/LLaMA
+
 ### 執筆にあたり使用した環境について
 
 執筆にあたり、下記環境を用いて検証を行いました。
@@ -109,30 +115,32 @@ ExecuTorch はエッジデバイス用に最適化されているため、PyTorc
 - MBP Pro (M2 Pro CPU, メモリ 16GB)
 - macOS Sequoia (15.4)
 
-#### 実行環境
-  
-##### iOS
+#### 実行環境 (iOS)
 
 - iPhone 13 Pro Max (ストレージ 256 GB, メモリ 6 GB)
 - iOS 18.3
 
-##### Android
-
-- Google Pixel 6a (ストレージ 128 GB, メモリ 8 GB)
-- Android 13
-
 #### ソフトウェア
 
-筆者の手元で使用したソフトウェアは下記のとおりです。
+ビルド時に筆者の手元で使用したソフトウェアは下記のとおりです。
 
-- Xcode 16.2
-- g++ 16.0.0 (Xcode に含まれる g++ を使用)
-- asdf
-- Python 3.12.0
+- Xcode: 16.2
+- g++: 17.0.0 (Xcode の Command Line Tools 付属の g++ を使用)
+- asdf: 最新バージョン
+- Python: 3.12.0
+- ExecuTorch: 0.6
 
-### Anaconda　について
+### 環境構築手順
 
-"Setting Up ExecuTorch" のドキュメント内では Anaconda (conda) の使用が推奨されていますが、商用利用の場合に有料となることから、本章では Anaconda を使わずに環境を構築します。
+PyTorch のサイト内にある ExecuTorch のドキュメントの中に "Getting Started with ExecuTorch" [^4]というドキュメントがあるので、こちらの手順に従って環境を構築していきます。
+
+ドキュメントの流れに沿って下記の順に構築を行ないます。
+
+1. ExecuTorch のインストール
+2. PyTorch モデルを ExecuTorch 用のモデルへ変換してみる
+3. 変換したモデルをテストする
+
+[^4]: https://pytorch.org/executorch/0.6/getting-started.html
 
 ### 環境構築手順
 
