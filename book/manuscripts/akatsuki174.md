@@ -39,7 +39,7 @@ cf. デバイスの開発者向けオプションを設定する[^dev_options_dr
 
 | 設定 | 実行結果 |
 | :-- | :-- |
-| ![](images_akatsuki174/rtl_layout_settings.png) | ![](images_akatsuki174/forced_rtl_layout.png) |
+| ![](images_akatsuki174/rtl_layout_settings.png){width=170} | ![](images_akatsuki174/forced_rtl_layout.png){width=170} |
 
 [^dev_options_drawing]: デバイスの開発者向けオプションを設定する https://developer.android.com/studio/debug/dev-options?hl=ja#drawing
 
@@ -91,7 +91,7 @@ fun VolumeIcon() {
 
 | アラビア語 | 日本語 |
 | :-- | :-- |
-| ![](images_akatsuki174/volume_ar.png) | ![](images_akatsuki174/volume_ja.png) |
+| ![](images_akatsuki174/volume_ar.png){width=170} | ![](images_akatsuki174/volume_ja.png){width=170} |
 
 ## RTL言語用リソースを別途用意する
 
@@ -127,7 +127,7 @@ fun MusicSkipIcon() {
 
 | アラビア語 | 日本語 |
 | :-- | :-- |
-| ![](images_akatsuki174/music_skip_ar.png) | ![](images_akatsuki174/music_skip_ja.png) |
+| ![](images_akatsuki174/music_skip_ar.png){width=170} | ![](images_akatsuki174/music_skip_ja.png){width=170} |
 
 ## どちらの方法を使うか
 
@@ -172,7 +172,7 @@ fun ImageViewWithAndroidView() {
 
 | アラビア語 | 日本語 |
 | :-- | :-- |
-| ![](images_akatsuki174/scaleX_RTL_image_view.png) | ![](images_akatsuki174/scaleX_LTR_image_view.png) |
+| ![](images_akatsuki174/scaleX_RTL_image_view.png){width=170} | ![](images_akatsuki174/scaleX_LTR_image_view.png){width=170} |
 
 ## 最後に
 
