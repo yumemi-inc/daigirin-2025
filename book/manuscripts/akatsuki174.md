@@ -35,7 +35,7 @@ RTL言語をサポートするには `AndroidManifest.xml` に以下の記述を
 
 cf. デバイスの開発者向けオプションを設定する[^dev_options_drawing]
 
-↓日本語環境でアイコンが左右反転した状態になっている。
+試しに設定してみると、日本語環境でアイコンが左右反転した状態になってました。
 
 | 設定 | 実行結果 |
 | :-- | :-- |
@@ -97,7 +97,7 @@ fun VolumeIcon() {
 
 左右反転したリソースを準備する方法です。strings.xmlを言語ごとに用意するのと考え方的には同じなのかなと思います。
 
-代替リソースの指定[^providing-resources]の「レイアウト方向」の項目に沿って対応してみます。
+公式ドキュメントの代替リソースの指定[^providing-resources]の「レイアウト方向」の項目に沿って対応してみます。
 
 [^providing-resources]: 代替リソースの指定 https://developer.android.com/guide/topics/resources/providing-resources?hl=ja
 
