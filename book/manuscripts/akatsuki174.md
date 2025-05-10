@@ -21,7 +21,7 @@ Androidアプリでアラビア語などのRLT（Right to Left/右から左）�
 
 ## 前提
 
-RTL言語をサポートするにはAndroidManifest.xmlに以下の記述を追加する必要があります（といっても、新規にプロジェクトを作成したらデフォルトで記述されてそうです）。
+RTL言語をサポートするには `AndroidManifest.xml` に以下の記述を追加する必要があります（といっても、新規にプロジェクトを作成したらデフォルトで記述されてそうです）。
 
 ```xml
 <application ...
@@ -91,7 +91,7 @@ fun VolumeIcon() {
 
 | アラビア語 | 日本語 |
 | :-- | :-- |
-| ![](images_akatsuki174/volume_ar.png.png) | ![](images_akatsuki174/volume_ja.png) |
+| ![](images_akatsuki174/volume_ar.png) | ![](images_akatsuki174/volume_ja.png) |
 
 ## RTL言語用リソースを別途用意する
 
