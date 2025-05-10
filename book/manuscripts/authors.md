@@ -9,3 +9,26 @@ class: exclude-hashira
 ### 江本光晴（プログラムの計測と最適化）
 
 日頃は iOS アプリの開発をやっていますが、Android や面白い・珍しいガジェットにも興味があります。マルチプラットフォーム開発では React Native を利用しています。VR に趣味がありますが、VR 酔いで長時間のプレイができないことに苦悩しています。最近は電子ペーパーに関心があります。
+
+
+### うーたん（MDN Web Docs に日本語翻訳でコントリビュート）
+
+<!-- textlint-disable ja-technical-writing/max-kanji-continuous-len -->
+
+技術書同人誌博覧会のコアスタッフを務めています。若手ふんわり勉強部という若手エンジニア向け勉強会を主催しています。また、エンジニアニメという勉強会も主催しています。IT 業界に関わる方が集まってアニメから得た学びについて語り合いながら交流する場となっています。勉強会や技術カンファレンスなどで登壇や技術同人誌を執筆も行っています。
+
+<!-- textlint-enable ja-technical-writing/max-kanji-continuous-len -->
+
+X：@uutan1108
+
+### もるもるぷいかー (「半分組み込まない」ロボコン)
+
+<!-- textlint-disable ja-technical-writing/max-kanji-continuous-len -->
+
+26 卒フロントエンドエンジニアとして株式会社ゆめみに内定をいただいた木村優哉です。
+SNS 上では「もるもるぷいかー」の名前で活動しておりますので、今後の活動はもるもるぷいかー名義とさせていただきます。
+Web フロント畑、水やり担当。ホゲータとモルカーがすきすきだいすきー。
+
+<!-- textlint-enable ja-technical-writing/max-kanji-continuous-len -->
+
+X：@molpui0726
