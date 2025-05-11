@@ -243,19 +243,19 @@ arr.map(double); // ポイントフリースタイルによる map メソッド
 では無名再帰関数とはなんでしょうか。もちろん無名関数を再帰関数にしたものです。どう実装したらよいでしょうか。
 再帰関数を実装するとなると関数内部で自分自身を呼び出します。しかし名前が付いていないものをどうやったら呼び出せるでしょうか。
 
-まず再帰関数に仮に `annonymous_rec` と名前を付けます。
+まず再帰関数に仮に `anonymous_rec` と名前を付けます。
 
 ```typescript
-const annonymous_rec = (n: number): number => {
+const anonymous_rec = (n: number): number => {
     if (n === 1) return 1;
-    return n + annonymous_rec(n - 1);
+    return n + anonymous_rec(n - 1);
 };
 ```
 
-次に返り値の部分にある `annonymous_rec` をなくします。ここでもし、名前をなくそうとして展開するとしたら、再帰的に展開することになり不可能です。
+次に返り値の部分にある `anonymous_rec` をなくします。ここでもし、名前をなくそうとして展開するとしたら、再帰的に展開することになり不可能です。
 
 ```typescript
-const annonymous_rec = (n: number): number => {
+const anonymous_rec = (n: number): number => {
     if (n === 1) return 1;
     return n + ((n: number): number => {
         if (n === 1) return 1;
@@ -267,16 +267,16 @@ const annonymous_rec = (n: number): number => {
 必ず何かしらの名前で置き換える必要がある。では、仮引数として扱えないだろうか。つまり再帰関数自身を引数で受け取ることで名前をつけれないだろうか。
 
 ```typescript
-type AnnonymRec: (
-    annonymous_rec: AnnonymRec,
+type AnonymRec: (
+    anonymous_rec: AnonymRec,
     n: number
 ) => number;
 function (
-    annonymous_rec: AnnonymRec,
+    anonymous_rec: AnonymRec,
     n: number
 ): number {
     if (n === 1) return 1;
-    return n + annonymous_rec(annonymous_rec, n - 1);
+    return n + anonymous_rec(anonymous_rec, n - 1);
 }
 ```
 
@@ -284,19 +284,19 @@ function (
 
 ```typescript
 (function (
-    annonymous_rec: AnnonymRec,
+    anonymous_rec: AnonymRec,
     n: number
 ): number {
     if (n === 1) return 1;
-    return n + annonymous_rec(annonymous_rec, n - 1);
+    return n + anonymous_rec(anonymous_rec, n - 1);
 })(
     // これは引数
     function (
-        annonymous_rec: AnnonymRec,
+        anonymous_rec: AnonymRec,
         n: number
     ): number {
         if (n === 1) return 1;
-        return n + annonymous_rec(annonymous_rec, n - 1);
+        return n + anonymous_rec(anonymous_rec, n - 1);
     },
     10
 )
@@ -314,19 +314,19 @@ F(F, 10);
 具体的にどうするか、まず、 `F` を引数として受け取り自分自身への適用をする関数を考えます。自分自身へ適用する際、同時に具体的な数値 `n` も要求されます。このタイミングで `n` を決めるのは不可能なのでカリー化をして `F` を関数を受け取り、その後 `n` を受け取るように変更します。後は簡単です。
 
 ```typescript
-type CurriedAnnonymRec = (
-  curried_annonymous_rec: CurriedAnnonymRec
+type CurriedAnonymRec = (
+  curried_anonymous_rec: CurriedAnonymRec
 ) => (n: number) => number;
 (function (
-    curried_annonymous_rec: CurriedAnnonymRec
+    curried_anonymous_rec: CurriedAnonymRec
 ) {
-    return curried_annonymous_rec(curried_annonymous_rec);
+    return curried_anonymous_rec(curried_anonymous_rec);
 })(function (
-    curried_annonymous_rec: CurriedAnnonymRec
+    curried_anonymous_rec: CurriedAnonymRec
 ) {
     return function (n: number) {
         if (n === 1) return 1;
-        return n + curried_annonymous_rec(curried_annonymous_rec)(n - 1);
+        return n + curried_anonymous_rec(curried_anonymous_rec)(n - 1);
     };
 })(10);
 ```
