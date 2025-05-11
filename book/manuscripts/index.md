@@ -12,6 +12,8 @@ class: exclude-hashira
 1. [ゆめみ大技林製作委員会とは](preface.html)
 <!-- ここから、記事の目次 -->
 1. [プログラムの計測と最適化](emoto.html)
+1. [MDN Web Docs に日本語翻訳でコントリビュート](uutan1108.html)
+1. [「半分組み込まない」ロボコン](yu_kimura.html)
 <!-- ここまで、記事の目次 -->
 1. [著者紹介](authors.html)
 
