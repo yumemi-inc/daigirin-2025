@@ -24,7 +24,7 @@ CodeCompanionはNeovimでAIコーディングを実現するプラグインの�
   <figcaption>CodeCompanionのチャットインターフェース画面</figcaption>
 </figure>
 
-あいさつすると決まった概要の説明ををしてくれます。
+あいさつすると決まった概要の説明をしてくれます。
 
 ## CodeCompanionの使い方
 
