@@ -62,7 +62,7 @@ cf. デバイスの開発者向けオプションを設定する[^dev_options_dr
 
 ### autoMirroredを設定する
 
-ベクター画像のxmlの `vector` 部分に `autoMirrored` を追記するだけです。
+ベクター画像のxmlの `vector` 部分に `android:autoMirrored="true"` を追記するだけです。
 
 ```xml
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
