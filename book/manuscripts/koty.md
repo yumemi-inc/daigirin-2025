@@ -51,12 +51,14 @@ https://us-south.assistant.watson.cloud.ibm.com/
 ![図1](images_koty/fig1.png)
 ＜図1＞
 
-6. 上記のフォームに以下を入力
+5. 図1のフォームに以下を入力
    - Name: 任意の名前（管理画面および、ダウンロードした際に表示されるSkillの名称となります）
    - Description: （特に記入必須ではありません。何か説明を書きたければどうぞ）
    - Language: Japanese
 ※日本語でチャットボットを設計したい場合、ここでJapaneseを選ばないと（JSON上で書き換える方法はあるのですが）AI認識部分で問題が生じるため、必ずプルダウンからJapaneseをご選択ください。
-7. 青色に活性化されたCreate skillボタンをクリック
+6. 青色に活性化されたCreate skillボタンをクリック
+
+![図1](images_koty/fig1.png)
 
 ## 3. 対話の設計
 
