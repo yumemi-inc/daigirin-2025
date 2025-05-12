@@ -14,7 +14,8 @@ IBMの公式説明によると、IBM watsonx Assistantは、組織の誰もが�
 
 https://www.ibm.com/jp-ja/products/watsonx-assistant
 
-AIというと若干今のご時世、誤解を招く部分もあるのですが、ChatGPTなどの生成AIと異なり、watsonxの内部にAI部分は存在するものの、作業者によって正解を緻密に設計することで、いわゆる生成AIと異なり、「それらしい文章の中に嘘を紛れ込ませるミスを出さない」という点において優れていると私は感じています。
+AIというと若干今のご時世、誤解を招く部分もあるのですが、ChatGPTなどの生成AIと異なり、watsonxの内部にAI部分は存在するものの、厳密にはAIではないのがwatsonxです。
+作業者によって正解を緻密に設計することで、いわゆる生成AIと異なり、「それらしい文章の中に嘘を紛れ込ませるミスを出さない」という点において優れていると私は感じています。
 
 また、IBM watsonx Assistantの管理画面を見て数ヶ月経つと、あれ？ こんな機能あったっけ？ こんな画面だったっけ？
 ということが多々見受けられるので、日々改善を続けているサービスだとも感じています。
@@ -48,6 +49,7 @@ AI非搭載のチャットボットはChatGPTやGrok同様、即時、いつで�
 https://us-south.assistant.watson.cloud.ibm.com/
 
 ※こちらは私が誤って作成時にアメリカゾーンにアカウントを作成してしまったためで、日本ゾーンに作った場合は「us-south」の場所が「jp-tok」となります。
+
 2. 黒色のCreate Skillボタンをクリック
 3. Dialog skill（3つボタンがある真ん中）にチェック
 4. Nextをクリック
@@ -55,7 +57,9 @@ https://us-south.assistant.watson.cloud.ibm.com/
    - Name: 任意の名前（管理画面および、ダウンロードした際に表示されるSkillの名称となります）
    - Description: （特に記入必須ではありません。何か説明を書きたければどうぞ）
    - Language: Japanese
+
 ※日本語でチャットボットを設計したい場合、ここでJapaneseを選ばないと（JSON上で書き換える方法はあるのですが）AI認識部分で問題が生じるため、必ずプルダウンからJapaneseをご選択ください。
+
 6. 青色に活性化されたCreate skillボタンをクリック
 
 ![図1](images_koty/fig1.png)
@@ -91,7 +95,7 @@ https://us-south.assistant.watson.cloud.ibm.com/
 ### nodeの基本設定
 シンプルなチャットボットを作成する場合、各nodeには大きく以下の4点（3点？）を設定するだけで問題ありません。
 1. **Enter node name（名前）**: 必須ではないが、後で混乱しないように内容に即した名前をつけると多少便利
-2. **If assistant recognizes（一致条件）**: どんな入力があった場合に呼び出すことができるか（図2）
+2. **If assistant recognizes（一致条件）**: どんな入力があった場合に呼び出すことができるか ※ ＜図2＞参照
 ※前述のwelcomeとanything_elseの他、反応させたい精度と条件により、上記画像のFilter byを含めた4種類のセット方法があります
 
 3. **Assistant responds（文章、画像など）**: チャットボットの回答本体
@@ -208,13 +212,13 @@ watsonx assistantにもAIはいるのです。
 2. Titleに質問文を入力（例: あなたの名前は何ですか？）
    - 他の場所から文章を貼り付けると改行が半角スペースに変換されてしまうため、改行を入れたい場合はJSONツールを開いて改行記号を入れる必要がある
    - 制限文字数は512文字
-3. List label（見た目のテキスト）とValue（送信されるテキスト）を設定（図10）
+3. List label（見た目のテキスト）とValue（送信されるテキスト）を設定 ※ ＜図10＞参照
    - 基本的には、List labelとValueは同じテキストにする方が好ましい（違う文字が選択した選択肢として表示されるとユーザーが混乱するため）
    - 制限文字数は512文字
    - Webページを開く設定にしたい場合はValueに遷移させたいURLを入力する
 4. 選択肢を作る場合は、必ず子node（選択肢を選んだ場合に反応するnodeのこと）が必要となる
 上記のnodeの追加方法で「Add child node」を選択
-5. child node側でそれぞれの選択肢に対する一致条件を設定（図11）
+5. child node側でそれぞれの選択肢に対する一致条件を設定 ※ ＜図11＞参照
    - 条件: `input.text== "田中"` 
    - 条件: `input.text== "佐藤"` 
    - 条件: `input.text== "高橋"` など
@@ -241,7 +245,7 @@ watsonx assistantにもAIはいるのです。
 - 上記の内容は全てこちらの設定次第で、勝手に忘れたり変わることはない
 
 ### Contextの設定方法
-1. Open context editorを選択（図12）
+1. Open context editorを選択 ※ ＜図12＞参照
 2. Variable（変数名）とValue（値）を設定
    - 変数名は `$` で始まる（例: `$name`）
   
@@ -302,10 +306,8 @@ watsonx assistantにもAIはいるのです。
 長々とお読みいただき、ありがとうございました。
 これらの内容をサクッと理解し、実装いただければ1時間で簡単なチャットボットは出来る筈……！
 皆様、良きチャットボットライフを。
-
 その他、詳しい式言語のメソッドは、公式が一番分かりやすく記載しています。
 以下、ご参考いただくと良いかと思います。
-
 https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-expression-methods-actions&locale=ja
 
 お読みいただきありがとうございました。
