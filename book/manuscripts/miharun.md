@@ -48,9 +48,9 @@ iOS17では、SwiftUIにMetalというグラフィックスAPIが統合され、
 
 ### SwiftUIとMetalの融合: `Shader` 型の導入
 
-iOS17では、SwiftUIに `Shader` 型という新しいしくみが導入されました。これは、Metal Shading Language（MSL）という、GPU（グラフィックス処理を行うためのプログラミング言語）を使って記述されたプログラムを、SwiftUIのコード内で直接扱えるようにするものです。
+iOS 17では、SwiftUIに新たな型である `Shader` が導入されました。これは、Metal Shading Language（MSL）で記述されたGPU向けのプログラムを、SwiftUIのコード内で直接扱えるようにするしくみです。
 
-この `Shader` 型を活用することで、画面上のピクセル単位での色操作、画像の歪み、複数のレイヤーの合成など、高度なグラフィック処理を、宣言的なSwiftUIの構文の中で実現できます。
+`Shader` 型を活用することで、画面上のピクセル単位での色操作、画像の歪み、複数のレイヤーの合成といった高度なグラフィック処理を、宣言的なSwiftUIの構文の中で実現できます。
 
 ### `VisualEffect` のExtension: 3つの主要なエフェクト
 
