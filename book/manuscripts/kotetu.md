@@ -300,7 +300,7 @@ cmake-out/examples/models/llama/llama_main \
 
 ##### LLaMaRunner の Build Cmake Dependencies の実行に失敗する
 
-筆者の環境では "Cmake が 見つからない" 旨のエラーが出ていました。環境によってはこのようなエラーが出ることはないかもしれませんが、もし同様のエラーが出るようであれば、 "Build Cmake Dependencies" のスクリプト内で Cmake への PATH を追加しましょう。 Homebrew で Cmake をインストールした場合は下記 1 行を追加してください。
+筆者の環境では "Cmake が 見つからない" 旨のエラーが出ていました。環境によってはこのようなエラーが出ることはないかもしれませんが、もし同様のエラーが出るようであれば、Xcode のプロジェクト設定を修正する必要があります。 "LLaMARunner" の Build Phase の中に "Build Cmake Dependencies" という名称でビルド時に実行するスクリプトが記載されている箇所があるので、このスクリプト内に Cmake への PATH を追加しましょう。 Homebrew で Cmake をインストールした場合は下記 1 行をスクリプトへ追加してください。
 
 ```shell
 PATH="/opt/homebrew/bin:$PATH"
