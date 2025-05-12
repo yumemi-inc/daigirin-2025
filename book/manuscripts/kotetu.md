@@ -73,7 +73,7 @@ ExecuTorch の特徴のひとつとして、エッジデバイスのハードウ
 
 #### PyTorch で生成された学習済みモデルを ExecuTorch で使用するには
 
-ExecuTorch はエッジデバイス用に最適化されているため、PyTorch で生成された学習済みモデル (PyTorch モデル) を ExecuTorch でそのまま実行できないことに注意してください。
+ExecuTorch はエッジデバイス用に最適化されているため、PyTorch で生成された学習済みモデル ( PyTorch モデル) を ExecuTorch でそのまま実行できないことに注意してください。
 
 "How ExecuTorch Works" [^8]という ExecuTorch の内部構造を解説したドキュメントによれば、PyTorch モデルを実行するためには下記 3 つのステップが必要と解説されています。
 
