@@ -185,7 +185,7 @@ install_requirements.sh が正常終了したらインストールは完了で�
 
 [^14]: https://github.com/pytorch/executorch/blob/v0.6.0/examples/models/llama
 
-#### 3. Llama　3.2 1B モデルを取得する
+#### 3. Llama 3.2 1B モデルを取得する
 
 次に、サンプルアプリで使用する Llama 3.2 1B モデルを取得します。Llama のサイト (https://www.llama.com/) へアクセスし、右上にある "Download models" からダウンロードできます。氏名やメールアドレスなどの必要事項を入力を上、ダウンロードしたいモデルを選択します。今回は "Llama 3 models" の "Llama 3.2: 1B & 3B" という名前のモデルを使用するので、チェックを入れて画面下の "Next" ボタンを押してください。規約に同意すると、 CLI を使用したモデルのダウンロード手順が表示されるので、指示に従ってダウンロードします。
 
