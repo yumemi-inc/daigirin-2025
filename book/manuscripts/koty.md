@@ -63,8 +63,9 @@ https://us-south.assistant.watson.cloud.ibm.com/
 6. 青色に活性化されたCreate skillボタンをクリック
 
 <figure>
-  <img src="images_koty/fig1.png" width="80%" />
+  <img src="images_koty/fig1.png" width="90%" />
 </figure>
+＜図1＞
 
 ## 3. 対話の設計
 
@@ -105,8 +106,9 @@ https://us-south.assistant.watson.cloud.ibm.com/
    - Jump to（ユーザーが何もしなくても、勝手に指定先のnodeに飛んで同時に表示させる）
 
 <figure>
-  <img src="images_koty/fig2.png" width="80%" />
+  <img src="images_koty/fig2.png" width="70%" />
 </figure>
+＜図2＞
 
 ## 4. If assistant recognizesの設定方法
 ### 例① : 完全一致
@@ -117,6 +119,7 @@ https://us-south.assistant.watson.cloud.ibm.com/
 <figure>
   <img src="images_koty/fig3.png" width="100%" />
 </figure>
+＜図3＞
 
 ### 例② : 部分的一致
  `@`entities
@@ -141,6 +144,7 @@ https://us-south.assistant.watson.cloud.ibm.com/
 <figure>
   <img src="images_koty/fig4.png" width="100%" />
 </figure>
+＜図4＞
 
 #### Dialogでの使用
 - 条件に `@entity name` を指定
@@ -169,6 +173,7 @@ https://us-south.assistant.watson.cloud.ibm.com/
 <figure>
   <img src="images_koty/fig5.png" width="100%" />
 </figure>
+＜図5＞
 
 #### Dialogでの使用
 - 条件に `#intent name` を指定
@@ -183,6 +188,7 @@ https://us-south.assistant.watson.cloud.ibm.com/
 <figure>
   <img src="images_koty/fig6.png" width="100%" />
 </figure>
+＜図6＞
 
 なお、ここで 図1 の説明の際の伏線が回収されます。
 実は、これは「Japanese」を選んでいるので「コンニチハ〜」でも「コンニチハ」が含まれていると分かり、反応しますが、例えば「English」を選ぶと単語の切れ目がどこか分からなくなり、「コンニチハ〜 ≠ コンニチハ」とwatsonx assistantのAIに判定されて、反応しなくなるのです。ですので、チャットボットを組む言語を選択するのは非常に重要です。
@@ -194,6 +200,7 @@ watsonx assistantにもやっぱりAIはいるのです。
 <figure>
   <img src="images_koty/fig7.png" width="100%" />
 </figure>
+＜図7＞
 
 ただし、watsonx assistantのAIも完璧ではないので、「こんにちわ」だと急に分からなかったりします。
 ここでは当てはまらない言葉を拾い上げる目的のanything_alse nodeが反応してしまっています。
@@ -201,6 +208,7 @@ watsonx assistantにもやっぱりAIはいるのです。
 <figure>
   <img src="images_koty/fig8.png" width="100%" />
 </figure>
+＜図8＞
 
 ですので、色々な言い回しをintentsには予め登録しておくことを推奨します。
 
@@ -210,6 +218,7 @@ watsonx assistantにもやっぱりAIはいるのです。
 <figure>
   <img src="images_koty/fig9.png" width="100%" />
 </figure>
+＜図9＞
 
 ### 文章
 1. Assistant respondsの初期設定プルダウンのまま「Text」
@@ -221,13 +230,13 @@ watsonx assistantにもやっぱりAIはいるのです。
 2. Titleに質問文を入力（例: あなたの名前は何ですか？）
    - 他の場所から文章を貼り付けると改行が半角スペースに変換されてしまうため、改行を入れたい場合はJSONツールを開いて改行記号を入れる必要がある
    - 制限文字数は512文字
-3. List label（見た目のテキスト）とValue（送信されるテキスト）を設定 ※ 図10参照
+3. List label（見た目のテキスト）とValue（送信されるテキスト）を設定 ※ ＜図10＞参照
    - 基本的には、List labelとValueは同じテキストにする方が好ましい（違う文字が選択した選択肢として表示されるとユーザーが混乱するため）
    - 制限文字数は512文字
    - Webページを開く設定にしたい場合はValueに遷移させたいURLを入力する
 4. 選択肢を作る場合は、必ず子node（選択肢を選んだ場合に反応するnodeのこと）が必要となる
 上記のnodeの追加方法で「Add child node」を選択
-5. child node側でそれぞれの選択肢に対する一致条件を設定 ※ 図11参照
+5. child node側でそれぞれの選択肢に対する一致条件を設定 ※ ＜図11＞参照
    - 条件: `input.text== "田中"` 
    - 条件: `input.text== "佐藤"` 
    - 条件: `input.text== "高橋"` など
@@ -235,10 +244,12 @@ watsonx assistantにもやっぱりAIはいるのです。
 <figure>
   <img src="images_koty/fig10.png" width="100%" />
 </figure>
+＜図10＞
 
 <figure>
   <img src="images_koty/fig11.png" width="100%" />
 </figure>
+＜図11＞
 
 ### 画像
 1. Assistant respondsの初期設定プルダウンから「Image」を選択
@@ -263,6 +274,7 @@ watsonx assistantにもやっぱりAIはいるのです。
 <figure>
   <img src="images_koty/fig12.png" width="100%" />
 </figure>
+＜図12＞
 
 ### ヒアリングシナリオの構築
 1. ユーザーから情報を得る
@@ -280,8 +292,9 @@ watsonx assistantにもやっぱりAIはいるのです。
 仮に5点満点で、3点以上合格の問題を設計することにします。
 
 <figure>
-  <img src="images_koty/fig13.png" width="70%" />
+  <img src="images_koty/fig13.png" width="85%" />
 </figure>
+＜図13＞
 
 その場合、以下のような設計になります。
 1. 回答に点数を与える
@@ -291,25 +304,29 @@ watsonx assistantにもやっぱりAIはいるのです。
 #### 全体のツリー図
 
 <figure>
-  <img src="images_koty/fig14.png" width="70%" />
+  <img src="images_koty/fig14.png" width="50%" />
 </figure>
+＜図14＞
 
 #### 1問目子node
 
 <figure>
   <img src="images_koty/fig15.png" width="100%" />
 </figure>
+＜図15＞
 
 #### 最後の計算
 
 <figure>
   <img src="images_koty/fig16.png" width="100%" />
 </figure>
+＜図16＞
 
 #### 分岐例
 <figure>
   <img src="images_koty/fig17.png" width="100%" />
 </figure>
+＜図17＞
 
 ### 非エンジニアへのTips
 - `==` : 一致する
