@@ -100,6 +100,7 @@ https://us-south.assistant.watson.cloud.ibm.com/
 ## 4. If assistant recognizesの設定方法
 ### 例① : 完全一致
 `input.text== "こんにちは"`
+
 - 単語ベースで捉える仕組みです。特定の単語のみ認識して、完全一致した場合のみ応答します。
   
 ![図3](images_koty/fig3.png)
