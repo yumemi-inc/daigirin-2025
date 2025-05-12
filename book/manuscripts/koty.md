@@ -297,12 +297,12 @@ watsonx assistantにもやっぱりAIはいるのです。
 </figure>
 
 <figure>
-  <img src="images_koty/fig15.png" width="72%" />
+  <img src="images_koty/fig15.png" width="73%" />
     <figcaption>1問目子node</figcaption>
 </figure>
 
 <figure>
-  <img src="images_koty/fig16.png" width="72%" />
+  <img src="images_koty/fig16.png" width="73%" />
     <figcaption>最終計算</figcaption>
 </figure>
 
