@@ -197,7 +197,7 @@ watsonx AssistantにもやっぱりAIはいるのです。
   <figcaption>intents</figcaption>
 </figure>
 
-ただし、watsonx assistantのAIも完璧ではないので、「こんにちわ」だと急に分からなかったりします。
+ただし、watsonx AssistantのAIも完璧ではないので、「こんにちわ」だと急に分からなかったりします。
 ここでは当てはまらない言葉を拾い上げる目的の「anything_alse node」が反応してしまっています。
 
 <figure>
