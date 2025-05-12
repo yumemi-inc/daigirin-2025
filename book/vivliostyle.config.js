@@ -22,6 +22,7 @@ module.exports = {
     'usami.md',
     'uutan1108.md',
     'yu_kimura.md',
+    'koty.md',
     'you.md',
     'kisaki.md',
     'miharun.md',
