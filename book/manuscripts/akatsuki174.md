@@ -9,7 +9,7 @@ class: content
 
 # AndroidアプリでRTL言語対応をする（画像編）
 
-Androidアプリでアラビア語などのRLT（Right to Left/右から左）記述法を使用する言語（以降、RTL言語とする）に対応する場合、翻訳リソースの追加はもちろん、方向性のある一部のアイコンはRTL言語用として変更するのが適切です。
+Androidアプリでアラビア語などのRTL（Right to Left/右から左）記述法を使用する言語（以降、RTL言語とする）に対応する場合、翻訳リソースの追加はもちろん、方向性のある一部のアイコンはRTL言語用として変更するのが適切です。
 
 根拠：インターフェイスアイコン - Human Interface Guidelines[^human_interface_guidelines_interface-icons]
 
