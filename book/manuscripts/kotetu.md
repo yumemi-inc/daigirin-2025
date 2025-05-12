@@ -326,9 +326,9 @@ App ID を作る際には Increased Memory Limit のチェックを忘れずに�
 
 コピーしたら、画面左上のフォルダアイコンをタップします。 "Select Model..." と "Select Tokenizer..." という 2 つのボタンがあるので、それぞれ .pte ファイルと .model ファイルを指定します。
 
-ここまで完了したら、先ほどの Validation Tool 実行時と同じプロンプト ("What is Llama?") を入力してみたところ、 **図2** のような出力となりました。
-
 ![Llama からの主力](./images_kotetu/figure-app-screenshot.png "Llama からの主力"){width=400}
+
+ここまで完了したら、先ほどの Validation Tool 実行時と同じプロンプト ("What is Llama?") を入力してみたところ、 **図2** のような出力となりました。
 
 概ねそれらしい出力になることが確認できました。
 
@@ -341,5 +341,3 @@ App ID を作る際には Increased Memory Limit のチェックを忘れずに�
 メモリ使用量やモデルファイルのサイズなど、実用的なオンデバイス LLM にはまだまだ課題が多いことがわかりました。一方で、エッジデバイスでも LLM をスタンドアローン実行でき、かつある程度の精度は出せることもわかりました。エッジデバイス、および ExecuTorch と LLM モデルの性能向上は今後も期待できることから、性能が向上するにつれて、実用的な利活用の可能性が広がっていくことが予想されます。
 
 一方、活用事例でも紹介したように、 LLM 以外のエッジ AI については既に実用化もある程度進んでいる状態です。 ExecuTorch は PyTorch との親和性が高く、かつ iPhone や Android 端末の GPU を利用して高速に推論処理を行う仕組みもあることから、 ExecuTorch は今後導入事例が増えていくのではないでしょうか。
-
-<hr class="page-break" />
