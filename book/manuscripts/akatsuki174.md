@@ -9,17 +9,17 @@ class: content
 
 # Android アプリで RTL 言語対応をする（画像編）
 
-Android アプリでアラビア語などの RTL（Right to Left / 右から左）記述法を使用する言語（以降、RTL 言語とする）に対応する場合、翻訳リソースの追加はもちろん、方向性のある一部のアイコンは RTL 言語用として変更するのが適切です。 Material Design や Human Interface Guidelines などの公式ドキュメントにその記載があります。
+Android アプリでアラビア語などの RTL（Right to Left / 右から左）記述法を使用する言語（以降、RTL 言語とする）に対応する場合、翻訳リソースの追加はもちろん、方向性のある一部のアイコンは RTL 言語用として変更するのが適切です。 Material Design 3 や Human Interface Guidelines などの公式ドキュメントにその記載があります。
 
-- Icons and symbols - Layout basics[^icons_and_symbols]
+- Icons and symbols - Material Design 3[^icons_and_symbols]
 - インターフェイスアイコン - Human Interface Guidelines[^human_interface_guidelines_interface-icons]
 
 とはいえ簡単にいかない場合もあるので、対応方法について書きたいと思います。
 
 ※ 基本 Jetpack Compose 前提で書きます。
 
+[^icons_and_symbols]: Icons and symbols - Material Design 3 https://m3.material.io/foundations/layout/understanding-layout/bidirectionality-rtl
 [^human_interface_guidelines_interface-icons]: インターフェイスアイコン - Human Interface Guidelines https://developer.apple.com/jp/design/human-interface-guidelines/right-to-left#Interface-icons
-[^icons_and_symbols]: Icons and symbols - Layout basics https://m3.material.io/foundations/layout/understanding-layout/bidirectionality-rtl
 
 ## 前提
 
