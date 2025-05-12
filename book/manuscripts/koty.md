@@ -112,9 +112,7 @@ https://us-south.assistant.watson.cloud.ibm.com/
 
 ## 4. If assistant recognizesの設定方法
 ### 例① : 完全一致
-`input.text== "こんにちは"`
-
-- 単語ベースで捉える仕組みです。特定の単語のみ認識して、完全一致した場合のみ応答します。
+`input.text== "こんにちは"`・・・単語ベースで捉える仕組みです。特定の単語のみ認識して、完全一致した場合のみ応答します。
   
 <figure>
   <img src="images_koty/fig3.png" width="100%" />
@@ -122,8 +120,7 @@ https://us-south.assistant.watson.cloud.ibm.com/
 ＜図3＞
 
 ### 例② : 部分的一致
- `@`entities
-- 単語ベースで部分的に捉える仕組みです。特定の単語や語句を認識して、それが入力語句に含まれている場合に応答します。
+ `@`entities・・・単語ベースで部分的に捉える仕組みです。特定の単語や語句を認識して、それが入力語句に含まれている場合に応答します。
 
 #### 特徴
 - **メリット**:
@@ -151,8 +148,7 @@ https://us-south.assistant.watson.cloud.ibm.com/
 - セット例は後ほどまとめて後述します。
 
 ### 例③ : 全体的な意味合いの一致
-`#`intents
-- 全体を意味で捉える仕組みです。ユーザーの発言の意図を理解して応答します。
+`#`intents・・・全体を意味で捉える仕組みです。ユーザーの発言の意図を理解して応答します。
 
 #### 特徴
 - **メリット**:
@@ -244,7 +240,6 @@ watsonx assistantにもやっぱりAIはいるのです。
 <figure>
   <img src="images_koty/fig10.png" width="100%" />
 </figure>
-＜図10＞
 
 <figure>
   <img src="images_koty/fig11.png" width="100%" />
@@ -304,7 +299,7 @@ watsonx assistantにもやっぱりAIはいるのです。
 #### 全体のツリー図
 
 <figure>
-  <img src="images_koty/fig14.png" width="65%" />
+  <img src="images_koty/fig14.png" width="60%" />
 </figure>
 ＜図14＞
 
