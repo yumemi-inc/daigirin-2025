@@ -43,7 +43,7 @@ class: content
 
 Apple Intelligence は、iPhone / iPad / macOS 上で生成 AI を活用した文章作成や画像生成を可能にする技術です (**図1**)。 エッジ AI のデメリットであるエッジデバイスの性能限界を Apple の AI サーバーや ChatGPT へシームレスに接続することで補っており、エッジ AI をスマホアプリに組み込む上で参考になる点が多々ありそうです。
 
-一方、 Sansan のリアルタイム名刺認識技術は、エッジ AI がスマホアプリのユーザー体験向上に寄与する事例の一つといえます。 Sansan アプリや Eight アプリでは、名刺撮影時にカメラ映像内の名刺をリアルタイムに認識し、名刺が画面内にあることをユーザーに見せたり、撮影時に認識結果を元に写真から自動で名刺を切り出す機能があります。名刺画像を精度高く OCR するためには名刺画像の切り出しが必要で、リアルタイム名刺認識が実現したことでこれまで以上に OCR 結果を迅速に受け取ることができるようになり、ユーザー体験は劇的に向上しました。リアルタイム名刺認識を実現するため、 Core ML を利用して画像認識を行っています。
+また、Sansan のリアルタイム名刺認識技術は、エッジ AI がスマホアプリのユーザー体験向上に寄与する事例の一つといえます。 Sansan アプリや Eight アプリでは、名刺撮影時にカメラ映像内の名刺をリアルタイムに認識し、名刺が画面内にあることをユーザーに見せたり、撮影時に認識結果を元に画像から自動で名刺を切り出す機能があります。名刺画像を精度高く OCR するためには名刺画像の切り出しが必要で、リアルタイム名刺認識が実現したことでこれまで以上に OCR (光学文字認識) 結果を迅速に受け取ることができるようになり、ユーザー体験は劇的に向上しました。リアルタイム名刺認識を実現するため、 Core ML [^5]を利用して画像認識を行っています。
 
 ![Image Playground (画像生成 AI)](./images_kotetu/figure-image-playground.png "Image Playground (画像生成 AI)"){width=350}
 
@@ -51,31 +51,33 @@ Apple Intelligence は、iPhone / iPad / macOS 上で生成 AI を活用した�
 
 [^4]: https://buildersbox.corp-sansan.com/entry/2022/11/01/110000
 
+[^5]: https://developer.apple.com/jp/machine-learning/core-ml/
+
 ## PyTorch と ExecuTorch
 
 エッジ AI の実現方法はいくつかありますが、本稿では ExecuTorch というライブラリに着目しました。 ExecuTorch は PyTorch をエッジデバイス向けに最適化したライブラリです。
 
 ### PyTorch について
 
-**PyTorch** [^5]はオープンソースの機械学習ライブラリです。 PyTorch は TensorFlow [^6]と並んで機械学習機能の実装によく使われるライブラリのひとつです。名前のとおり Python 向けのライブラリですが、パフォーマンス向上を目的に C++ で実装されている箇所が多数あります。GPU を利用した処理の高速化や機械学習に便利な機能セットにより、多くの研究者や開発者に使用されています。
+**PyTorch** [^6]はオープンソースの機械学習ライブラリです。 PyTorch は TensorFlow [^7]と並んで機械学習機能の実装によく使われるライブラリのひとつです。名前のとおり Python 向けのライブラリですが、パフォーマンス向上を目的に C++ で実装されている箇所が多数あります。GPU を利用した処理の高速化や機械学習に便利な機能セットにより、多くの研究者や開発者に使用されています。
 
-[^5]: https://pytorch.org/
+[^6]: https://pytorch.org/
 
-[^6]: https://www.tensorflow.org/
+[^7]: https://www.tensorflow.org/
 
 ### ExecuTorch について
 
-**ExecuTorch** [^7]はエッジデバイス上での推論処理を実現するために開発されたライブラリです。 ExecuTorch を利用することで、既存の PyTorch モデルをエッジデバイス向けに最適化された形で導入することが可能です。
+**ExecuTorch** [^8]はエッジデバイス上での推論処理を実現するために開発されたライブラリです。 ExecuTorch を利用することで、既存の PyTorch モデルをエッジデバイス向けに最適化された形で導入することが可能です。
 
 ExecuTorch の特徴のひとつとして、エッジデバイスのハードウェア機能を活用したパフォーマンス向上が挙げられます。 ExecuTorch では推論を行う際に使用するバックエンドを選択することができ、iOS では Metal Performance Shader ( MPS ) および Core ML を選択でき、 Android では Vulkan を選択できます。スマートフォンに搭載されている GPU や Neural Engine を活用できることは、推論処理を行う上で大きなメリットがあります。
 
-[^7]: https://pytorch.org/executorch-overview
+[^8]: https://pytorch.org/executorch-overview
 
 #### PyTorch で生成された学習済みモデルを ExecuTorch で使用するには
 
 ExecuTorch はエッジデバイス用に最適化されているため、PyTorch で生成された学習済みモデル ( PyTorch モデル) を ExecuTorch でそのまま実行できないことに注意してください。
 
-"How ExecuTorch Works" [^8]という ExecuTorch の内部構造を解説したドキュメントによれば、PyTorch モデルを実行するためには下記 3 つのステップが必要と解説されています。
+"How ExecuTorch Works" [^9]という ExecuTorch の内部構造を解説したドキュメントによれば、PyTorch モデルを実行するためには下記 3 つのステップが必要と解説されています。
 
 1. PyTorch モデルをエッジデバイスでの実行に最適化してエクスポートする
 2. エクスポートしたモデルを ExecuTorch 用のモデル ( ExecuTorch モデル) としてコンパイルする
@@ -83,27 +85,27 @@ ExecuTorch はエッジデバイス用に最適化されているため、PyTorc
 
 本稿で題材となっている Llama については 1. と 2. のステップをコマンド 1 つで処理できるツールが ExecuTorch のリポジトリに含まれており、 Python のコードを書くことなく容易に ExecuTorch モデルを出力できます。
 
-[^8]: https://pytorch.org/executorch/stable/intro-how-it-works.html
+[^9]: https://pytorch.org/executorch/stable/intro-how-it-works.html
 
 ## Llama について
 
-**Llama (ラマ)** [^9]は Meta が開発した大規模言語モデル ( LLM ) です。Llama は最新の Llama 4 までの学習済みモデルがすべて公開されており、モデルをダウンロードした上でローカルで検証可能となっていることが大きな特徴です。ただ、 GPU をはじめ実行環境に高いスペックを要求されるため、ローカルでの実行は容易ではありません。
+**Llama (ラマ)** [^10]は Meta が開発した大規模言語モデル ( LLM ) です。Llama は最新の Llama 4 までの学習済みモデルがすべて公開されており、モデルをダウンロードした上でローカルで検証可能となっていることが大きな特徴です。ただ、 GPU をはじめ実行環境に高いスペックを要求されるため、ローカルでの実行は容易ではありません。
 
-一方、 **Llama 3.2** に関しては軽量モデルとして提供されており、エッジデバイスでの利用を想定して開発されたモデルです。特に 1B と呼ばれる、モデルサイズが 10 億 パラメータのモデルについては、モデルファイルのサイズが 2.5 GB 程度しかなく、スマートフォンでなどのエッジデバイスでの実行も可能です。これは、パラメータ数が公開されている DeepSeek-V3 の 6710 億パラメータ[^10]と比べると小さなものですが、テキストに特化したモデルとすることでこれだけの小ささでも十分にテキストコミュニケーションを行うことが可能です。
+一方、 **Llama 3.2** に関しては軽量モデルとして提供されており、エッジデバイスでの利用を想定して開発されたモデルです。特に 1B と呼ばれる、モデルサイズが 10 億 パラメータのモデルについては、モデルファイルのサイズが 2.5 GB 程度しかなく、スマートフォンでなどのエッジデバイスでの実行も可能です。これは、パラメータ数が公開されている DeepSeek-V3 の 6710 億パラメータ[^11]と比べると小さなものですが、テキストに特化したモデルとすることでこれだけの小ささでも十分にテキストコミュニケーションを行うことが可能です。
 
 配布されている　Llama の各モデルは PyTorch モデルとなっており、 ExecuTorch で使用するためには変換処理が必要となります。
 
 後述するサンプルコードでは、 Llama 3.2 の 1B モデルを使用します。
 
-[^9]: https://www.llama.com/
+[^10]: https://www.llama.com/
 
-[^10]: https://api-docs.deepseek.com/news/news1226
+[^11]: https://api-docs.deepseek.com/news/news1226
 
 ## サンプルコードを動かしてみる
 
-それでは、 ExecuTorch リポジトリ内にある Llama 3.2 のモデルを使ったチャットボットのサンプルコードを iOS 端末上で動かしてみましょう。サンプルコードは ExecuTorch のリポジトリにある "ExecuTorch Llama iOS Demo App" [^11]を使用します。なお、 ExecuTorch のバージョンは `0.6` を使用します。
+それでは、 ExecuTorch リポジトリ内にある Llama 3.2 のモデルを使ったチャットボットのサンプルコードを iOS 端末上で動かしてみましょう。サンプルコードは ExecuTorch のリポジトリにある "ExecuTorch Llama iOS Demo App" [^12]を使用します。なお、 ExecuTorch のバージョンは `0.6` を使用します。
 
-[^11]: https://github.com/pytorch/executorch/tree/main/examples/demo-apps/apple_ios/LLaMA
+[^12]: https://github.com/pytorch/executorch/tree/main/examples/demo-apps/apple_ios/LLaMA
 
 ### 執筆にあたり使用した環境について
 
@@ -148,7 +150,7 @@ pip install executorch
 
 ただ、 Llama のモデルを ExecuTorch モデルへ変換するツールをインストールする関係で、今回は ExecuTorch をソースコードからインストールします。
 
-ソースコードからのインストールは "Building from Source" [^12]に記載されている手順を見ながら進めていきます。
+ソースコードからのインストールは "Building from Source" [^13]に記載されている手順を見ながら進めていきます。
 
 まずは ExecuTorch リポジトリを Clone してください。
 
@@ -163,19 +165,19 @@ cd executorch
 ./install_executorch.sh --pybind xnnpack mps coreml
 ```
 
-`--pybind` オプションですが、 ExecuTorch 実行時に選択可能なバックエンドの設定となります。本稿では XNNPACK ( --pybind オプションで指定する場合は `xnnpack` )  [^13]のみ使用しますが、今後 Metal Performance Shaders ( `mps` ) や Core ML ( `coreml` ) を利用する可能性があるので、全て指定してビルドを行います。
+`--pybind` オプションですが、 ExecuTorch 実行時に選択可能なバックエンドの設定となります。本稿では XNNPACK ( --pybind オプションで指定する場合は `xnnpack` )  [^14]のみ使用しますが、今後 Metal Performance Shaders ( `mps` ) や Core ML ( `coreml` ) を利用する可能性があるので、全て指定してビルドを行います。
 
 install_executorch.sh が正常終了したら、ビルドとインストールは成功です。
 
-[^12]: https://pytorch.org/executorch/0.6/using-executorch-building-from-source.html
+[^13]: https://pytorch.org/executorch/0.6/using-executorch-building-from-source.html
 
-[^13]: CPU 上での推論処理を最適化するためのライブラリです。詳細は https://github.com/google/XNNPACK をご覧ください。
+[^14]: CPU 上での推論処理を最適化するためのライブラリです。詳細は https://github.com/google/XNNPACK をご覧ください。
 
 #### 2. PyTorch モデルの変換に使用するツールをインストールする
 
 前述のとおり、Llama のモデルを ExecuTorch で使用するためには ExecuTorch モデルへの変換が必要です。変換に必要なツール一式をインストールしましょう。
 
-ExecuTorch の GitHub リポジトリに Llama 関連のツールが格納されたディレクトリ (`examples/models/llama/`) があります[^14]。ディレクトリ内に `install_requirements.sh` というスクリプトがあるので、こちらのスクリプトを実行するとインストールが開始されます。
+ExecuTorch の GitHub リポジトリに Llama 関連のツールが格納されたディレクトリ (`examples/models/llama/`) があります[^15]。ディレクトリ内に `install_requirements.sh` というスクリプトがあるので、こちらのスクリプトを実行するとインストールが開始されます。
 
 ```shell
 sh ./examples/models/llama/install_requirements.sh
@@ -183,7 +185,7 @@ sh ./examples/models/llama/install_requirements.sh
 
 install_requirements.sh が正常終了したらインストールは完了です。
 
-[^14]: https://github.com/pytorch/executorch/blob/v0.6.0/examples/models/llama
+[^15]: https://github.com/pytorch/executorch/blob/v0.6.0/examples/models/llama
 
 #### 3. Llama 3.2 1B モデルを取得する
 
@@ -200,7 +202,7 @@ pip install llama-stack
 - MODEL_ID
 - custom URL
 
-MODEL_ID について、今回は "Llama3.2-1B-Instruct" [^15]というモデルを使用するため、 MODEL_ID は `Llama3.2-1B-Instruct` を指定します。 custom URL については、ダウンロード手順の中の "Specify custom URL" の中に発行から 48 時間有効な URL が記載されているので、こちらを使用します。
+MODEL_ID について、今回は "Llama3.2-1B-Instruct" [^16]というモデルを使用するため、 MODEL_ID は `Llama3.2-1B-Instruct` を指定します。 custom URL については、ダウンロード手順の中の "Specify custom URL" の中に発行から 48 時間有効な URL が記載されているので、こちらを使用します。
 
 2 つの情報が取得できたら、以下のコマンドを実行してダウンロードします。
 
@@ -210,7 +212,7 @@ llama model download --source meta --model-id  Llama3.2-1B-Instruct
 
 実行途中で URL の入力を求められるので、先ほどの custom URL を入力します。 `~/.llama/checkpoints/Llama3.2-1B-Instruct/` ディレクトリにサンプルコードで使用する "consolidated.00.pth" と "tokenizer.model" "params.json" という 3 種類のファイルが存在していれば、ダウンロード成功です。
 
-[^15]: Instruct モデルはベースとなるモデルを Instruction Tuning (指示プロンプトへ適切に応答できるようチューニング) したモデルです。
+[^16]: Instruct モデルはベースとなるモデルを Instruction Tuning (指示プロンプトへ適切に応答できるようチューニング) したモデルです。
 
 #### 4. Llama モデルを ExecuTorch 用のモデルへ変換してみる
 
@@ -278,7 +280,7 @@ cmake-out/examples/models/llama/llama_main \
     --prompt="What is Llama?"
 ```
 
-`--prompt` オプションに試してみたいプロンプトを入力してください。実行結果の中に、 Llama 側からの応答が含まれていれば成功です。下記に応答部分を抜粋した出力結果を掲載します[^16]。
+`--prompt` オプションに試してみたいプロンプトを入力してください。実行結果の中に、 Llama 側からの応答が含まれていれば成功です。下記に応答部分を抜粋した出力結果を掲載します[^17]。
 
 > Llama is an AI developed by Meta, Peter Thiel, Dustin Moskovitz, and Max Levchin. Llama is a large language model developed for conversational purposes and is designed to be more human-like and contextual. It can answer questions, provide definitions, and even create text. Llama is multi-lingual, meaning it can respond in multiple languages. Currently, Llama can converse in English, Spanish, French, German, Italian, Dutch, Russian, and Hindi. In the future, Llama may be able to support more languages. 
 >
@@ -290,7 +292,7 @@ cmake-out/examples/models/llama/llama_main \
 
 それらしい応答が得られれば動作確認としては OK とします。
 
-[^16]: コンソールに出力させた際に Llama からの応答の途中でログ出力が差し込まれてしまっているようだったので、ログ出力部分を取り除いた形で掲載しています。
+[^17]: コンソールに出力させた際に Llama からの応答の途中でログ出力が差し込まれてしまっているようだったので、ログ出力部分を取り除いた形で掲載しています。
 
 #### 5. iOS のサンプルプロジェクトのビルドに必要な修正を行う
 
