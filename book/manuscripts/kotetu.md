@@ -11,7 +11,7 @@ class: content
 
 ## はじめに
 
-本稿では、 ExecuTorch という、エッジ AI を実現するためのライブラリを題材に、エッジ AI や ExecuTorch の紹介、さらには ExecuTorch 付属のサンプルコードのうち、 Llama という Meta が開発している大規模言語モデル (LLM) を iOS デバイス上で動作させるサンプルを実行する方法について解説します。
+本稿では、 ExecuTorch という、エッジ AI を実現するためのライブラリを題材に、エッジ AI や ExecuTorch の紹介、さらには ExecuTorch 付属のサンプルコードのうち、 Llama という Meta が開発している大規模言語モデル（ LLM ）を iOS デバイス上で動作させるサンプルを実行する方法について解説します。
 
 筆者自身、iOS アプリにおける機械学習機能の組み込みには以前から興味はありましたが、実業務ではそこまで縁がありませんでした。したがって、本稿は iOS アプリ開発者、かつ機械学習初心者が iOS アプリに AI 機能を組み込む観点で執筆した記事となります。
 
@@ -19,9 +19,9 @@ class: content
 
 ## エッジ AI について
 
-**エッジ AI** とは、エッジデバイスと呼ばれるスマートフォンなどを含むネットワークにつながる端末で行う AI 関連処理 (学習・推論) のことです[^1]。エッジ AI に対して、クラウド上のコンピューティングリソースを利用して AI 処理を行うことを **クラウド AI** と呼びます[^2]。
+**エッジ AI** とは、エッジデバイスと呼ばれるスマートフォンなどを含むネットワークにつながる端末で行う AI 関連処理（学習・推論）のことです[^1]。エッジ AI に対して、クラウド上のコンピューティングリソースを利用して AI 処理を行うことを **クラウド AI** と呼びます[^2]。
 
-エッジ AI は IoT (Internet of Things) 技術の普及に伴い、注目されるようになりました。エッジ AI の代表的な事例としては自動運転技術が挙げられます。
+エッジ AI は IoT（ Internet of Things ）技術の普及に伴い、注目されるようになりました。エッジ AI の代表的な事例としては自動運転技術が挙げられます。
 
 [^1]: https://www.ntt.com/bizon/glossary/j-a/edge-ai.html
 
@@ -41,11 +41,11 @@ class: content
 
 エッジ AI をスマホアプリに導入することで、ユニークなユーザー体験を実現することができます。ここでは、スマホアプリにおけるエッジ AI の活用実例として、 Apple Intelligence [^3]や Sansan のリアルタイム名刺認識技術[^4]について紹介します。
 
-Apple Intelligence は、iPhone / iPad / macOS 上で生成 AI を活用した文章作成や画像生成を可能にする技術です (**図1**)。 エッジ AI のデメリットであるエッジデバイスの性能限界を Apple の AI サーバーや ChatGPT へシームレスに接続することで補っており、エッジ AI をスマホアプリに組み込む上で参考になる点が多々ありそうです。
+Apple Intelligence は、iPhone / iPad / macOS 上で生成 AI を活用した文章作成や画像生成を可能にする技術です（**図1**）。 エッジ AI のデメリットであるエッジデバイスの性能限界を Apple の AI サーバーや ChatGPT へシームレスに接続することで補っており、エッジ AI をスマホアプリに組み込む上で参考になる点が多々ありそうです。
 
-また、Sansan のリアルタイム名刺認識技術は、エッジ AI がスマホアプリのユーザー体験向上に寄与する事例の一つといえます。 Sansan アプリや Eight アプリでは、名刺撮影時にカメラ映像内の名刺をリアルタイムに認識し、名刺が画面内にあることをユーザーに見せたり、撮影時に認識結果を元に画像から自動で名刺を切り出す機能があります。名刺画像を精度高く OCR するためには名刺画像の切り出しが必要で、リアルタイム名刺認識が実現したことでこれまで以上に OCR (光学文字認識) 結果を迅速に受け取ることができるようになり、ユーザー体験は劇的に向上しました。リアルタイム名刺認識を実現するため、 Core ML [^5]を利用して画像認識を行っています。
+また、Sansan のリアルタイム名刺認識技術は、エッジ AI がスマホアプリのユーザー体験向上に寄与する事例の一つといえます。 Sansan アプリや Eight アプリでは、名刺撮影時にカメラ映像内の名刺をリアルタイムに認識し、名刺が画面内にあることをユーザーに見せたり、撮影時に認識結果を元に画像から自動で名刺を切り出す機能があります。名刺画像を精度高く OCR するためには名刺画像の切り出しが必要で、リアルタイム名刺認識が実現したことでこれまで以上に OCR（光学文字認識）結果を迅速に受け取ることができるようになり、ユーザー体験は劇的に向上しました。リアルタイム名刺認識を実現するため、 Core ML [^5]を利用して画像認識を行っています。
 
-![Image Playground (画像生成 AI)](./images_kotetu/figure-image-playground.png "Image Playground (画像生成 AI)"){width=350}
+![Image Playground（画像生成 AI ）](./images_kotetu/figure-image-playground.png "Image Playground（画像生成 AI ）"){width=350}
 
 [^3]: https://www.apple.com/jp/apple-intelligence/
 
@@ -69,18 +69,18 @@ Apple Intelligence は、iPhone / iPad / macOS 上で生成 AI を活用した�
 
 **ExecuTorch** [^8]はエッジデバイス上での推論処理を実現するために開発されたライブラリです。 ExecuTorch を利用することで、既存の PyTorch モデルをエッジデバイス向けに最適化された形で導入することが可能です。
 
-ExecuTorch の特徴のひとつとして、エッジデバイスのハードウェア機能を活用したパフォーマンス向上が挙げられます。 ExecuTorch では推論を行う際に使用するバックエンドを選択することができ、iOS では Metal Performance Shader ( MPS ) および Core ML を選択でき、 Android では Vulkan を選択できます。スマートフォンに搭載されている GPU や Neural Engine を活用できることは、推論処理を行う上で大きなメリットがあります。
+ExecuTorch の特徴のひとつとして、エッジデバイスのハードウェア機能を活用したパフォーマンス向上が挙げられます。 ExecuTorch では推論を行う際に使用するバックエンドを選択することができ、iOS では Metal Performance Shader（ MPS ）および Core ML を選択でき、 Android では Vulkan を選択できます。スマートフォンに搭載されている GPU や Neural Engine を活用できることは、推論処理を行う上で大きなメリットがあります。
 
 [^8]: https://pytorch.org/executorch-overview
 
 #### PyTorch で生成された学習済みモデルを ExecuTorch で使用するには
 
-ExecuTorch はエッジデバイス用に最適化されているため、PyTorch で生成された学習済みモデル ( PyTorch モデル) を ExecuTorch でそのまま実行できないことに注意してください。
+ExecuTorch はエッジデバイス用に最適化されているため、PyTorch で生成された学習済みモデル（ PyTorch モデル）を ExecuTorch でそのまま実行できないことに注意してください。
 
 "How ExecuTorch Works" [^9]という ExecuTorch の内部構造を解説したドキュメントによれば、PyTorch モデルを実行するためには下記 3 つのステップが必要と解説されています。
 
 1. PyTorch モデルをエッジデバイスでの実行に最適化してエクスポートする
-2. エクスポートしたモデルを ExecuTorch 用のモデル ( ExecuTorch モデル) としてコンパイルする
+2. エクスポートしたモデルを ExecuTorch 用のモデル（ ExecuTorch モデル）としてコンパイルする
 3. ExecuTorch ランタイムを用いて ExecuTorch モデルをインポートし推論処理を実行する
 
 本稿で題材となっている Llama については 1. と 2. のステップをコマンド 1 つで処理できるツールが ExecuTorch のリポジトリに含まれており、 Python のコードを書くことなく容易に ExecuTorch モデルを出力できます。
@@ -89,7 +89,7 @@ ExecuTorch はエッジデバイス用に最適化されているため、PyTorc
 
 ## Llama について
 
-**Llama (ラマ)** [^10]は Meta が開発した大規模言語モデル ( LLM ) です。Llama は最新の Llama 4 までの学習済みモデルがすべて公開されており、モデルをダウンロードした上でローカルで検証可能となっていることが大きな特徴です。ただ、 GPU をはじめ実行環境に高いスペックを要求されるため、ローカルでの実行は容易ではありません。
+**Llama（ラマ）** [^10]は Meta が開発した大規模言語モデル（ LLM ）です。Llama は最新の Llama 4 までの学習済みモデルがすべて公開されており、モデルをダウンロードした上でローカルで検証可能となっていることが大きな特徴です。ただ、 GPU をはじめ実行環境に高いスペックを要求されるため、ローカルでの実行は容易ではありません。
 
 一方、 **Llama 3.2** に関しては軽量モデルとして提供されており、エッジデバイスでの利用を想定して開発されたモデルです。特に 1B と呼ばれる、モデルサイズが 10 億 パラメータのモデルについては、モデルファイルのサイズが 2.5 GB 程度しかなく、スマートフォンでなどのエッジデバイスでの実行も可能です。これは、パラメータ数が公開されている DeepSeek-V3 の 6710 億パラメータ[^11]と比べると小さなものですが、テキストに特化したモデルとすることでこれだけの小ささでも十分にテキストコミュニケーションを行うことが可能です。
 
@@ -113,12 +113,12 @@ ExecuTorch はエッジデバイス用に最適化されているため、PyTorc
 
 #### ビルド環境
 
-- MacBook Pro (Apple M2 Pro, 12 コア CPU, 19 コア GPU, 16 コア Neural Engine, メモリ 16GB)
-- macOS Sequoia (15.4)
+- MacBook Pro（ Apple M2 Pro, 12 コア CPU, 19 コア GPU, 16 コア Neural Engine, メモリ 16GB ）
+- macOS Sequoia（ 15.4 ）
 
-#### 実行環境 (iOS)
+#### 実行環境（ iOS ）
 
-- iPhone 13 Pro Max (A15 Bionic, 6 コア CPU, 5 コア GPU, 16 コア Neural Engine, メモリ 6 GB)
+- iPhone 13 Pro Max（ A15 Bionic, 6 コア CPU, 5 コア GPU, 16 コア Neural Engine, メモリ 6 GB ）
 - iOS 18.3
 
 #### ソフトウェア
@@ -126,7 +126,7 @@ ExecuTorch はエッジデバイス用に最適化されているため、PyTorc
 ビルド時に筆者の手元で使用したソフトウェアは下記のとおりです。
 
 - Xcode: 16.2
-- g++: 17.0.0 ( Xcode の Command Line Tools 付属の g++ を使用)
+- g++: 17.0.0（ Xcode の Command Line Tools 付属の g++ を使用）
 - Python: 3.12.0
 - ExecuTorch: 0.6
 
@@ -165,7 +165,7 @@ cd executorch
 ./install_executorch.sh --pybind xnnpack mps coreml
 ```
 
-`--pybind` オプションですが、 ExecuTorch 実行時に選択可能なバックエンドの設定となります。本稿では XNNPACK ( --pybind オプションで指定する場合は `xnnpack` )  [^14]のみ使用しますが、今後 Metal Performance Shaders ( `mps` ) や Core ML ( `coreml` ) を利用する可能性があるので、全て指定してビルドを行います。
+`--pybind` オプションですが、 ExecuTorch 実行時に選択可能なバックエンドの設定となります。本稿では XNNPACK（ --pybind オプションで指定する場合は `xnnpack` ）[^14]のみ使用しますが、今後 Metal Performance Shaders（ `mps` ）や Core ML（ `coreml` ）を利用する可能性があるので、全て指定してビルドを行います。
 
 install_executorch.sh が正常終了したら、ビルドとインストールは成功です。
 
@@ -177,7 +177,7 @@ install_executorch.sh が正常終了したら、ビルドとインストール�
 
 前述のとおり、Llama のモデルを ExecuTorch で使用するためには ExecuTorch モデルへの変換が必要です。変換に必要なツール一式をインストールしましょう。
 
-ExecuTorch の GitHub リポジトリに Llama 関連のツールが格納されたディレクトリ (`examples/models/llama/`) があります[^15]。ディレクトリ内に `install_requirements.sh` というスクリプトがあるので、こちらのスクリプトを実行するとインストールが開始されます。
+ExecuTorch の GitHub リポジトリに Llama 関連のツールが格納されたディレクトリ（ `examples/models/llama/` ）があります[^15]。ディレクトリ内に `install_requirements.sh` というスクリプトがあるので、こちらのスクリプトを実行するとインストールが開始されます。
 
 ```shell
 sh ./examples/models/llama/install_requirements.sh
@@ -189,7 +189,7 @@ install_requirements.sh が正常終了したらインストールは完了で�
 
 #### 3. Llama 3.2 1B モデルを取得する
 
-次に、サンプルアプリで使用する Llama 3.2 1B モデルを取得します。Llama のサイト (https://www.llama.com/) へアクセスし、右上にある "Download models" からダウンロードできます。氏名やメールアドレスなどの必要事項を入力を上、ダウンロードしたいモデルを選択します。今回は "Llama 3 models" の "Llama 3.2: 1B & 3B" という名前のモデルを使用するので、チェックを入れて画面下の "Next" ボタンを押してください。規約に同意すると、 CLI を使用したモデルのダウンロード手順が表示されるので、指示に従ってダウンロードします。
+次に、サンプルアプリで使用する Llama 3.2 1B モデルを取得します。Llama のサイト（ https://www.llama.com/ ）へアクセスし、右上にある "Download models" からダウンロードできます。氏名やメールアドレスなどの必要事項を入力を上、ダウンロードしたいモデルを選択します。今回は "Llama 3 models" の "Llama 3.2: 1B & 3B" という名前のモデルを使用するので、チェックを入れて画面下の "Next" ボタンを押してください。規約に同意すると、 CLI を使用したモデルのダウンロード手順が表示されるので、指示に従ってダウンロードします。
 
 まずはダウンロードに使用する llama コマンドを pip コマンドを使ってインストールします。
 
@@ -212,7 +212,7 @@ llama model download --source meta --model-id  Llama3.2-1B-Instruct
 
 実行途中で URL の入力を求められるので、先ほどの custom URL を入力します。 `~/.llama/checkpoints/Llama3.2-1B-Instruct/` ディレクトリにサンプルコードで使用する "consolidated.00.pth" と "tokenizer.model" "params.json" という 3 種類のファイルが存在していれば、ダウンロード成功です。
 
-[^16]: Instruct モデルはベースとなるモデルを Instruction Tuning (指示プロンプトへ適切に応答できるようチューニング) したモデルです。
+[^16]: Instruct モデルはベースとなるモデルを Instruction Tuning（指示プロンプトへ適切に応答できるようチューニング）したモデルです。
 
 #### 4. Llama モデルを ExecuTorch 用のモデルへ変換してみる
 
@@ -296,7 +296,7 @@ cmake-out/examples/models/llama/llama_main \
 
 #### 5. iOS のサンプルプロジェクトのビルドに必要な修正を行う
 
-モデルの準備もできたので、いよいよ iOS アプリのサンプルコードをビルドして動かしてみましょう。サンプルコードは ExecuTorch リポジトリの `examples/demo-apps/apple_ios/LLaMA` にあります。プロジェクトファイル ( `LLaMA.xcodeproj` ) をオープンし、ビルドが成功すればシミュレータまたは実機にインストールされ、アプリが起動するはずです。
+モデルの準備もできたので、いよいよ iOS アプリのサンプルコードをビルドして動かしてみましょう。サンプルコードは ExecuTorch リポジトリの `examples/demo-apps/apple_ios/LLaMA` にあります。プロジェクトファイル（ `LLaMA.xcodeproj` ）をオープンし、ビルドが成功すればシミュレータまたは実機にインストールされ、アプリが起動するはずです。
 
 ……と簡単に書いたものの、筆者はプロジェクトを開いてすぐにビルドできたわけではありませんでした。ここでは筆者が遭遇したトラブルと解決策について紹介します。
 
@@ -324,17 +324,17 @@ App ID を作る際には Increased Memory Limit のチェックを忘れずに�
 
 ### サンプルコードを動かしてみた
 
-それでは、サンプルコードを実行してみましょう。アプリを起動すると、チャット画面風の UI が表示されます。ただ、このままだとプロンプトの入力ができません。 Llama からの応答を得るためには、 Validation Tool 実行時に指定したモデル (.pte) と Tokenizer ファイル (.model) が必要になります。シミュレータまたは実機のローカルフォルダ内にこれら 2 ファイルをコピーします。
+それでは、サンプルコードを実行してみましょう。アプリを起動すると、チャット画面風の UI が表示されます。ただ、このままだとプロンプトの入力ができません。 Llama からの応答を得るためには、 Validation Tool 実行時に指定したモデル（ .pte ）と Tokenizer ファイル（ .model ）が必要になります。シミュレータまたは実機のローカルフォルダ内にこれら 2 ファイルをコピーします。
 
 コピーしたら、画面左上のフォルダアイコンをタップします。 "Select Model..." と "Select Tokenizer..." という 2 つのボタンがあるので、それぞれ .pte ファイルと .model ファイルを指定します。
 
-![Llama からの主力](./images_kotetu/figure-app-screenshot.png "Llama からの主力"){width=400}
-
-ここまで完了したら、先ほどの Validation Tool 実行時と同じプロンプト ("What is Llama?") を入力してみたところ、 **図2** のような出力となりました。
+ここまで完了したら、先ほどの Validation Tool 実行時と同じプロンプト（ "What is Llama?" ）を入力してみたところ、 **図2** のような出力となりました。
 
 概ねそれらしい出力になることが確認できました。
 
 なお、右上に "2,423 Mb" という記載がありますが、これは現在 LLaMA アプリが使用しているメモリサイズになります。 LLM を実行するためには大量のメモリが必要となることがお分かりいただけると思います。
+
+![Llama からの主力](./images_kotetu/figure-app-screenshot.png "Llama からの主力"){width=400}
 
 ## まとめ
 
