@@ -217,11 +217,11 @@ MetalがSwiftUIと統合される以前から、MetalKitベースのMetal APIが
 
 | 年| OS / イベント| 公式トピック / セッション| 概要|
 | --- | --- | --- | --- |
-| <div class="no-break">**2014**</div> | iOS 8 / WWDC 2014 | Session 605 “Working with Metal: Overview” | Metal API 初登場。A7 チップ向け低オーバーヘッド GPU アクセス。 |
+| <div class="no-break">**2014**</div> | iOS 8 / <div class="no-break">WWDC 2014</div> | Session 605 “Working with Metal: Overview” | Metal API 初登場。A7 チップ向け低オーバーヘッド GPU アクセス。 |
 | <div class="no-break">**2018**</div> | iOS 12 | Doc “OpenGL ES Hardware Processors” ※冒頭で OpenGL ES非推奨を宣言 | 旧 API を非推奨にし、Metal への移行を公式に促進。 |
-| <div class="no-break">**2022**</div> | iOS 16 / macOS 13 / WWDC 2022 | Session 10066 “Discover Metal 3” | Metal 3 発表。Mesh Shader、MetalFX など強化。 |
-| <div class="no-break">**2023**</div> | iOS 17 / WWDC 2023 | Session 10148 “What’s new in SwiftUI” (ShaderLibrary 紹介) | SwiftUI に `Shader` / `.visualEffect{}` が追加。高レベル統合。 |
-| <div class="no-break">**2024**</div> | iOS 18 / WWDC 2024 | Session 10151 “Create custom visual effects with SwiftUI” | Visual Effect API 拡張。MeshGradient、scrollTransition 強化など。 |
+| <div class="no-break">**2022**</div> | iOS 16 / macOS 13 / <div class="no-break">WWDC 2022</div> | Session 10066 “Discover Metal 3” | Metal 3 発表。Mesh Shader、MetalFX など強化。 |
+| <div class="no-break">**2023**</div> | iOS 17 / <div class="no-break">WWDC 2023</div> | Session 10148 “What’s new in SwiftUI” (ShaderLibrary 紹介) | SwiftUI に `Shader` / `.visualEffect{}` が追加。高レベル統合。 |
+| <div class="no-break">**2024**</div> | iOS 18 / <div class="no-break">WWDC 2024</div> | Session 10151 “Create custom visual effects with SwiftUI” | Visual Effect API 拡張。MeshGradient、scrollTransition 強化など。 |
 
 <hr class="page-break" />
 
@@ -231,13 +231,13 @@ MetalがSwiftUIと統合される以前から、MetalKitベースのMetal APIが
 
 | 3Dグラフィックス制作工程 | SwiftUI + Metalで書く部分 |
 | --- | --- |
-| モデリング | `Rectangle()` などの形状や、RealityKitの `Model3D`, `MeshResource.load()` を使ってモデルを表示。 |
-| マテリアル設定 | 基本的なマテリアルはSwiftUIの `Color` や `Gradient` を適用。高度なマテリアルは `.shader()` を通じてMSLで記述。iOS 17以降は `Material` 型も利用可。 |
-| テクスチャリング | `Image` ビューでテクスチャ（画像）を読み込み、`.shader()` の引数として渡す。MSLではそのテクスチャを `sample()` してサンプリング方法や色計算を記述。 |
-| ライティング | RealityKitの `Model3D` を使う場合、基本的なライティングは RealityKit が処理。 |
-| カメラ設定 | RealityKitの `Model3D` を使う場合、基本のカメラワークはRealityKitが処理。カスタムのカメラワークが欲しいときは、ビュー・射影行列を自前で計算してシェーダーに渡す。 |
-| アニメーション | SwiftUI の `.animation()` や `TimelineView` で時間に応じた動きを定義。その値をシェーダーに渡して、色や形状、効果に動きを加える。 |
-| レンダリング | SwiftUIの `.shader()` や `.visualEffect{}` を使って、描画処理をMetal側に委ねる。MSLでは、ピクセル単位の見た目（色、変形など）を細かく制御できる。 |
+| <div class="no-break">モデリング</div> | `Rectangle()` などの形状や、RealityKitの `Model3D`, `MeshResource.load()` を使ってモデルを表示。 |
+| <div class="no-break">マテリアル設定</div> | 基本的なマテリアルはSwiftUIの `Color` や `Gradient` を適用。高度なマテリアルは `.shader()` を通じてMSLで記述。iOS 17以降は `Material` 型も利用可。 |
+| <div class="no-break">テクスチャリング</div> | `Image` ビューでテクスチャ（画像）を読み込み、`.shader()` の引数として渡す。MSLではそのテクスチャを `sample()` してサンプリング方法や色計算を記述。 |
+| <div class="no-break">ライティング</div> | RealityKitの `Model3D` を使う場合、基本的なライティングは RealityKit が処理。 |
+| <div class="no-break">カメラ設定</div> | RealityKitの `Model3D` を使う場合、基本のカメラワークはRealityKitが処理。カスタムのカメラワークが欲しいときは、ビュー・射影行列を自前で計算してシェーダーに渡す。 |
+| <div class="no-break">アニメーション</div> | SwiftUI の `.animation()` や `TimelineView` で時間に応じた動きを定義。その値をシェーダーに渡して、色や形状、効果に動きを加える。 |
+| <div class="no-break">レンダリング</div> | SwiftUIの `.shader()` や `.visualEffect{}` を使って、描画処理をMetal側に委ねる。MSLでは、ピクセル単位の見た目（色、変形など）を細かく制御できる。 |
 
 <hr class="page-break" />
 
