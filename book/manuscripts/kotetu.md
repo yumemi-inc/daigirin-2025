@@ -81,7 +81,7 @@ ExecuTorch はエッジデバイス用に最適化されているため、PyTorc
 2. エクスポートしたモデルを ExecuTorch 用のモデル ( ExecuTorch モデル) としてコンパイルする
 3. ExecuTorch ランタイムを用いて ExecuTorch モデルをインポートし推論処理を実行する
 
-本稿で題材となっている Llama については 1. と 2. のステップをコマンド 1 つで処理できるツールが ExecuTorch のリポジトリに含まれており、 Python のコードを書くことなく容易に ExecuTorch モデルを出力できるようになっています。
+本稿で題材となっている Llama については 1. と 2. のステップをコマンド 1 つで処理できるツールが ExecuTorch のリポジトリに含まれており、 Python のコードを書くことなく容易に ExecuTorch モデルを出力できます。
 
 [^8]: https://pytorch.org/executorch/stable/intro-how-it-works.html
 
