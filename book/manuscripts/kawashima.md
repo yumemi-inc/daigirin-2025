@@ -22,7 +22,7 @@ Swift と Java の相互運用
 
 まず、Swift と Java の相互運用をしたい動機についてです。
 
-Apple では、一日数十億件ものリクエストを処理する Java コードが多数存在しています。Java のメモリ使用量に関して過去二十年間でかなり進歩したものの、それでも課題となるケースはあります。Swift に移行することでこれを軽減できることはわかっています。そこで、Java の相互運用性を Swift にもたらす取り組みが開始されました。C/C++ への移行でも軽減できるものの、メモリセーフな Swift を利用したいのが強い動機となっています。
+Apple には、一日数十億件ものリクエストを処理する Java コードが多数存在します。Java のメモリ使用量に関して過去二十年間でかなり進歩したものの、それでも課題となるケースはあります。Swift に移行することでこれを軽減できることはわかっています。そこで、Java の相互運用性を Swift にもたらす取り組みが開始されました。C/C++ への移行でも軽減できるものの、メモリセーフな Swift を利用したいのが強い動機となっています。
 
 ### 相互運用性の重要性
 
@@ -90,7 +90,7 @@ Java 22 は LTS<span class="footnote">Oracle Java SE Supportロードマップ L
 sdk install java 22.0.2-oracle
 ```
 
-なお README には JDK 22+ と書いてありますが、このあと実行する Samples は `JavaLanguageVersion.of(22)` と指定しているので 23 や 24 ではビルドできません。単純に `JavaLanguageVersion` の指定を 23 や 24 に変更しても他の依存関係が解消できずにビルドはできませんでした
+なお README には JDK 22+ と書いてありますが、このあと実行する Samples は `JavaLanguageVersion.of(22)` と指定しているので 23 や 24 ではビルドできません。単純に `JavaLanguageVersion` の指定を 23 や 24 に変更しても他の依存関係が解消できずにビルドはできませんでした。
 
 `JavaLanguageVersion` は `build.gradle` で次のように指定されています。
 
@@ -114,7 +114,7 @@ Oracle のアーカイブページ<span class="footnote">https://www.oracle.com/
 ./gradlew Samples:SwiftKitSampleApp:run
 ```
 
-`hellowrold()` と出力されていることが確認できます。
+`helloWorld()` と出力されていることが確認できます。
 
 ```
 [swift][MySwiftLibrary/MySwiftLibrary.swift:27](helloWorld()) helloWorld()
@@ -170,13 +170,13 @@ Samples にある以下を試しました。
 
 Swift Package Manager の方で似たエラーに対してこれを解消する PR<span class="footnote">Fix duplicate modulemap errors with macro and plugin deps https://github.com/swiftlang/swift-package-manager/pull/8472</span> がマージされていました。おそらく 2025年5月7日の Development Release/6.2 には含まれてそうなのですが、確証が持てない状態です。
 
-この件に関しては冒頭で示した Issue を作成したので、出版されるまでの間に問題が解決できているかもしれません。
+この件に関しては冒頭で示した Issue を作成したので、出版するまでの間に問題が解決できているかもしれません。
 
 ## おわりに
 
 ServerSide-Swift の発表の中で、繰り返し Java の専門家、特にパフォーマンスに詳しい人に OSS への参加を期待していると述べられていました。
 
-Swift というプログラミング言語が誕生しておよそ十年近く経ちましたが、Java にはおよそ三十年の歴史があって、数多くのサービス、プロダクトで今も動いています。一方で、求められるパフォーマンスも上がって来ていてメンテナンス、チューニングが困難になったコードに対して Swift と相互運用できる選択肢が増えるのは、それらの寿命を延ばすことにつながります。Java は自分にとって二十年来の友人のような感覚を持っていて、Swift と Java がこのような形で繋がるのは非常に感慨深いです。
+Swift というプログラミング言語が誕生しておよそ十年近く経ちましたが、Java にはおよそ三十年の歴史があって、数多くのサービス、プロダクトで今も動いています。一方で、求められるパフォーマンスも上がってきていてメンテナンス、チューニングが困難になったコードに対して Swift と相互運用できる選択肢が増えるのは、それらの寿命を延ばすことにつながります。Java は自分にとって二十年来の友人のような感覚を持っていて、Swift と Java がこのような形で繋がるのは非常に感慨深いです。
 
 今回 swift-java に入門するにあたってその情報源の少なさにとても苦労しました。Swift から Java の呼び出しに関しては解決できませんでした。繰り返しになりますが、**Early Development** なので、サービスやプロダクトに対して適用するのは慎重な判断が必要になります。見方を変えると、早期からライブラリの開発に参加できるチャンスとも言えます。
 
