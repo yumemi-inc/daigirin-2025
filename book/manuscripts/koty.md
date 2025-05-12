@@ -53,7 +53,7 @@ https://us-south.assistant.watson.cloud.ibm.com/
 2. 黒色のCreate Skillボタンをクリック
 3. Dialog skill（3つボタンがある真ん中）にチェック
 4. Nextをクリック
-5. 図1のフォームに以下を入力
+5. 図1 のフォームに以下を入力
    - Name: 任意の名前（管理画面および、ダウンロードした際に表示されるSkillの名称となります）
    - Description: （特に記入必須ではありません。何か説明を書きたければどうぞ）
    - Language: Japanese
@@ -64,8 +64,8 @@ https://us-south.assistant.watson.cloud.ibm.com/
 
 <figure>
   <img src="images_koty/fig1.png" width="90%" />
+  <figcaption>Skillの作成</figcaption>
 </figure>
-＜図1＞
 
 ## 3. 対話の設計
 
@@ -97,7 +97,7 @@ https://us-south.assistant.watson.cloud.ibm.com/
 ### nodeの基本設定
 シンプルなチャットボットを作成する場合、各nodeには大きく以下の4点（3点？）を設定するだけで問題ありません。
 1. **Enter node name（名前）**: 必須ではないが、後で混乱しないように内容に即した名前をつけると多少便利
-2. **If assistant recognizes（一致条件）**: どんな入力があった場合に呼び出すことができるか ※ ＜図2＞参照
+2. **If assistant recognizes（一致条件）**: どんな入力があった場合に呼び出すことができるか ※ 図2 参照
 ※前述のwelcomeとanything_elseの他、反応させたい精度と条件により、上記画像のFilter byを含めた4種類のセット方法があります
 
 3. **Assistant responds（文章、画像など）**: チャットボットの回答本体
@@ -107,8 +107,8 @@ https://us-south.assistant.watson.cloud.ibm.com/
 
 <figure>
   <img src="images_koty/fig2.png" width="70%" />
+  <figcaption>一致条件</figcaption>
 </figure>
-＜図2＞
 
 ## 4. If assistant recognizesの設定方法
 ### 例① : 完全一致
@@ -116,8 +116,8 @@ https://us-south.assistant.watson.cloud.ibm.com/
   
 <figure>
   <img src="images_koty/fig3.png" width="100%" />
+  <figcaption>input.text</figcaption>
 </figure>
-＜図3＞
 
 ### 例② : 部分的一致
  `@`entities・・・単語ベースで部分的に捉える仕組みです。特定の単語や語句を認識して、それが入力語句に含まれている場合に応答します。
@@ -140,8 +140,8 @@ https://us-south.assistant.watson.cloud.ibm.com/
      
 <figure>
   <img src="images_koty/fig4.png" width="100%" />
+  <figcaption>entity</figcaption>
 </figure>
-＜図4＞
 
 #### Dialogでの使用
 - 条件に `@entity name` を指定
@@ -163,48 +163,48 @@ https://us-south.assistant.watson.cloud.ibm.com/
 2. Create intentをクリック
 3. intentに名前をつける（例: #挨拶）
 4. 再度現れるCreate intentをクリック
-5. 例文を複数登録（3〜4例が望ましい）
+5. 例文を複数登録（3〜4例以上が望ましい）
    - 例: 「おはようございます」「こんにちは」「こんばんは」など
      
 <figure>
   <img src="images_koty/fig5.png" width="100%" />
+  <figcaption>intent</figcaption>
 </figure>
-＜図5＞
 
 #### Dialogでの使用
 - 条件に `#intent name` を指定
 - セット例は後ほどまとめて後述します。
 
 ### entitiesとintentsのセット例
-＜図4＞をentityにセットしている状態で「コンニチハ〜」とチャットボットに入力します。
-「コンニチハ〜」の中には「コンニチハ」がセットしてあるため、チャットボットがentityをセットしたnodeに反応します。
+図4 をentityにセットしている状態で「コンニチハ〜」とチャットボットに入力します。
+「コンニチハ〜」の中には「コンニチハ」がセットしてあるため、チャットボットが「entityをセットしたnode」に反応します。
 `input.text== "こんにちは"`
 とは語句が完全一致しないため（コンニチハでもNG）、そのnodeには引っかかりません。
 
 <figure>
   <img src="images_koty/fig6.png" width="100%" />
+<figcaption>entities</figcaption>
 </figure>
-＜図6＞
 
-なお、ここで＜図1＞の説明の際の伏線が回収されます。
-実は、これは「Japanese」を選んでいるので「コンニチハ〜」でも「コンニチハ」が含まれていると分かり、反応しますが、例えば「English」を選ぶと単語の切れ目がどこか分からなくなり、「コンニチハ〜 ≠ コンニチハ」とwatsonx assistantのAIに判定されて、反応しなくなるのです。ですので、チャットボットを組む言語を選択するのは非常に重要です。
+なお、ここで 図1 の説明の際の伏線が回収されます。
+実は、これは「Japanese」を選んでいるので「コンニチハ〜」でも「コンニチハ」が含まれていると分かり、反応しますが、例えば「English」を選ぶと単語の切れ目がどこか分からなくなり、「コンニチハ〜 ≠ コンニチハ」とwatsonx assistantのAIに判定され、反応しなくなるのです。ですので、チャットボットを組む言語を選択するのは非常に重要です。
 watsonx assistantにもやっぱりAIはいるのです。
 
-さて、＜図5＞をintentにセットしている状態で「こんちは」とチャットボットに入力します。
-「こんにちは」を登録しており、意味合いとしては近い（文字の並びとして近いという判断もある）のでintentをセットしたnodeが反応します。
+さて、図5 をintentにセットしている状態で「こんちは」とチャットボットに入力します。
+「こんにちは」を登録しており、意味合いとしては近い（文字の並びとして近いという判断もある）ので「intentをセットしたnode」が反応します。
 
 <figure>
   <img src="images_koty/fig7.png" width="100%" />
+  <figcaption>intents</figcaption>
 </figure>
-＜図7＞
 
 ただし、watsonx assistantのAIも完璧ではないので、「こんにちわ」だと急に分からなかったりします。
-ここでは当てはまらない言葉を拾い上げる目的のanything_alse nodeが反応してしまっています。
+ここでは当てはまらない言葉を拾い上げる目的の「anything_alse node」が反応してしまっています。
 
 <figure>
   <img src="images_koty/fig8.png" width="100%" />
+<figcaption>anything_else</figcaption>
 </figure>
-＜図8＞
 
 ですので、色々な言い回しをintentsには予め登録しておくことを推奨します。
 
@@ -213,6 +213,7 @@ watsonx assistantにもやっぱりAIはいるのです。
 
 <figure>
   <img src="images_koty/fig9.png" width="100%" />
+  <figcaption>本文の表現可能選択肢</figcaption>
 </figure>
 ＜図9＞
 
@@ -226,25 +227,26 @@ watsonx assistantにもやっぱりAIはいるのです。
 2. Titleに質問文を入力（例: あなたの名前は何ですか？）
    - 他の場所から文章を貼り付けると改行が半角スペースに変換されてしまうため、改行を入れたい場合はJSONツールを開いて改行記号を入れる必要がある
    - 制限文字数は512文字
-3. List label（見た目のテキスト）とValue（送信されるテキスト）を設定 ※ ＜図10＞参照
+3. List label（見た目のテキスト）とValue（送信されるテキスト）を設定 ※ 図10 参照
    - 基本的には、List labelとValueは同じテキストにする方が好ましい（違う文字が選択した選択肢として表示されるとユーザーが混乱するため）
    - 制限文字数は512文字
    - Webページを開く設定にしたい場合はValueに遷移させたいURLを入力する
 4. 選択肢を作る場合は、必ず子node（選択肢を選んだ場合に反応するnodeのこと）が必要となる
 上記のnodeの追加方法で「Add child node」を選択
-5. child node側でそれぞれの選択肢に対する一致条件を設定 ※ ＜図11＞参照
+5. child node側でそれぞれの選択肢に対する一致条件を設定 ※ 図11 参照
    - 条件: `input.text== "田中"` 
    - 条件: `input.text== "佐藤"` 
    - 条件: `input.text== "高橋"` など
 
 <figure>
   <img src="images_koty/fig10.png" width="100%" />
+  <figcaption>選択肢</figcaption>
 </figure>
 
 <figure>
   <img src="images_koty/fig11.png" width="100%" />
+  <figcaption>選択後</figcaption>
 </figure>
-＜図11＞
 
 ### 画像
 1. Assistant respondsの初期設定プルダウンから「Image」を選択
@@ -268,8 +270,8 @@ watsonx assistantにもやっぱりAIはいるのです。
   
 <figure>
   <img src="images_koty/fig12.png" width="100%" />
+  <figcaption>context</figcaption>
 </figure>
-＜図12＞
 
 ### ヒアリングシナリオの構築
 1. ユーザーから情報を得る
@@ -284,44 +286,41 @@ watsonx assistantにもやっぱりAIはいるのです。
 
 ### 計算式シナリオの構築
 これを上手く使うと、チャットボットに計算をさせることも可能です。
-仮に5点満点で、3点以上合格の問題を設計することにします。
+回答に点数を与える→合計点を計算→結果に応じて回答を分岐
+仮に5点満点で、3点以上合格の問題を設計することにします。イメージと実際のwatsonx画面を添付します。
 
 <figure>
   <img src="images_koty/fig13.png" width="85%" />
+  <figcaption>点数計算イメージ</figcaption>
 </figure>
 ＜図13＞
-
-その場合、以下のような設計になります。
-1. 回答に点数を与える
-2. 合計点を計算
-3. 結果に応じて回答を分岐
 
 #### 全体のツリー図
 
 <figure>
   <img src="images_koty/fig14.png" width="60%" />
+  <figcaption>全体ツリー構造</figcaption>
 </figure>
-＜図14＞
 
 #### 1問目子node
 
 <figure>
   <img src="images_koty/fig15.png" width="100%" />
+    <figcaption>1問目子node</figcaption>
 </figure>
-＜図15＞
 
 #### 最後の計算
 
 <figure>
   <img src="images_koty/fig16.png" width="100%" />
+    <figcaption>最終計算</figcaption>
 </figure>
-＜図16＞
 
 #### 分岐例
 <figure>
   <img src="images_koty/fig17.png" width="100%" />
+  <figcaption>分岐例</figcaption>
 </figure>
-＜図17＞
 
 ### 非エンジニアへのTips
 - `==` : 一致する
