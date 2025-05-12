@@ -55,6 +55,7 @@ https://us-south.assistant.watson.cloud.ibm.com/
 6. 青色に活性化されたCreate skillボタンをクリック
 
 ![図1](images_koty/fig1.png)
+＜図1＞
 
 ## 3. 対話の設計
 
@@ -217,7 +218,7 @@ watsonx assistantにもAIはいるのです。
 ![図10](images_koty/fig10.png)
 ＜図10＞
 
-![図11](images_koty/fig11.png)v
+![図11](images_koty/fig11.png)
 ＜図11＞
 
 ### 画像
