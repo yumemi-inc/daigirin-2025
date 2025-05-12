@@ -15,7 +15,7 @@ class: exclude-hashira
 1. [MDN Web Docs に日本語翻訳でコントリビュート](uutan1108.html)
 1. [「半分組み込まない」ロボコン](yu_kimura.html)
 1. [大 AI エディター時代にあえて Neovim に移行したお話](kisaki.html)
-1. [ExecuTorch の Llama サンプルコードを動かしてみた](kotetu.html)
+1. [ExecuTorch を使って iOS 上で Llama モデルを動かしてみた](kotetu.html)
 <!-- ここまで、記事の目次 -->
 1. [著者紹介](authors.html)
 
