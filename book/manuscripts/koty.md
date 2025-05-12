@@ -11,7 +11,9 @@ class: content
 
 ### 対話型AIチャットボット
 IBMの公式説明によると、IBM watsonx Assistantは、組織の誰もが簡単に生成AIアシスタントを作成できる次世代の対話型AIソリューションです。
+
 https://www.ibm.com/jp-ja/products/watsonx-assistant
+
 AIというと若干今のご時世、誤解を招く部分もあるのですが、ChatGPTなどの生成AIと異なり、watsonxの内部にAI部分は存在するものの、作業者によって正解を緻密に設計することで、いわゆる生成AIと異なり、「それらしい文章の中に嘘を紛れ込ませるミスを出さない」という点において優れていると私は感じています。
 
 また、IBM watsonx Assistantの管理画面を見て数ヶ月経つと、あれ？ こんな機能あったっけ？ こんな画面だったっけ？
@@ -42,7 +44,9 @@ AI非搭載のチャットボットはChatGPTやGrok同様、即時、いつで�
 
 ### チャットボット（IBMでの名称：Skill）の作成
 1. 以下管理画面にログイン（アカウント作成手順は割愛させていただきます）
+
 https://us-south.assistant.watson.cloud.ibm.com/
+
 ※こちらは私が誤って作成時にアメリカゾーンにアカウントを作成してしまったためで、日本ゾーンに作った場合は「us-south」の場所が「jp-tok」となります。
 2. 黒色のCreate Skillボタンをクリック
 3. Dialog skill（3つボタンがある真ん中）にチェック
@@ -301,6 +305,7 @@ watsonx assistantにもAIはいるのです。
 
 その他、詳しい式言語のメソッドは、公式が一番分かりやすく記載しています。
 以下、ご参考いただくと良いかと思います。
+
 https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-expression-methods-actions&locale=ja
 
 お読みいただきありがとうございました。
