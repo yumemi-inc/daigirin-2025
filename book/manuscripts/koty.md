@@ -245,7 +245,7 @@ watsonx assistantにもAIはいるのです。
 
 ### ヒアリングシナリオの構築
 1. ユーザーから情報を得る
-   - Assistant responds右にある縦3点リーグから、Open context editorを選択
+   - Assistant responds右にある縦3点リーダーから、Open context editorを選択
    - Then set contextフォームに以下入力
       - Variable: 変数名（例: `name`）
       - Value: 値（例: `<? input.text ?>``1`）
