@@ -202,6 +202,10 @@ using namespace metal;
 
 例えば、 `colorEffect(_:isEnabled:)` で使用できるシェーダー関数のシグネチャを知りたい場合、Xcodeのエディタで `.colorEffect` と記述し、Quick Helpを見ると、この `colorEffect` で使用できるシェーダー関数の基本的な形式が記載されているはずです。
 
+```
+For a shader function to act as a color filter it must have a function signature matching:
+[[ stitchable ]] half4 name(float2 position, half4 color, args...)
+```
 
 ![Quick Helpから見るシェーダー関数のシグネチャ](./images_miharun/signature.png)
 
