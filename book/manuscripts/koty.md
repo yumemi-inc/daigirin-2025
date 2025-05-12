@@ -88,6 +88,7 @@ https://us-south.assistant.watson.cloud.ibm.com/
 1. **Enter node name（名前）**: 必須ではないが、後で混乱しないように内容に即した名前をつけると多少便利
 2. **If assistant recognizes（一致条件）**: どんな入力があった場合に呼び出すことができるか（図2）
 ※前述のwelcomeとanything_elseの他、反応させたい精度と条件により、上記画像のFilter byを含めた4種類のセット方法があります
+
 3. **Assistant responds（文章、画像など）**: チャットボットの回答本体
 4. **Then assistant should（次の動作）**: ユーザーに対してどのようにnodeが次に動くか設定する
    - Wait for reply（ユーザーが入力するまで何もしない）※基本的にはこちらで問題なし
