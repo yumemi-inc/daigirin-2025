@@ -134,7 +134,7 @@ ExecuTorch はエッジデバイス用に最適化されているため、PyTorc
 
 1. ExecuTorch のインストール
 2. PyTorch モデルの変換に使用するツールをインストールする
-3. Llama　3.2 1B モデルを取得する
+3. Llama 3.2 1B モデルを取得する
 4. Llama モデルを ExecuTorch 用のモデルへ変換してみる
 5. LLaMA プロジェクトのビルドに必要な修正を行う
 
