@@ -85,13 +85,13 @@ https://us-south.assistant.watson.cloud.ibm.com/
 
 ### nodeの追加方法
 - パターン① nodeより上にある青いボタンの「Add node」を押す
-- パターン② 既存nodeの縦3点リーグをクリック。次のいずれかを選択
+- パターン② 既存nodeの縦3点リーダーをクリック。次のいずれかを選択
    - 「Add node below（下に作る）」
    - 「Add node above（上に作る）」
    - 「Add child node（子の位置に作る）」
 
 ### nodeの削除方法
-1. 削除したいnodeの縦3点リーグをクリック
+1. 削除したいnodeの縦3点リーダーをクリック
 2. 「Delete」を選択
 
 ### nodeの基本設定
