@@ -261,7 +261,7 @@ watsonx AssistantにもやっぱりAIはいるのです。
 - 上記の内容は全てこちらの設定次第で、勝手に忘れたり変わることはない
 
 ### Contextの設定方法
-1. Open context editorを選択 ※ ＜図12＞参照
+1. Open context editorを選択 ※ 図12 参照
 2. Variable（変数名）とValue（値）を設定
    - 変数名は `$` で始まる（例: `$name`）
   
