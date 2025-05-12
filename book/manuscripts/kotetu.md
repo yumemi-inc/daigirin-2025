@@ -124,7 +124,7 @@ ExecuTorch はエッジデバイス用に最適化されているため、PyTorc
 ビルド時に筆者の手元で使用したソフトウェアは下記のとおりです。
 
 - Xcode: 16.2
-- g++: 17.0.0 (Xcode の Command Line Tools 付属の g++ を使用)
+- g++: 17.0.0 ( Xcode の Command Line Tools 付属の g++ を使用)
 - asdf: 最新バージョン
 - Python: 3.12.0
 - ExecuTorch: 0.6
