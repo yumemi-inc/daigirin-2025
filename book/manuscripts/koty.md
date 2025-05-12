@@ -10,9 +10,7 @@ class: content
 ## 1. watsonx Assistantとは？
 
 ### 対話型AIチャットボット
-IBMの公式説明によると、IBM watsonx Assistantは、組織の誰もが簡単に生成AIアシスタントを作成できる次世代の対話型AIソリューションです。
-
-https://www.ibm.com/jp-ja/products/watsonx-assistant
+IBMの公式説明（ https://www.ibm.com/jp-ja/products/watsonx-assistant ）によると、IBM watsonx Assistantは、組織の誰もが簡単に生成AIアシスタントを作成できる次世代の対話型AIソリューションです。
 
 AIというと若干今のご時世、誤解を招く部分もあるのですが、ChatGPTなどの生成AIと異なり、watsonxの内部にAI部分は存在するものの、厳密にはAIではないのがwatsonxです。
 作業者によって正解を緻密に設計することで、いわゆる生成AIと異なり、「それらしい文章の中に嘘を紛れ込ませるミスを出さない」という点において優れていると私は感じています。
@@ -284,11 +282,11 @@ watsonx assistantにもやっぱりAIはいるのです。
 
 ### 計算式シナリオの構築
 これを上手く使うと、チャットボットに計算をさせることも可能です。
-   -回答に点数を与える→合計点を計算→結果に応じて回答を分岐
+- 回答に点数を与える→合計点を計算→結果に応じて回答を分岐
 仮に5点満点で、3点以上合格の問題を設計することにします。イメージと実際のwatsonx画面を添付します。
 
 <figure>
-  <img src="images_koty/fig13.png" width="85%" />
+  <img src="images_koty/fig13.png" width="70%" />
   <figcaption>点数計算イメージ</figcaption>
 </figure>
 
@@ -325,8 +323,6 @@ watsonx assistantにもやっぱりAIはいるのです。
 皆様、良きチャットボットライフを。
 
 その他、詳しい式言語のメソッドは、公式が一番分かりやすく記載しています。
-以下、ご参考いただくと良いかと思います。
-
-https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-expression-methods-actions&locale=ja
+以下、ご参考いただくと良いかと思います。（ https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-expression-methods-actions&locale=ja ）
 
 長々とお読みいただき、ありがとうございました。
