@@ -113,7 +113,7 @@ ExecuTorch はエッジデバイス用に最適化されているため、PyTorc
 
 #### ビルド環境
 
-- MBP Pro (M2 Pro CPU, メモリ 16GB)
+- MacBook Pro (Apple M2 Pro, メモリ 16GB)
 - macOS Sequoia (15.4)
 
 #### 実行環境 (iOS)
