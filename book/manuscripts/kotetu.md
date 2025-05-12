@@ -113,12 +113,12 @@ ExecuTorch はエッジデバイス用に最適化されているため、PyTorc
 
 #### ビルド環境
 
-- MacBook Pro (Apple M2 Pro, メモリ 16GB)
+- MacBook Pro (Apple M2 Pro, 12 コア CPU, 19 コア GPU, 16 コア Neural Engine, メモリ 16GB)
 - macOS Sequoia (15.4)
 
 #### 実行環境 (iOS)
 
-- iPhone 13 Pro Max (ストレージ 256 GB, メモリ 6 GB)
+- iPhone 13 Pro Max (A15 Bionic, 6 コア CPU, 5 コア GPU, 16 コア Neural Engine, メモリ 6 GB)
 - iOS 18.3
 
 #### ソフトウェア
