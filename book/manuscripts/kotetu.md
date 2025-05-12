@@ -163,7 +163,7 @@ cd executorch
 ./install_executorch.sh --pybind xnnpack mps coreml
 ```
 
-`--pybind` オプションですが、 ExecuTorch 実行時に選択可能なバックエンドの設定となります。本稿では xnnpack [^13]のみ使用しますが、今後 mps ( Metal Performance Shaders ) や coreml ( Core ML ) を利用する可能性があるので、全て指定してビルドを行います。
+`--pybind` オプションですが、 ExecuTorch 実行時に選択可能なバックエンドの設定となります。本稿では XNNPACK ( --pybind オプションで指定する場合は `xnnpack` )  [^13]のみ使用しますが、今後 Metal Performance Shaders ( `mps` ) や Core ML ( `coreml` ) を利用する可能性があるので、全て指定してビルドを行います。
 
 install_executorch.sh が正常終了したら、ビルドとインストールは成功です。
 
