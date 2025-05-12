@@ -123,7 +123,7 @@ Oracle のアーカイブページ<span class="footnote">https://www.oracle.com/
 Java から Swift のコードを次のように呼び出しています。
 
 ```java
-        MySwiftLibrary.helloWorld();
+MySwiftLibrary.helloWorld();
 ```
 
 Swift のコードは `function` を出力するコードが書かれています。
