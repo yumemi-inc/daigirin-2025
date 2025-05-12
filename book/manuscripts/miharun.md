@@ -40,11 +40,11 @@ Metalを活用することで、次のような表現が実現できるように
 
 <hr class="page-break" />
 
-## iOS17の新機能　“3大VisualEffect”を紹介
+## iOS 17の新機能 “3大VisualEffect”を紹介
 
-iOS17では、SwiftUIにMetalというグラフィックスAPIが統合され、開発者はより低いレベルでグラフィック処理を制御し、より高度な視覚効果を実装できるようになりました。
+iOS 17では、SwiftUIにMetalというグラフィックスAPIが統合され、開発者はより低いレベルでグラフィック処理を制御し、より高度な視覚効果を実装できるようになりました。
 
-このセクションでは、iOS17で導入された `VisualEffect` の拡張機能を中心に、SwiftUIとMetalの連携による新しい表現を見ていきましょう。
+このセクションでは、iOS 17で導入された `VisualEffect` の拡張機能を中心に、SwiftUIとMetalの連携による新しい表現を見ていきましょう。
 
 ### SwiftUIとMetalの融合: `Shader` 型の導入
 
@@ -54,7 +54,7 @@ iOS 17では、SwiftUIに新たな型である `Shader` が導入されました
 
 ### `VisualEffect` のExtension: 3つの主要なエフェクト
 
-iOS17では、 `VisualEffect` プロトコルに3つの新しいメソッドが追加されました。これらは、 `Shader` 型と連携し、さまざまな視覚効果をビューに適用するために使用されます。
+iOS 17では、 `VisualEffect` プロトコルに3つの新しいメソッドが追加されました。これらは、 `Shader` 型と連携し、さまざまな視覚効果をビューに適用するために使用されます。
 
 それぞれのメソッドから呼び出されるMSLは、metalファイルに記述します。
 
@@ -228,7 +228,7 @@ MetalがSwiftUIと統合される以前から、MetalKitベースのMetal APIが
 | 3Dグラフィックス制作工程 | SwiftUI + Metalで書く部分 |
 | --- | --- |
 | モデリング | `Rectangle()` などの形状や、RealityKitの `Model3D`, `MeshResource.load()` を使ってモデルを表示。 |
-| マテリアル設定 | 基本的なマテリアルはSwiftUIの `Color` や `Gradient` を適用。高度なマテリアルは `.shader()` を通じてMSLで記述。iOS17以降は `Material` 型も利用可。 |
+| マテリアル設定 | 基本的なマテリアルはSwiftUIの `Color` や `Gradient` を適用。高度なマテリアルは `.shader()` を通じてMSLで記述。iOS 17以降は `Material` 型も利用可。 |
 | テクスチャリング | `Image` ビューでテクスチャ（画像）を読み込み、`.shader()` の引数として渡す。MSLではそのテクスチャを `sample()` してサンプリング方法や色計算を記述。 |
 | ライティング | RealityKitの `Model3D` を使う場合、基本的なライティングは RealityKit が処理。 |
 | カメラ設定 | RealityKitの `Model3D` を使う場合、基本のカメラワークはRealityKitが処理。カスタムのカメラワークが欲しいときは、ビュー・射影行列を自前で計算してシェーダーに渡す。 |
