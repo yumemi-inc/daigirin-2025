@@ -81,7 +81,7 @@ struct ColorFilterView: View {
 
 .metalファイルに記述します:
 
-```c++
+```cpp
 #include <metal_stdlib>
 using namespace metal;
 
@@ -113,7 +113,7 @@ struct WaveDistortionView: View {
 }
 ```
 
-```c++
+```cpp
 #include <metal_stdlib>
 using namespace metal;
 
@@ -146,7 +146,7 @@ struct ChromaticAberrationView: View {
 }
 ```
 
-```c++
+```cpp
 #include <metal_stdlib>
 #include <SwiftUI/SwiftUI.h>
 using namespace metal;
@@ -171,7 +171,7 @@ using namespace metal;
 
 例えば、ピクセル単位の色操作を行う `colorEffect(_:isEnabled:)` のシェーダー関数の中を見てみると、
 
-```c++
+```cpp
 [[ stitchable ]] half4 myColorFilter(float2 position, half4 color)
 ```
 
