@@ -282,12 +282,10 @@ watsonx assistantにもやっぱりAIはいるのです。
 
 ### 計算式シナリオの構築
 これを上手く使うと、チャットボットに計算をさせることも可能です。
-- 回答に点数を与える→合計点を計算→結果に応じて回答を分岐
-
 仮に5点満点で、3点以上合格の問題を設計することにします。イメージと実際のwatsonx画面を添付します。
 
 <figure>
-  <img src="images_koty/fig13.png" width="70%" />
+  <img src="images_koty/fig13.png" width="73%" />
   <figcaption>点数計算イメージ</figcaption>
 </figure>
 
@@ -305,6 +303,8 @@ watsonx assistantにもやっぱりAIはいるのです。
   <img src="images_koty/fig16.png" width="73%" />
     <figcaption>最終計算</figcaption>
 </figure>
+
+- 回答に点数を与える→合計点を計算→結果に応じて回答を分岐
 
 <figure>
   <img src="images_koty/fig17.png" width="100%" />
