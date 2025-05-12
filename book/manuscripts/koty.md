@@ -308,6 +308,7 @@ watsonx assistantにもAIはいるのです。
 皆様、良きチャットボットライフを。
 その他、詳しい式言語のメソッドは、公式が一番分かりやすく記載しています。
 以下、ご参考いただくと良いかと思います。
+
 https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-expression-methods-actions&locale=ja
 
 お読みいただきありがとうございました。
