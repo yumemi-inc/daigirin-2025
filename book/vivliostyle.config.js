@@ -25,6 +25,7 @@ module.exports = {
     'koty.md',
     'you.md',
     'kisaki.md',
+    'kotetu.md',
     'miharun.md',
     'akatsuki174.md',
     'kawashima.md',
