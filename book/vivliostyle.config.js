@@ -17,10 +17,18 @@ module.exports = {
     'preface.md',
     // 各章の原稿
     'emoto.md',
+    'kii.md',
+    'sunaga.md',
     'usami.md',
     'uutan1108.md',
     'yu_kimura.md',
+    'koty.md',
+    'you.md',
     'kisaki.md',
+    'kotetu.md',
+    'miharun.md',
+    'akatsuki174.md',
+    'kawashima.md',
     'yusuga.md',
 
     // 会社紹介（必要なら以下をアンコメントして利用、掲載時は頒布イベントの出展要項に注意）
