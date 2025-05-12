@@ -34,7 +34,7 @@ Apple では、一日数十億件ものリクエストを処理する Java コ�
 
 **「全部書き直した方が速い」**
 
-しかし、実際に全部書き直そうとして失敗したプロジェクトは数多く存在します。<span class="footnote">Netscape, Microsoft Access, Word for Windows のプロジェクトなど、大規模なリライトに失敗した事例としてしばしば言及されます https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/</span><span class="footnote">Windows Vista の開発においても、同様のリライトの試みとその失敗が見られます https://benbob.medium.com/what-really-happened-with-vista-an-insiders-retrospective-f713ee77c239</span>もし、Swift と Objective-C に相互運用性がなく、当時 Objective-C のコードを全て Swift に書き換えていたらすぐにアプリをリリースすることはできなかったでしょう。もしかしたら、相互運用性があるにも関わらず、全部書き直すと判断をしてしまい、リリースできなかったり、できたとしても想定よりも大きくスケジュールが遅延したのではないでしょうか。
+しかし、実際に全部書き直そうとして失敗したプロジェクトは数多く存在します <span class="footnote">Netscape, Microsoft Access, Word for Windows のプロジェクトなど、大規模なリライトに失敗した事例としてしばしば言及されます https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/</span><span class="footnote">Windows Vista の開発においても、同様のリライトの試みとその失敗が見られます https://benbob.medium.com/what-really-happened-with-vista-an-insiders-retrospective-f713ee77c239</span>。もし、Swift と Objective-C に相互運用性がなく、当時 Objective-C のコードを全て Swift に書き換えていたらすぐにアプリをリリースすることはできなかったでしょう。もしかしたら、相互運用性があるにも関わらず、全部書き直すと判断をしてしまい、リリースできなかったり、できたとしても想定よりも大きくスケジュールが遅延したのではないでしょうか。
 
 また一気に置き換えると決断した場合、そのプロジェクトの期間は長くなり、古いコードベースと新しいコードベースのチームに分かれることがしばしばです。そこに分断が発生し、ましてや古い方をメンテナンスしたいメンバーの方が稀で偏りが生まれる可能性があります。
 
@@ -82,7 +82,7 @@ Build config: +assertions
 
 JDK のバージョン指定があるため、Java のバージョン管理ツールとして SDKMAN<span class="footnote">SDKMAN https://sdkman.io/</span> の利用をおすすめします。SDKMAN のインストールや詳しい使い方は公式のドキュメントを参照ください。
 
-Java 22 は LTS<span class="footnote">Oracle Java SE Supportロードマップ LTS は 8, 11, 17, 21, 25 https://www.oracle.com/jp/java/technologies/java-se-support-roadmap.html</span> ではないため、SDKMAN では、唯一 Oracle だけが提供しています。<span class="footnote">非常に紛らわしいですが、一見 Gluon と Liberica NIK も提供しているように見えましたが、それぞれ提供しているバージョン Gluon 22.1.0.1.r17 と Liberica NIK 22.3.5.r17 は、先頭の `22` ではなく、 `r17` の部分が JDK のバージョンなので JDK 22 ではなく JDK 17 です。知らないと罠です。</span>ただし、LTS ではないため、時期によっては Oracle からも提供を終了している可能性もあるかもしれません。その場合は、SDKMAN を利用せずに直接アーカイブをダウンロードしてインストールする必要があります。
+Java 22 は LTS<span class="footnote">Oracle Java SE Supportロードマップ LTS は 8, 11, 17, 21, 25 https://www.oracle.com/jp/java/technologies/java-se-support-roadmap.html</span> ではないため、SDKMAN では、唯一 Oracle だけが提供しています <span class="footnote">非常に紛らわしいですが、一見 Gluon と Liberica NIK も提供しているように見えましたが、それぞれ提供しているバージョン Gluon 22.1.0.1.r17 と Liberica NIK 22.3.5.r17 は、先頭の `22` ではなく、 `r17` の部分が JDK のバージョンなので JDK 22 ではなく JDK 17 です。知らないと罠です。</span>。ただし、LTS ではないため、時期によっては Oracle からも提供を終了している可能性もあるかもしれません。その場合は、SDKMAN を利用せずに直接アーカイブをダウンロードしてインストールする必要があります。
 
 ##### SDKMAN
 
