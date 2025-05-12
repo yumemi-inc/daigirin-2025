@@ -180,7 +180,7 @@ https://us-south.assistant.watson.cloud.ibm.com/
 - セット例は後ほどまとめて後述します。
 
 ### entitiesとintentsのセット例
-図4 をentityにセットしている状態で「コンニチハ〜」とチャットボットに入力します。
+＜図4＞をentityにセットしている状態で「コンニチハ〜」とチャットボットに入力します。
 「コンニチハ〜」の中には「コンニチハ」がセットしてあるため、チャットボットがentityをセットしたnodeに反応します。
 `input.text== "こんにちは"`
 とは語句が完全一致しないため（コンニチハでもNG）、そのnodeには引っかかりません。
@@ -190,11 +190,11 @@ https://us-south.assistant.watson.cloud.ibm.com/
 </figure>
 ＜図6＞
 
-なお、ここで 図1 の説明の際の伏線が回収されます。
+なお、ここで＜図1＞の説明の際の伏線が回収されます。
 実は、これは「Japanese」を選んでいるので「コンニチハ〜」でも「コンニチハ」が含まれていると分かり、反応しますが、例えば「English」を選ぶと単語の切れ目がどこか分からなくなり、「コンニチハ〜 ≠ コンニチハ」とwatsonx assistantのAIに判定されて、反応しなくなるのです。ですので、チャットボットを組む言語を選択するのは非常に重要です。
 watsonx assistantにもやっぱりAIはいるのです。
 
-さて、図5 をintentにセットしている状態で「こんちは」とチャットボットに入力します。
+さて、＜図5＞をintentにセットしている状態で「こんちは」とチャットボットに入力します。
 「こんにちは」を登録しており、意味合いとしては近い（文字の並びとして近いという判断もある）のでintentをセットしたnodeが反応します。
 
 <figure>
@@ -267,7 +267,7 @@ watsonx assistantにもやっぱりAIはいるのです。
 - 上記の内容は全てこちらの設定次第で、勝手に忘れたり変わることはない
 
 ### Contextの設定方法
-1. Open context editorを選択 ※ 図12参照
+1. Open context editorを選択 ※ ＜図12＞参照
 2. Variable（変数名）とValue（値）を設定
    - 変数名は `$` で始まる（例: `$name`）
   
@@ -304,7 +304,7 @@ watsonx assistantにもやっぱりAIはいるのです。
 #### 全体のツリー図
 
 <figure>
-  <img src="images_koty/fig14.png" width="50%" />
+  <img src="images_koty/fig14.png" width="65%" />
 </figure>
 ＜図14＞
 
