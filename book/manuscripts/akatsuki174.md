@@ -37,9 +37,9 @@ cf. デバイスの開発者向けオプションを設定する[^dev_options_dr
 
 試しに設定してみると、日本語環境でアイコンが左右反転した状態になってました。
 
-| 設定 | 実行結果 |
-| :-- | :-- |
-| ![](images_akatsuki174/rtl_layout_settings.png){width=170} | ![](images_akatsuki174/forced_rtl_layout.png){width=170} |
+| 設定 | 設定前 | 設定後 |
+| :-- | :-- | :-- |
+| ![](images_akatsuki174/rtl_layout_settings.png){width=100} | ![](images_akatsuki174/forced_rtl_layout.png){width=100} | ![](images_akatsuki174/forced_rtl_layout_off.png){width=100} |
 
 [^dev_options_drawing]: デバイスの開発者向けオプションを設定する https://developer.android.com/studio/debug/dev-options?hl=ja#drawing
 
