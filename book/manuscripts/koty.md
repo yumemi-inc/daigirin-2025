@@ -62,6 +62,7 @@ https://us-south.assistant.watson.cloud.ibm.com/
 
 6. 青色に活性化されたCreate skillボタンをクリック
 
+<img src="{images_koty/fig1.png}" width="50%" />
 ![図1](images_koty/fig1.png)
 ＜図1＞
 
