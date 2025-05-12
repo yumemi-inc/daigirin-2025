@@ -67,7 +67,7 @@ Apple Intelligence は、iPhone / iPad / macOS 上で生成 AI を活用した�
 
 **ExecuTorch** [^7]はエッジデバイス上での推論処理を実現するために開発されたライブラリです。 ExecuTorch を利用することで、既存の PyTorch モデルをエッジデバイス向けに最適化された形で導入することが可能です。
 
-ExecuTorch の特徴のひとつとして、エッジデバイスのハードウェア機能を活用したパフォーマンス向上が挙げられます。 ExecuTorch では推論を行う際に使用するバックエンドを選択することができ、iOS では Metal Performance Shader ( MPS ) および CoreML を選択でき、 Android では Vulkan を選択できます。スマートフォンに搭載されている GPU や Neural Engine を活用できることは、推論処理を行う上で大きなメリットがあります。
+ExecuTorch の特徴のひとつとして、エッジデバイスのハードウェア機能を活用したパフォーマンス向上が挙げられます。 ExecuTorch では推論を行う際に使用するバックエンドを選択することができ、iOS では Metal Performance Shader ( MPS ) および Core ML を選択でき、 Android では Vulkan を選択できます。スマートフォンに搭載されている GPU や Neural Engine を活用できることは、推論処理を行う上で大きなメリットがあります。
 
 [^7]: https://pytorch.org/executorch-overview
 
@@ -163,7 +163,7 @@ cd executorch
 ./install_executorch.sh --pybind xnnpack mps coreml
 ```
 
-`--pybind` オプションですが、 ExecuTorch 実行時に選択可能なバックエンドの設定となります。本稿では xnnpack [^13]のみ使用しますが、今後 mps ( Metal Performance Shaders ) や coreml ( coreML ) を利用する可能性があるので、全て指定してビルドを行います。
+`--pybind` オプションですが、 ExecuTorch 実行時に選択可能なバックエンドの設定となります。本稿では xnnpack [^13]のみ使用しますが、今後 mps ( Metal Performance Shaders ) や coreml ( Core ML ) を利用する可能性があるので、全て指定してビルドを行います。
 
 install_executorch.sh が正常終了したら、ビルドとインストールは成功です。
 
