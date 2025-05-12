@@ -95,13 +95,13 @@ https://us-south.assistant.watson.cloud.ibm.com/
 2. 「Delete」を選択
 
 ### nodeの基本設定
-シンプルなチャットボットを作成する場合、各nodeには大きく以下の4点（3点？）を設定するだけで問題ありません。
+各nodeには大きく以下の 4点 を設定するだけで、シンプルなチャットボットが作成できます。
 1. **Enter node name（名前）**: 必須ではないが、後で混乱しないように内容に即した名前をつけると多少便利
-2. **If assistant recognizes（一致条件）**: どんな入力があった場合に呼び出すことができるか ※ 図2 参照
-※前述のwelcomeとanything_elseの他、反応させたい精度と条件により、上記画像のFilter byを含めた4種類のセット方法があります
+2. **If assistant recognizes（一致条件）**: どんな入力があった場合に呼び出すことができるか 
+※前述のwelcomeとanything_elseの他、反応させたい精度と条件により、図2 のFilter byを含めた4種類のセット方法があります
 
 3. **Assistant responds（文章、画像など）**: チャットボットの回答本体
-4. **Then assistant should（次の動作）**: ユーザーに対してどのようにnodeが次に動くか設定する
+4. **Then assistant should（次の動作）**: nodeの次の動きを設定する
    - Wait for reply（ユーザーが入力するまで何もしない）※基本的にはこちらで問題なし
    - Jump to（ユーザーが何もしなくても、勝手に指定先のnodeに飛んで同時に表示させる）
 
@@ -215,7 +215,6 @@ watsonx assistantにもやっぱりAIはいるのです。
   <img src="images_koty/fig9.png" width="100%" />
   <figcaption>本文の表現可能選択肢</figcaption>
 </figure>
-＜図9＞
 
 ### 文章
 1. Assistant respondsの初期設定プルダウンのまま「Text」
@@ -293,30 +292,22 @@ watsonx assistantにもやっぱりAIはいるのです。
   <img src="images_koty/fig13.png" width="85%" />
   <figcaption>点数計算イメージ</figcaption>
 </figure>
-＜図13＞
-
-#### 全体のツリー図
 
 <figure>
   <img src="images_koty/fig14.png" width="60%" />
   <figcaption>全体ツリー構造</figcaption>
 </figure>
 
-#### 1問目子node
-
 <figure>
   <img src="images_koty/fig15.png" width="100%" />
     <figcaption>1問目子node</figcaption>
 </figure>
-
-#### 最後の計算
 
 <figure>
   <img src="images_koty/fig16.png" width="100%" />
     <figcaption>最終計算</figcaption>
 </figure>
 
-#### 分岐例
 <figure>
   <img src="images_koty/fig17.png" width="100%" />
   <figcaption>分岐例</figcaption>
@@ -331,12 +322,12 @@ watsonx assistantにもやっぱりAIはいるのです。
 - `<=` : 以下
 - `+` `-` `*` `/` : 四則演算
 
-長々とお読みいただき、ありがとうございました。
 これらの内容をサクッと理解し、実装いただければ1時間で簡単なチャットボットは出来る筈……！
 皆様、良きチャットボットライフを。
+
 その他、詳しい式言語のメソッドは、公式が一番分かりやすく記載しています。
 以下、ご参考いただくと良いかと思います。
 
 https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-expression-methods-actions&locale=ja
 
-お読みいただきありがとうございました。
+長々とお読みいただき、ありがとうございました。
