@@ -7,8 +7,7 @@ class: content
   <div class="doc-author">栗山徹</div>
 </div>
 
-ExecuTorch を使って iOS 上で Llama モデルを動かしてみた
-==
+# ExecuTorch を使って iOS 上で Llama モデルを動かしてみた
 
 ## はじめに
 
