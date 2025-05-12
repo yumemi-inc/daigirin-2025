@@ -146,7 +146,7 @@ ExecuTorch は下記 pip コマンドを用いて簡単にインストールで�
 pip install executorch
 ```
 
-ただ、 Llama のモデルを ExecuTorch 用のモデルへ変換するツールをインストールする関係で、今回は ExecuTorch をソースコードからインストールします。
+ただ、 Llama のモデルを ExecuTorch モデルへ変換するツールをインストールする関係で、今回は ExecuTorch をソースコードからインストールします。
 
 ソースコードからのインストールは "Building from Source" [^12]に記載されている手順を見ながら進めていきます。
 
