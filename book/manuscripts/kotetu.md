@@ -78,7 +78,7 @@ ExecuTorch はエッジデバイス用に最適化されているため、PyTorc
 "How ExecuTorch Works" [^8]という ExecuTorch の内部構造を解説したドキュメントによれば、PyTorch モデルを実行するためには下記 3 つのステップが必要と解説されています。
 
 1. PyTorch モデルをエッジデバイスでの実行に最適化してエクスポートする
-2. エクスポートしたモデルを ExecuTorch 用のモデル (ExecuTorch モデル) としてコンパイルする
+2. エクスポートしたモデルを ExecuTorch 用のモデル ( ExecuTorch モデル) としてコンパイルする
 3. ExecuTorch ランタイムを用いて ExecuTorch モデルをインポートし推論処理を実行する
 
 本稿で題材となっている Llama については 1. と 2. のステップをコマンド 1 つで処理できるツールが ExecuTorch のリポジトリに含まれており、 Python のコードを書くことなく容易に ExecuTorch モデルを出力できるようになっています。
