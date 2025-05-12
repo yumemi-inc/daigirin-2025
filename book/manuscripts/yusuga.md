@@ -16,15 +16,15 @@ Swift は Apple によって開発された汎用プログラミング言語で�
 
 Server Side Swift は、Swift 言語をサーバーサイド開発に使用する能力を指します。サーバー上で Swift アプリケーションを展開するためには、Vapor や Hummingbird のような Web フレームワークが利用されます。これらのフレームワークは、ルーティング、データベース統合、リクエスト処理などの重要な機能を提供し、開発者がビジネスロジックの構築に集中できるようサポートします。
 
-詳しくは前回の `Server Side Swift - API サーバ構築` をご参照ください。
+詳しくは前回執筆した `ゆめみ大技林 '24 (2)` をご覧ください。
 
-![https://zenn.dev/yusuga/articles/dc601e1f67a0b7](./images_yusuga/previous_zenn.png)
+![ゆめみ大技林 '24 (2)](./images_yusuga/daigirin_24_2.png)
 
 今回は、2024 年末に手掛けた開発実績をご紹介するとともに、浮かび上がった課題と今後の可能性をお伝えします。
 
 ## 実装環境
 
-- Xcode: 16.2
+- Xcode: 16.2 (Swift 6.0.3)
 - Vapor: 4.112.0
 
 ## 開発実績
@@ -86,11 +86,13 @@ iOS や macOS 開発で使用している Foundation framework は Objective-C �
 
 ### ビルド時間が長い
 
-Swift は強い静的型付け言語なためビルド時間が動的型付け言語に比べて長くなる傾向です。本案件は BFF サーバなので、実装規模が比較的小さいものの、キャッシュなしのリリースビルドに約 30 分かかります。ただし、ビルド時間の内訳を確認すると、その 9 割以上が依存ライブラリのビルド時間です。そこで iOS 開発なら XCFramework のバイナリターゲットを使うことで改善できますが、残念ながら執筆時点でバイナリターゲットは Apple Platform のみサポートしているため Linux では利用できません。この件に関しては <!-- textlint-disable -->swift.org<!-- textlint-enable --> の公式フォーラムの `[Pitch] SwiftPM Support for Binary Static Library Dependencies` で議論されており、サポートされるのを待つしかありません。
+Swift は強い静的型付け言語なためビルド時間が動的型付け言語に比べて長くなる傾向です。本案件は BFF サーバなので、実装規模が比較的小さいものの、キャッシュなしのリリースビルドに約 30 分かかります。ただし、ビルド時間の内訳を確認すると、その 9 割以上が依存ライブラリのビルド時間です。そこで iOS 開発なら XCFramework のバイナリターゲットを使うことで改善できますが、残念ながら執筆時点でバイナリターゲットは Apple Platform のみサポートしているため Linux では利用できません。この件に関しては <!-- textlint-disable -->swift.org<!-- textlint-enable --> の公式フォーラムの [[Pitch] SwiftPM Support for Binary Static Library Dependencies](https://forums.swift.org/t/pitch-swiftpm-support-for-binary-static-library-dependencies/78619/10) で議論されており、サポートされるのを待つしかありません。
+
+![[Pitch] SwiftPM Support for Binary Static Library Dependencies](./images_yusuga/forums_swift_org.png)
 
 ### その他
 
-インフラ周りの構築は Terraform, IAM, Route 53, ECS, Fargate など API サーバの実装とは直接関係のない異なる知識が必要です。また、ログ出力のフォーマット、環境変数の管理なども iOS とは異なり、サーバとしてのベストプラクティスがあるため、新たに学ぶ必要がありました。
+インフラ周りの構築は Terraform、IAM、Route 53、ECS、Fargate など API サーバの実装とは直接関係のない異なる知識が必要です。また、ログ出力のフォーマット、環境変数の管理なども iOS とは異なり、サーバとしてのベストプラクティスがあるため、新たに学ぶ必要がありました。
 
 ## 解消した不安
 
