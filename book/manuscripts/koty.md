@@ -96,7 +96,7 @@ https://us-south.assistant.watson.cloud.ibm.com/
 
 ### nodeの基本設定
 各nodeには大きく以下の 4点 を設定するだけで、シンプルなチャットボットが作成できます。
-1. **Enter node name（名前）**: 必須ではないが、後で混乱しないように内容に即した名前をつけると多少便利
+1. **Enter node name（名前）**: 後で混乱しないように、内容に即した名前をつけると多少便利
 2. **If assistant recognizes（一致条件）**: どんな入力があった場合に呼び出すことができるか 
 ※前述のwelcomeとanything_elseの他、反応させたい精度と条件により、図2 のFilter byを含めた4種類のセット方法があります
 
@@ -106,7 +106,7 @@ https://us-south.assistant.watson.cloud.ibm.com/
    - Jump to（ユーザーが何もしなくても、勝手に指定先のnodeに飛んで同時に表示させる）
 
 <figure>
-  <img src="images_koty/fig2.png" width="70%" />
+  <img src="images_koty/fig2.png" width="75%" />
   <figcaption>一致条件</figcaption>
 </figure>
 
@@ -212,7 +212,7 @@ watsonx assistantにもやっぱりAIはいるのです。
 チャットボットの回答本体となり得る部分を少し紹介します。基本的には後述する3点を覚えてもらうと、基本的なチャットボットは一通り構築が可能です。
 
 <figure>
-  <img src="images_koty/fig9.png" width="100%" />
+  <img src="images_koty/fig9.png" width="90%" />
   <figcaption>本文の表現可能選択肢</figcaption>
 </figure>
 
@@ -223,7 +223,7 @@ watsonx assistantにもやっぱりAIはいるのです。
 
 ### 選択肢
 1. Assistant respondsの初期設定プルダウンから「Option」を選択
-2. Titleに質問文を入力（例: あなたの名前は何ですか？）
+2. Titleに質問文を入力（例: あなたはどちらが好きですか？）
    - 他の場所から文章を貼り付けると改行が半角スペースに変換されてしまうため、改行を入れたい場合はJSONツールを開いて改行記号を入れる必要がある
    - 制限文字数は512文字
 3. List label（見た目のテキスト）とValue（送信されるテキスト）を設定 ※ 図10 参照
@@ -233,9 +233,8 @@ watsonx assistantにもやっぱりAIはいるのです。
 4. 選択肢を作る場合は、必ず子node（選択肢を選んだ場合に反応するnodeのこと）が必要となる
 上記のnodeの追加方法で「Add child node」を選択
 5. child node側でそれぞれの選択肢に対する一致条件を設定 ※ 図11 参照
-   - 条件: `input.text== "田中"` 
-   - 条件: `input.text== "佐藤"` 
-   - 条件: `input.text== "高橋"` など
+   - 条件: `input.text== "犬"` 
+   - 条件: `input.text== "猫"` など
 
 <figure>
   <img src="images_koty/fig10.png" width="100%" />
@@ -285,7 +284,9 @@ watsonx assistantにもやっぱりAIはいるのです。
 
 ### 計算式シナリオの構築
 これを上手く使うと、チャットボットに計算をさせることも可能です。
+
 回答に点数を与える→合計点を計算→結果に応じて回答を分岐
+
 仮に5点満点で、3点以上合格の問題を設計することにします。イメージと実際のwatsonx画面を添付します。
 
 <figure>
@@ -324,7 +325,6 @@ watsonx assistantにもやっぱりAIはいるのです。
 
 これらの内容をサクッと理解し、実装いただければ1時間で簡単なチャットボットは出来る筈……！
 皆様、良きチャットボットライフを。
-
 その他、詳しい式言語のメソッドは、公式が一番分かりやすく記載しています。
 以下、ご参考いただくと良いかと思います。
 
