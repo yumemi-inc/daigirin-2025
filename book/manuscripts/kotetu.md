@@ -173,7 +173,7 @@ install_executorch.sh が正常終了したら、ビルドとインストール�
 
 #### 2. PyTorch モデルの変換に使用するツールをインストールする
 
-前述のとおり、 Llama のモデル を ExecuTorch で使用するためには ExecuTorch モデルへの変換が必要です。変換に必要なツール一式をインストールしましょう。
+前述のとおり、Llama のモデルを ExecuTorch で使用するためには ExecuTorch モデルへの変換が必要です。変換に必要なツール一式をインストールしましょう。
 
 ExecuTorch の GitHub リポジトリに Llama 関連のツールが格納されたディレクトリ (`examples/models/llama/`) があります[^14]。ディレクトリ内に `install_requirements.sh` というスクリプトがあるので、こちらのスクリプトを実行するとインストールが開始されます。
 
