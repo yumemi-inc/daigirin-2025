@@ -62,9 +62,10 @@ https://us-south.assistant.watson.cloud.ibm.com/
 
 6. 青色に活性化されたCreate skillボタンをクリック
 
-<img src="{https://github.com/yumemi-inc/daigirin-2025/blob/feature/koty/book/manuscripts/images_koty/fig1.png}" width="50%" />
-![図1](images_koty/fig1.png)
-＜図1＞
+<figure>
+  <img src="images_koty/fig1.png" width="50%" />
+  <figcaption>＜図1＞</figcaption>
+</figure>
 
 ## 3. 対話の設計
 
