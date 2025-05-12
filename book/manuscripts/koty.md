@@ -67,6 +67,7 @@ https://us-south.assistant.watson.cloud.ibm.com/
 
 #### Welcome
 - 条件に「welcome（初めてチャットボットを開いた時に自動的に表示される言葉）」が設定されている
+
 #### Anything_else
 - 条件に「anything_else（何のテキストが入力されても反応する）」が設定されている
 - 視覚的な意味においてAnything_elseより上の場所に設置しているnodeで入力語句と見合わない場合、強制的にこのnodeに書かれた内容が表示される
