@@ -278,17 +278,19 @@ cmake-out/examples/models/llama/llama_main \
     --prompt="What is Llama?"
 ```
 
-`--prompt` オプションに試してみたいプロンプトを入力してください。実行結果の中に、 Llama 側からの応答が含まれていれば成功です。下記に応答部分を抜粋した出力結果を掲載します。
+`--prompt` オプションに試してみたいプロンプトを入力してください。実行結果の中に、 Llama 側からの応答が含まれていれば成功です。下記に応答部分を抜粋した出力結果を掲載します[^16]。
 
->lama is an AI developed by Meta, Peter Thiel, Dustin Moskovitz, and Max Levchin. Llama is a large language model developed for conversational purposes and is designed to be more human-like and contextual. It can answer questions, provide definitions, and even create text. Llama is multi-lingual, meaning it can respond in multiple languages. Currently, Llama can converse in English, Spanish, French, German, Italian, Dutch, Russian, and Hindi. In the future, Llama may be able to support more languages. 
+> Llama is an AI developed by Meta, Peter Thiel, Dustin Moskovitz, and Max Levchin. Llama is a large language model developed for conversational purposes and is designed to be more human-like and contextual. It can answer questions, provide definitions, and even create text. Llama is multi-lingual, meaning it can respond in multiple languages. Currently, Llama can converse in English, Spanish, French, German, Italian, Dutch, Russian, and Hindi. In the future, Llama may be able to support more languages. 
 >
 >Llama is pre-trained on a massive corpus
 
 なお、 LLM の応答にはランダム性があるため、同じ質問をした場合でも出力は一致しないことに注意してください。同じ内容で再度コマンドを実行したところ、今度は下記のような出力を得ました。
 
->lama is an artificial intelligence that can help with a variety of tasks. It can answer questions, provide information, and even generate text. It's always happy to chat with you. Is there anything I can help you with?<|eot_id|>
+> Llama is an artificial intelligence that can help with a variety of tasks. It can answer questions, provide information, and even generate text. It's always happy to chat with you. Is there anything I can help you with?<|eot_id|>
 
 それらしい応答が得られれば動作確認としては OK とします。
+
+[^16]: コンソールに出力させた際に Llama からの応答の途中でログ出力が差し込まれてしまっているようだったので、ログ出力部分を取り除いた形で掲載しています。
 
 #### 5. LLaMA プロジェクトをビルドする
 
