@@ -214,7 +214,7 @@ llama model download --source meta --model-id  Llama3.2-1B-Instruct
 
 #### 4. Llama モデルを ExecuTorch 用のモデルへ変換してみる
 
-モデルのダウンロードが完了したら、ダウンロードしたモデルを ExecuTorch 用のモデルへ変換しましょう。下記コマンドを実行してください。 .pth ファイルと params.json のパスは適宜読み替えてください。
+モデルのダウンロードが完了したら、ダウンロードしたモデルを ExecuTorch モデルへ変換しましょう。下記コマンドを実行してください。 .pth ファイルと params.json のパスは適宜読み替えてください。
 
 ```shell
 python -m examples.models.llama.export_llama \
