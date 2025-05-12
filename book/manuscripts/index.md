@@ -16,6 +16,7 @@ class: exclude-hashira
 1. [「半分組み込まない」ロボコン](yu_kimura.html)
 1. [大 AI エディター時代にあえて Neovim に移行したお話](kisaki.html)
 1. [知っているとちょっと嬉しいMetalの話](miharun.html)
+1. [Android アプリで RTL 言語対応をする（画像編）](akatsuki174.html)
 <!-- ここまで、記事の目次 -->
 1. [著者紹介](authors.html)
 
