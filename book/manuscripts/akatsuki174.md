@@ -176,6 +176,10 @@ fun ImageViewWithAndroidView() {
 | :-- | :-- |
 | ![](images_akatsuki174/scaleX_RTL_image_view.png){width=170} | ![](images_akatsuki174/scaleX_LTR_image_view.png){width=170} |
 
+<!-- markdownlint-disable MD041 -->
+<hr class="page-break" />
+<!-- markdownlint-enable MD041 -->
+
 ## 最後に
 
 今回は Android アプリを RTL 言語対応する時に発生するアイコン周りの処理について書いてみました。アプリ全体を RTL 言語対応するにはレイアウトなども対応しないといけないですが、それはまた別の機会に...。
@@ -183,3 +187,8 @@ fun ImageViewWithAndroidView() {
 公式ドキュメントに「各種の言語および文化をサポートする」[^support_languages]という項目があるので、ぜひそちらも参考にしてみてください。
 
 [^support_languages]: 各種の言語および文化をサポートする https://developer.android.com/training/basics/supporting-devices/languages?hl=ja
+
+<!-- markdownlint-disable MD041 -->
+<hr class="page-break" />
+　
+<!-- markdownlint-enable MD041 -->

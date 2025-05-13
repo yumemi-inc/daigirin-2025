@@ -417,6 +417,15 @@ ROE は全銘柄を買った場合と比べると、成績が悪くなってい�
 
 読んでくれてありがとうございます。重ねますがこの示唆が私から読者諸賢へのプレゼントです。
 
+<!-- markdownlint-disable MD041 -->
+<hr class="page-break" />
+<!-- markdownlint-enable MD041 -->
+
 **AI 投資はどうやら儲かるらしい**
 
 もっとも簡単ではなさそうなことだけは申し添えておきます。
+
+<!-- markdownlint-disable MD041 -->
+<hr class="page-break" />
+　
+<!-- markdownlint-enable MD041 -->

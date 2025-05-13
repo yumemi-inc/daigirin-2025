@@ -417,3 +417,8 @@ abstraction $ git push origin main
 本記事では、MDN Web Docs のローカル環境構築について詳しく解説しましたが、私自身も次のサイトを参考にしながら翻訳に挑戦しました。慣れている方はこちらも参考にしてみてください。
 
 MDN 月例ミートアップ - 翻訳ガイド · HonKit https://mozilla-japan.github.io/mdn-translation-guide/
+
+<!-- markdownlint-disable MD041 -->
+<hr class="page-break" />
+　
+<!-- markdownlint-enable MD041 -->
